@@ -36,10 +36,10 @@ export function CertificationsSection({ data }: CertificationsSectionProps) {
   const certifications = data?.certifications || fallbackCertifications
   
   return (
-    <section className="py-16 sm:py-20 bg-transparent backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl font-light text-slate-900">
+    <section id="certifications" className="p-2 sm:p-3 lg:p-4">
+      <div className="max-w-7xl mx-auto py-10 sm:py-12 px-4 sm:px-6">
+        <div className="text-center space-y-4 mb-10">
+          <h2 className="text-5xl sm:text-6xl font-light text-slate-900">
             {data?.title || "Certificazioni e Affiliazioni"}
           </h2>
           {(data?.subtitle || true) && (

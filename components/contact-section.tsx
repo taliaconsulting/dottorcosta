@@ -59,13 +59,13 @@ export function ContactSection({ data }: ContactSectionProps) {
   const mapEmbedUrl = data?.mapEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.6750902684574!2d-118.3859!3d34.0275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b9c5c0f0f0f9%3A0x9b0f0f0f0f0f0f0f!2s3831%20Hughes%20Ave%2C%20Culver%20City%2C%20CA%2090232!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
   
   return (
-    <section className="p-3 sm:p-4 lg:p-6">
+    <section id="contact" className="p-2 sm:p-3 lg:p-4">
       <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800">
         <div className="grid lg:grid-cols-2">
           {/* Informazioni di Contatto */}
-          <div className="p-8 lg:p-12 space-y-8">
+          <div className="p-6 lg:p-10 space-y-6">
             <div>
-              <h2 className="text-4xl font-light text-white">{data?.title || "Contattaci"}</h2>
+              <h2 className="text-5xl sm:text-6xl font-light text-white">{data?.title || "Contattaci"}</h2>
               <p className="mt-4 text-lg text-white/80">
                 {data?.subtitle || "Siamo qui per rispondere a qualsiasi domanda tu possa avere."}
               </p>

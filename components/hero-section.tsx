@@ -15,8 +15,8 @@ type HeroSectionProps = {
 
 export function HeroSection({ data }: HeroSectionProps) {
   return (
-    <section className="p-3 sm:p-4 lg:p-6 h-screen">
-      <div className="relative w-full h-full min-h-[calc(100vh-3rem)] rounded-2xl overflow-hidden flex items-center justify-center bg-black/5">
+    <section id="hero" className="p-2 sm:p-3 lg:p-4 h-screen">
+      <div className="relative w-full h-full min-h-[calc(100vh-2rem)] rounded-2xl overflow-hidden flex items-center justify-center bg-black/5">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image

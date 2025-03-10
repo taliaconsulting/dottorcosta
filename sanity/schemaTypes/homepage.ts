@@ -76,6 +76,12 @@ export default defineType({
           
         }),
         defineField({
+          name: 'buttonText',
+          title: 'Testo Pulsante Prenotazione',
+          type: 'string',
+          description: 'Testo per il pulsante di prenotazione nei servizi',
+        }),
+        defineField({
           name: 'services',
           title: 'Servizi',
           type: 'array',
@@ -88,6 +94,12 @@ export default defineType({
                   title: 'Titolo Servizio',
                   type: 'string',
                   
+                }),
+                defineField({
+                  name: 'description',
+                  title: 'Descrizione',
+                  type: 'text',
+                  description: 'Descrizione dettagliata del servizio',
                 }),
                 defineField({
                   name: 'iconType',

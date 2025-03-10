@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Instrument_Sans } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
-const instrumentSans = Instrument_Sans({
+const dm_sans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
@@ -23,7 +23,7 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          instrumentSans.variable
+          dm_sans.variable
         )}
       >
         {children}

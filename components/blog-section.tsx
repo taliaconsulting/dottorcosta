@@ -77,12 +77,12 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
   }
 
   return (
-    <section className="p-3 sm:p-4 lg:p-6">
+    <section id="blog" className="p-2 sm:p-3 lg:p-4">
       <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 py-16 sm:py-20">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
             <div>
-              <h2 className="text-4xl font-light text-white">{data?.title || "Ultimi Approfondimenti"}</h2>
+              <h2 className="text-5xl sm:text-6xl font-light text-white">{data?.title || "Il Nostro Blog"}</h2>
               <p className="mt-4 text-lg text-white/80">
                 {data?.subtitle || "Prospettive di esperti sulla cura degli occhi e la correzione della vista"}
               </p>

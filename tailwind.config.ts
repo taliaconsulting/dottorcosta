@@ -9,10 +9,18 @@ export default {
     "./src/**/*.{ts,tsx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ['Montserrat', 'sans-serif'],
+    },
   	extend: {
-  		colors: {
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
+      colors: {
+        'blu-polvere': 'hsl(var(--blu-polvere))',
+        'verde-acqua': 'hsl(var(--verde-acqua))',
+        'bianco-perla': 'hsl(var(--bianco-perla))',
+        'grigio-chiaro': 'hsl(var(--grigio-chiaro))',
+        'blu-notte': 'hsl(var(--blu-notte))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'

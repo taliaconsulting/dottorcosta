@@ -22,13 +22,13 @@ type ContactSectionProps = {
 const ContactIcon = ({ iconType }: { iconType: string }) => {
   switch (iconType) {
     case "phone":
-      return <Phone className="h-6 w-6 text-blue-400" />
+      return <Phone className="h-6 w-6 text-blu-polvere" />
     case "email":
-      return <Mail className="h-6 w-6 text-blue-400" />
+      return <Mail className="h-6 w-6 text-blu-polvere" />
     case "location":
-      return <MapPin className="h-6 w-6 text-blue-400" />
+      return <MapPin className="h-6 w-6 text-blu-polvere" />
     default:
-      return <Mail className="h-6 w-6 text-blue-400" />
+      return <Mail className="h-6 w-6 text-blu-polvere" />
   }
 }
 
@@ -60,13 +60,13 @@ export function ContactSection({ data }: ContactSectionProps) {
   
   return (
     <section id="contact" className="p-2 sm:p-3 lg:p-4">
-      <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800">
+      <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-blu-notte to-blu-notte/80">
         <div className="grid lg:grid-cols-2">
           {/* Informazioni di Contatto */}
           <div className="p-6 lg:p-10 space-y-6">
             <div>
-              <h2 className="text-5xl sm:text-6xl font-light text-white">{data?.title || "Contattaci"}</h2>
-              <p className="mt-4 text-lg text-white/80">
+              <h2 className="text-5xl sm:text-6xl font-light text-bianco-perla">{data?.title || "Contattaci"}</h2>
+              <p className="mt-4 text-lg text-bianco-perla/80">
                 {data?.subtitle || "Siamo qui per rispondere a qualsiasi domanda tu possa avere."}
               </p>
             </div>
@@ -75,16 +75,16 @@ export function ContactSection({ data }: ContactSectionProps) {
               {contactInfo.map((item) => (
                 <Card
                   key={item.title}
-                  className="bg-white/5 hover:bg-white/10 border-white/10 transition-all duration-300"
+                  className="bg-bianco/5 hover:bg-bianco/10 border-bianco/10 transition-all duration-300"
                 >
                   <CardContent className="flex items-center p-6">
-                    <div className="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center mr-6">
+                    <div className="h-12 w-12 rounded-full bg-bianco-perla/5 flex items-center justify-center mr-6">
                       <ContactIcon iconType={item.iconType} />
                     </div>
                     <div>
-                      <h3 className="text-white font-medium mb-1">{item.title}</h3>
-                      <p className="text-white/90 font-medium">{item.value}</p>
-                      <p className="text-white/60 text-sm">{item.description}</p>
+                      <h3 className="text-bianco-perla font-medium mb-1">{item.title}</h3>
+                      <p className="text-bianco-perla/90 font-medium">{item.value}</p>
+                      <p className="text-bianco-perla/60 text-sm">{item.description}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -92,7 +92,7 @@ export function ContactSection({ data }: ContactSectionProps) {
             </div>
 
             <div className="pt-6">
-              <p className="text-white/80">
+              <p className="text-bianco-perla/80">
                 {data?.locationDescription || "Il nostro studio è situato nel cuore di Culver City, facilmente accessibile per i pazienti di tutta la contea di Los Angeles."}
               </p>
             </div>

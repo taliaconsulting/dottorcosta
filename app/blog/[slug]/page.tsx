@@ -4,52 +4,52 @@ import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-// List of beautiful gradients that match the site's aesthetic
+// Lista di gradienti che corrispondono all'estetica del sito
 const gradients = [
-  "bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900",
-  "bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900",
-  "bg-gradient-to-br from-blue-900 via-slate-900 to-indigo-900",
-  "bg-gradient-to-br from-indigo-900 via-slate-900 to-blue-900",
-  "bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900",
+  "bg-gradient-to-br from-[#1B365C] via-[#2C3E50] to-[#1B365C]",
+  "bg-gradient-to-br from-[#2C3E50] via-[#1B365C] to-[#2C3E50]",
+  "bg-gradient-to-br from-[#1B365C] via-[#2F4356] to-[#1B365C]",
+  "bg-gradient-to-br from-[#2F4356] via-[#1B365C] to-[#2F4356]",
+  "bg-gradient-to-br from-[#1B365C] via-[#7EA1C4] to-[#1B365C]",
 ]
 
-// This would typically come from your CMS or API
+// Questo normalmente verrebbe da un CMS o API
 const getBlogPost = async (slug: string) => {
-  // Mock data - in a real app, this would fetch from your CMS/API
+  // Dati di esempio - in un'app reale, questi dati verrebbero recuperati dal CMS/API
   return {
     slug,
-    title: "The Latest Advancements in LASIK Technology",
-    description: "Explore how modern LASIK surgery has evolved and what new technologies mean for patients.",
+    title: "Gli ultimi progressi nella tecnologia LASIK",
+    description: "Scopri come la moderna chirurgia LASIK si è evoluta e cosa significano le nuove tecnologie per i pazienti.",
     date: "2024-03-15",
-    readTime: "5 min read",
-    category: "Technology",
+    readTime: "5 min di lettura",
+    category: "Tecnologia",
     content: `
       <p>
-        LASIK eye surgery has come a long way since its FDA approval in 1999. Today, the procedure
-        is more precise, safer, and offers better outcomes than ever before. In this article, we'll
-        explore the latest technological advancements that are revolutionizing LASIK surgery.
+        La chirurgia oculare LASIK ha fatto molta strada dalla sua approvazione FDA nel 1999. Oggi, la procedura
+        è più precisa, sicura e offre risultati migliori rispetto al passato. In questo articolo, esploreremo
+        gli ultimi progressi tecnologici che stanno rivoluzionando la chirurgia LASIK.
       </p>
       
-      <h2>The Evolution of LASIK Technology</h2>
+      <h2>L'evoluzione della tecnologia LASIK</h2>
       
       <p>
-        Modern LASIK procedures utilize advanced wavefront technology to create a detailed map of your eye's
-        unique imperfections. This allows for incredibly precise customization of the treatment to your
-        specific needs.
+        Le moderne procedure LASIK utilizzano la tecnologia wavefront avanzata per creare una mappa dettagliata delle
+        imperfezioni uniche dell'occhio. Questo consente una personalizzazione incredibilmente precisa del trattamento
+        in base alle esigenze specifiche del paziente.
       </p>
       
-      <h2>Benefits of Modern LASIK</h2>
+      <h2>Vantaggi della LASIK moderna</h2>
       
       <ul>
-        <li>Improved accuracy and precision</li>
-        <li>Faster recovery times</li>
-        <li>Better night vision outcomes</li>
-        <li>Reduced risk of complications</li>
+        <li>Maggiore accuratezza e precisione</li>
+        <li>Tempi di recupero più rapidi</li>
+        <li>Migliori risultati per la visione notturna</li>
+        <li>Ridotto rischio di complicazioni</li>
       </ul>
       
       <p>
-        With these advancements, more patients than ever are candidates for LASIK surgery. However,
-        it's important to have a thorough consultation to determine if LASIK is right for you.
+        Con questi progressi, più pazienti che mai sono candidati alla chirurgia LASIK. Tuttavia,
+        è importante sottoporsi a una consulenza approfondita per determinare se la LASIK è adatta a te.
       </p>
     `
   }
@@ -58,7 +58,7 @@ const getBlogPost = async (slug: string) => {
 export async function generateMetadata(props: any): Promise<Metadata> {
   const post = await getBlogPost(props.params.slug)
   return {
-    title: `${post.title} | Dr. Besser Eye Care Blog`,
+    title: `${post.title} | Blog Dr. Costa`,
     description: post.description,
   }
 }
@@ -88,7 +88,7 @@ export default async function BlogPost(props: any) {
               >
                 <Link href="/blog">
                   <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Blog
+                  Torna al Blog
                 </Link>
               </Button>
 
@@ -96,7 +96,7 @@ export default async function BlogPost(props: any) {
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
                   <time dateTime={post.date}>
-                    {new Date(post.date).toLocaleDateString('en-US', {
+                    {new Date(post.date).toLocaleDateString('it-IT', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric'
@@ -127,7 +127,7 @@ export default async function BlogPost(props: any) {
         {/* Content */}
         <div className="max-w-2xl mx-auto">
           <div 
-            className="prose prose-slate lg:prose-lg prose-p:text-justify prose-headings:text-left prose-img:mx-auto prose-headings:font-light prose-h2:text-2xl lg:prose-h2:text-3xl prose-p:leading-relaxed"
+            className="prose prose-slate lg:prose-lg prose-p:text-justify prose-headings:text-left prose-img:mx-auto prose-headings:font-light prose-h2:text-2xl lg:prose-h2:text-3xl prose-p:leading-relaxed font-['Montserrat']"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </div>

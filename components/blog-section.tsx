@@ -78,19 +78,19 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
 
   return (
     <section id="blog" className="p-2 sm:p-3 lg:p-4">
-      <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800">
+      <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-blu-notte to-blu-notte/80">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
             <div>
-              <h2 className="text-5xl sm:text-6xl font-light text-white">{data?.title || "Il Nostro Blog"}</h2>
-              <p className="mt-4 text-lg text-white/80">
+              <h2 className="text-5xl sm:text-6xl font-light text-bianco-perla">{data?.title || "Il Nostro Blog"}</h2>
+              <p className="mt-4 text-lg text-bianco-perla/80">
                 {data?.subtitle || "Prospettive di esperti sulla cura degli occhi e la correzione della vista"}
               </p>
             </div>
             <Link href="/blog">
               <Button 
                 variant="outline" 
-                className="mt-6 md:mt-0 bg-white/5 hover:bg-white/10 text-white border-white/10"
+                className="mt-6 md:mt-0 bg-bianco-perla/5 hover:bg-bianco-perla/10 text-bianco-perla border-bianco-perla/10"
               >
                 {data?.viewAllButtonText || "Vedi Tutti i Post"}
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -102,7 +102,7 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
             {blogPosts.map((post) => (
               <Card 
                 key={post._id}
-                className="bg-white/5 hover:bg-white/10 border-white/10 transition-all duration-300 hover:scale-[1.02] group"
+                className="bg-bianco-perla/5 hover:bg-bianco-perla/10 border-bianco-perla/10 transition-all duration-300 hover:scale-[1.02] group"
               >
                 <CardContent className="p-0">
                   <div className="relative h-48 w-full overflow-hidden rounded-t-xl">
@@ -112,30 +112,30 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-blu-notte/50 to-transparent" />
                     <div className="absolute bottom-4 left-4">
-                      <span className="px-3 py-1 bg-blue-500/90 text-white text-sm rounded-full">
+                      <span className="px-3 py-1 bg-blu-polvere/90 text-blu-notte text-sm rounded-full">
                         {post.category}
                       </span>
                     </div>
                   </div>
                   <div className="p-6 space-y-4">
-                    <div className="flex items-center text-sm text-white/60 space-x-4">
+                    <div className="flex items-center text-sm text-bianco-perla/60 space-x-4">
                       <span>{formatDate(post.publishedAt)}</span>
                       <span>•</span>
                       <span>{post.readTime}</span>
                     </div>
-                    <h3 className="text-xl font-medium text-white group-hover:text-white/90 transition-colors">
+                    <h3 className="text-xl font-medium text-bianco-perla group-hover:text-bianco-perla/90 transition-colors">
                       {post.title}
                     </h3>
-                    <p className="text-white/70 line-clamp-2">
+                    <p className="text-bianco-perla/70 line-clamp-2">
                       {post.excerpt}
                     </p>
                     <div className="pt-2">
                       <Link href={`/blog/${post.slug.current}`}>
                         <Button 
                           variant="link" 
-                          className="px-0 text-blue-400 hover:text-blue-300"
+                          className="px-0 text-blu-polvere hover:text-blu-polvere/80"
                         >
                           Leggi di Più
                           <ArrowRight className="ml-2 h-4 w-4" />

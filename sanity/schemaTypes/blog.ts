@@ -11,14 +11,14 @@ export default defineType({
       title: 'Titolo Pagina Blog',
       type: 'string',
       description: 'Titolo principale della pagina del blog',
-      validation: (Rule) => Rule.required(),
+      
     }),
     defineField({
       name: 'description',
       title: 'Descrizione',
       type: 'text',
       description: 'Una breve descrizione della sezione blog',
-      validation: (Rule) => Rule.required(),
+      
     }),
     defineField({
       name: 'headerImage',
@@ -34,7 +34,7 @@ export default defineType({
       title: 'Post Per Pagina',
       type: 'number',
       description: 'Numero di post da visualizzare per pagina',
-      validation: (Rule) => Rule.required().min(1).max(20),
+      validation: (Rule) => Rule.min(1).max(20),
       initialValue: 9,
     }),
     defineField({

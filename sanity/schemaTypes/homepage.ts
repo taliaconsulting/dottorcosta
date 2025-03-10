@@ -16,21 +16,21 @@ export default defineType({
           title: 'Titolo Principale',
           type: 'string',
           description: 'Il titolo principale della sezione hero',
-          validation: (Rule) => Rule.required(),
+          
         }),
         defineField({
           name: 'specialties',
           title: 'Specialità',
           type: 'string',
           description: 'Elenco delle specialità (es. LASIK | REFRACTIVE | CATARACTS)',
-          validation: (Rule) => Rule.required(),
+          
         }),
         defineField({
           name: 'locationText',
           title: 'Testo Localizzazione',
           type: 'string',
           description: 'Testo che indica la localizzazione dello studio',
-          validation: (Rule) => Rule.required(),
+          
         }),
         defineField({
           name: 'locationLink',
@@ -49,7 +49,7 @@ export default defineType({
           title: 'Testo Pulsante CTA',
           type: 'string',
           description: 'Testo per il pulsante call-to-action',
-          validation: (Rule) => Rule.required(),
+          
         }),
         defineField({
           name: 'backgroundImage',
@@ -73,7 +73,7 @@ export default defineType({
           name: 'title',
           title: 'Titolo Sezione',
           type: 'string',
-          validation: (Rule) => Rule.required(),
+          
         }),
         defineField({
           name: 'services',
@@ -87,7 +87,7 @@ export default defineType({
                   name: 'title',
                   title: 'Titolo Servizio',
                   type: 'string',
-                  validation: (Rule) => Rule.required(),
+                  
                 }),
                 defineField({
                   name: 'iconType',
@@ -104,7 +104,7 @@ export default defineType({
                       {title: 'Allergia Oculare', value: 'allergytest'},
                     ],
                   },
-                  validation: (Rule) => Rule.required(),
+                  
                 }),
               ],
             },
@@ -123,13 +123,13 @@ export default defineType({
           name: 'title',
           title: 'Titolo Sezione',
           type: 'string',
-          validation: (Rule) => Rule.required(),
+          
         }),
         defineField({
           name: 'description',
           title: 'Descrizione',
           type: 'text',
-          validation: (Rule) => Rule.required(),
+          
         }),
         defineField({
           name: 'doctorImage',
@@ -151,13 +151,13 @@ export default defineType({
                   name: 'title',
                   title: 'Titolo',
                   type: 'string',
-                  validation: (Rule) => Rule.required(),
+                  
                 }),
                 defineField({
                   name: 'description',
                   title: 'Descrizione',
                   type: 'string',
-                  validation: (Rule) => Rule.required(),
+                  
                 }),
                 defineField({
                   name: 'iconType',
@@ -170,7 +170,7 @@ export default defineType({
                       {title: 'Ambra', value: 'amber'},
                     ],
                   },
-                  validation: (Rule) => Rule.required(),
+                  
                 }),
               ],
             },
@@ -199,7 +199,7 @@ export default defineType({
           name: 'title',
           title: 'Titolo Sezione',
           type: 'string',
-          validation: (Rule) => Rule.required(),
+          
         }),
         defineField({
           name: 'subtitle',
@@ -218,7 +218,7 @@ export default defineType({
                   name: 'name',
                   title: 'Nome',
                   type: 'string',
-                  validation: (Rule) => Rule.required(),
+                  
                 }),
                 defineField({
                   name: 'logo',
@@ -227,7 +227,7 @@ export default defineType({
                   options: {
                     hotspot: true,
                   },
-                  validation: (Rule) => Rule.required(),
+                  
                 }),
               ],
             },
@@ -251,7 +251,7 @@ export default defineType({
           name: 'title',
           title: 'Titolo Sezione',
           type: 'string',
-          validation: (Rule) => Rule.required(),
+          
         }),
         defineField({
           name: 'subtitle',
@@ -283,7 +283,7 @@ export default defineType({
           name: 'title',
           title: 'Titolo Sezione',
           type: 'string',
-          validation: (Rule) => Rule.required(),
+          
         }),
         defineField({
           name: 'subtitle',

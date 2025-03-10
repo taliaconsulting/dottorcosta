@@ -9,7 +9,7 @@ export default defineType({
       name: 'title',
       title: 'Titolo',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      
     }),
     defineField({
       name: 'slug',
@@ -19,14 +19,14 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
-      validation: (Rule) => Rule.required(),
+      
     }),
     defineField({
       name: 'excerpt',
       title: 'Estratto',
       type: 'text',
       description: 'Breve descrizione del post che apparirà nelle anteprime',
-      validation: (Rule) => Rule.required(),
+      
     }),
     defineField({
       name: 'category',
@@ -41,7 +41,7 @@ export default defineType({
           { title: 'Altro', value: 'Other' },
         ],
       },
-      validation: (Rule) => Rule.required(),
+      
     }),
     defineField({
       name: 'mainImage',
@@ -50,20 +50,20 @@ export default defineType({
       options: {
         hotspot: true,
       },
-      validation: (Rule) => Rule.required(),
+      
     }),
     defineField({
       name: 'publishedAt',
       title: 'Data di Pubblicazione',
       type: 'datetime',
-      validation: (Rule) => Rule.required(),
+      
     }),
     defineField({
       name: 'readTime',
       title: 'Tempo di Lettura',
       type: 'string',
       description: 'Tempo stimato di lettura (es. "5 min")',
-      validation: (Rule) => Rule.required(),
+      
     }),
     defineField({
       name: 'body',

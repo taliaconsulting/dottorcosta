@@ -37,7 +37,9 @@ const socialLinks = [
 export function SiteFooter() {
   return (
     <footer id="footer" className="p-2 sm:p-3 lg:p-4">
-      <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800">
+      <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-[#1B365C] to-[#2C3E50]">
+        {/* Effetto griglia sovrapposto al gradiente */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-30 mix-blend-soft-light"></div>
         <div className="relative z-10 w-full px-4 sm:px-6 py-12">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">

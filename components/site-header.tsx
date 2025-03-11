@@ -59,7 +59,7 @@ export function SiteHeader() {
                   ))}
                   <Link
                     href="tel:+39123456789"
-                    className="mt-6 flex justify-center rounded-full bg-gradient-to-r from-blue-500 to-blue-600 px-5 py-3 text-base text-white transition-all hover:scale-105 shadow-lg"
+                    className="mt-6 flex justify-center rounded-md bg-blu-polvere px-8 py-3 text-base text-blu-notte shadow hover:bg-blu-polvere/90 border-0 transition-colors"
                   >
                     Prenota Visita
                   </Link>
@@ -90,7 +90,7 @@ export function SiteHeader() {
             
             <Link
               href="tel:+39123456789"
-              className="ml-4 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 px-5 py-2 text-base text-white transition-all hover:scale-105 shadow-lg"
+              className="ml-4 rounded-md bg-blu-polvere px-8 py-2 text-base text-blu-notte shadow hover:bg-blu-polvere/90 border-0 transition-colors"
             >
               Prenota Visita
             </Link>

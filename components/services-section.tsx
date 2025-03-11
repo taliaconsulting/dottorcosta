@@ -1,8 +1,8 @@
 'use client'
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Eye, Check } from "lucide-react"
+import { ArrowRight, Eye } from "lucide-react"
 import Link from "next/link"
 
 type ServiceIconProps = {
@@ -160,14 +160,34 @@ export function ServicesSection({ data }: ServicesSectionProps) {
 
   const services = data?.services || fallbackServices
   
-  // Non abbiamo più bisogno delle variabili e funzioni per il popup
-  
   // Stato per il servizio attivo nella visualizzazione a griglia
   const [activeService, setActiveService] = useState<string | null>(null)
   
   // Funzione per generare lo slug del servizio
   const generateServiceSlug = (title: string) => {
     return encodeURIComponent(title.toLowerCase().replace(/\s+/g, '-'))
+  }
+  
+  // Funzione per generare un gradiente casuale per ogni servizio
+  const generateRandomGradient = (seed: string) => {
+    // Utilizziamo il titolo del servizio come seed per assicurare consistenza
+    const hash = seed.split('').reduce((acc, char) => {
+      return char.charCodeAt(0) + ((acc << 5) - acc)
+    }, 0)
+    
+    // Definiamo coppie di colori che sappiamo avere un buon contrasto
+    // Utilizziamo la palette di colori memorizzata con maggiore intensità
+    const gradientPairs = [
+      { from: 'from-[#1B365C]', to: 'to-[#7EA1C4]', opacity: 'opacity-90' },
+      { from: 'from-[#2C3E50]', to: 'to-[#B0C4DE]', opacity: 'opacity-90' },
+      { from: 'from-[#2F4356]', to: 'to-[#7EA1C4]', opacity: 'opacity-90' },
+      { from: 'from-[#1B365C]', to: 'to-[#A7E8BD]', opacity: 'opacity-90' },
+      { from: 'from-[#2C3E50]', to: 'to-[#A7E8BD]', opacity: 'opacity-90' }
+    ]
+    
+    // Selezioniamo una coppia basata sul seed
+    const pairIndex = Math.abs(hash) % gradientPairs.length
+    return gradientPairs[pairIndex]
   }
   
   return (
@@ -200,34 +220,37 @@ export function ServicesSection({ data }: ServicesSectionProps) {
               className="block relative group"
             >
               <div 
-                className={`h-full rounded-xl p-1 transition-all duration-500 ${activeService === service.title ? 'bg-gradient-to-br from-verde-acqua to-blu-polvere shadow-lg' : 'bg-white hover:bg-gradient-to-br hover:from-verde-acqua/20 hover:to-blu-polvere/20'}`}
+                className={`h-full rounded-xl p-1 transition-all duration-500 ${activeService === service.title ? 'shadow-lg' : ''}`}
                 onMouseEnter={() => setActiveService(service.title)}
                 onMouseLeave={() => setActiveService(null)}
               >
-                <div className="bg-white rounded-lg h-full p-4 sm:p-6 md:p-8 flex flex-col relative overflow-hidden">
-                  {/* Indicatore di stato attivo - nascosto su mobile per risparmiare spazio */}
-                  <div className={`absolute top-0 right-0 w-12 sm:w-16 h-12 sm:h-16 -mt-6 -mr-6 sm:-mt-8 sm:-mr-8 bg-gradient-to-br from-verde-acqua to-blu-polvere rotate-45 transition-opacity duration-300 ${activeService === service.title ? 'opacity-100' : 'opacity-0'} hidden sm:block`}>
-                    <Check className="absolute bottom-1 sm:bottom-2 left-1 sm:left-2 text-white h-3 w-3 sm:h-4 sm:w-4 rotate-[-45deg]" />
-                  </div>
+                <div className={useMemo(() => {
+                  // Generiamo un gradiente casuale basato sul titolo del servizio
+                  const { from, to, opacity } = generateRandomGradient(service.title)
+                  return `rounded-lg h-full p-4 sm:p-6 md:p-8 flex flex-col relative overflow-hidden bg-gradient-to-br ${from} ${to} ${opacity}`
+                }, [service.title])}>
+                  {/* Effetto griglia sovrapposto al gradiente */}
+                  <div className="absolute inset-0 bg-grid-pattern opacity-30 mix-blend-soft-light"></div>
+
                   
                   {/* Icona del servizio - layout più compatto su mobile */}
                   <div className="mb-3 sm:mb-4 md:mb-6 flex flex-col sm:flex-row items-start sm:items-center">
-                    <div className={`p-2 sm:p-3 rounded-xl transition-all duration-300 mb-2 sm:mb-0 ${activeService === service.title ? 'bg-gradient-to-br from-verde-acqua/20 to-blu-polvere/20' : 'bg-grigio-chiaro/20'}`}>
+                    <div className="p-2 sm:p-3 rounded-xl transition-all duration-300 mb-2 sm:mb-0 bg-white shadow-sm z-10 relative">
                       <ServiceIcon iconType={service.iconType} />
                     </div>
-                    <h3 className="text-lg sm:text-xl text-blu-notte sm:ml-4 font-medium">{service.title}</h3>
+                    <h3 className="text-lg sm:text-xl text-white sm:ml-4 font-semibold z-10 relative">{service.title}</h3>
                   </div>
                   
                   {/* Descrizione - più compatta su mobile */}
-                  <p className="text-sm sm:text-base text-grigio-scuro mb-4 sm:mb-6 flex-grow line-clamp-3">
+                  <p className="text-sm sm:text-base text-white mb-4 sm:mb-6 flex-grow line-clamp-3 font-medium leading-relaxed z-10 relative">
                     {service.description?.substring(0, 120)}...
                   </p>
                   
                   {/* Pulsante azione - dimensioni ottimizzate per tocco */}
                   <div className="mt-auto">
-                    <span className="group/btn inline-flex items-center pl-0 hover:bg-transparent text-grigio-scuro group-hover:text-blu-polvere text-sm sm:text-base">
+                    <span className="group/btn inline-flex items-center pl-0 hover:bg-transparent text-white font-semibold group-hover:text-white/80 text-sm sm:text-base z-10 relative">
                       <span className="mr-2 relative">
-                        <span className="absolute -bottom-0.5 left-0 w-full h-0.5 bg-blu-polvere transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                        <span className="absolute -bottom-0.5 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                         Scopri di più
                       </span>
                       <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
@@ -243,7 +266,8 @@ export function ServicesSection({ data }: ServicesSectionProps) {
         <div className="mt-10 sm:mt-12 md:mt-16 text-center">
           <Link href="#contact">
             <Button 
-              className="bg-gradient-to-r from-verde-acqua to-blu-polvere hover:from-verde-acqua/90 hover:to-blu-polvere/90 text-white px-6 sm:px-8 py-4 sm:py-6 rounded-full text-base sm:text-lg shadow-md sm:shadow-lg hover:shadow-xl transition-all w-full sm:w-auto max-w-xs mx-auto"
+              size="lg"
+              className="bg-blu-polvere text-blu-notte shadow hover:bg-blu-polvere/90 border-0 transition-colors rounded-md w-full sm:w-auto max-w-xs mx-auto"
             >
               {data?.buttonText || "Prenota una Visita"}
             </Button>

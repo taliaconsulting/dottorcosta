@@ -35,7 +35,6 @@ const homepageFallbackData = {
   aboutSection: {
     title: 'Chi Sono',
     description: 'Medico specializzato con oltre 15 anni di esperienza in ginecologia e ostetricia. La mia missione è fornire cure di alta qualità e personalizzate per ogni paziente.',
-    doctorImage: 'https://placeholder.pics/svg/400x600/DEDEDE/555555/foto%20dottore',
     credentials: [
       { title: 'Specializzazione', description: 'Università di Milano', iconType: 'graduation' },
       { title: 'Esperienza', description: '15+ anni', iconType: 'calendar' },

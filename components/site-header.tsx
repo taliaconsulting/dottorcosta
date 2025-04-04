@@ -89,7 +89,7 @@ export function SiteHeader() {
                   {/* Footer del menu mobile */}
                   <div className="p-6 mt-auto border-t border-blu-polvere/20">
                     <Link
-                      href="tel:+39123456789"
+                      href="#contact"
                       className="flex items-center justify-center gap-3 w-full rounded-xl bg-blu-polvere py-5 text-lg text-blu-notte font-medium shadow hover:bg-blu-polvere/90 transition-all duration-300 hover:scale-[1.02]"
                     >
                       <Phone className="h-5 w-5" />
@@ -125,7 +125,7 @@ export function SiteHeader() {
             </NavigationMenu>
             
             <Link
-              href="tel:+39123456789"
+              href="#contact"
               className="ml-4 rounded-md bg-blu-polvere px-8 py-2 text-base text-blu-notte shadow hover:bg-blu-polvere/90 border-0 transition-colors"
             >
               Prenota Visita

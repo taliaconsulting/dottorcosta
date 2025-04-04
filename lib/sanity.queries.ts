@@ -7,23 +7,21 @@ export const homepageQuery = groq`
     headline,
     specialties,
     locationText,
-    locationLink,
-    phoneNumber,
     ctaButtonText,
-    "backgroundImage": backgroundImage.asset->url
+    "backgroundImage": backgroundImage.asset->url,
+    "backgroundVideo": backgroundVideo.asset->url,
+    useVideo
   },
   servicesSection {
     title,
     services[] {
       title,
-      iconType,
       description
     }
   },
   aboutSection {
     title,
     description,
-    "doctorImage": doctorImage.asset->url,
     credentials[] {
       title,
       description,
@@ -52,8 +50,7 @@ export const homepageQuery = groq`
     subtitle,
     address,
     phoneNumber,
-    email,
-    formSubmitButtonText
+    email
   }
 }`
 

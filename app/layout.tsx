@@ -9,8 +9,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Dr. Name - Medical Professional",
-  description: "Professional medical services and patient care",
+  title: "Dottor Domenico Costa | Ginecologo e Ostetrico a Favara",
+  description: "Visite ginecologiche e ostetriche con il Dott. Domenico Costa a Favara. Esperto nel trattamento di endometriosi, menopausa e infertilità. Contattaci per un appuntamento.",
+  keywords: "ginecologo favara, ostetrico favara, dottor domenico costa, visita ginecologica, visita ostetrica, endometriosi, menopausa, infertilità, ginecologo agrigento",
 };
 
 export default function RootLayout({

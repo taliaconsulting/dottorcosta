@@ -39,7 +39,6 @@ type AboutSectionProps = {
   data: {
     title: string
     description: string
-    doctorImage?: string
     credentials: {
       title: string
       description: string
@@ -76,10 +75,9 @@ export function AboutSection({ data }: AboutSectionProps) {
     <section id="about" className="p-2 sm:p-3 lg:p-4">
       <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-blu-notte to-blu-notte/80">        
         <div className="relative z-10 w-full px-4 sm:px-6 py-12 sm:py-16">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div className="max-w-4xl mx-auto">
             <div className="space-y-8 lg:space-y-10">
-              <h2 className="text-5xl sm:text-6xl font-light text-bianco-perla text-center lg:text-left mb-6">{data?.title || "Chi Sono"}</h2>
+              <h2 className="text-5xl sm:text-6xl font-light text-bianco-perla text-center mb-6">{data?.title || "Chi Sono"}</h2>
               <p className="text-lg text-bianco-perla/80 leading-relaxed">
                 {data?.description || "Dr. Eduardo Besser is a board-certified ophthalmologist specializing in cornea, cataract, and refractive surgery. With over two decades of experience, he has helped thousands of patients achieve their best possible vision through advanced surgical techniques and personalized care."}
               </p>
@@ -99,7 +97,7 @@ export function AboutSection({ data }: AboutSectionProps) {
                   </Card>
                 ))}
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 mt-10">
+              <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center">
                 <Button
                   size="lg"
                   variant="outline"
@@ -114,17 +112,6 @@ export function AboutSection({ data }: AboutSectionProps) {
                   {data?.consultationButtonText || "Prenota Visita"}
                 </Button>
               </div>
-            </div>
-            
-            <div className="relative aspect-square rounded-2xl overflow-hidden">
-              <Image
-                alt="Dr. Eduardo Besser"
-                className="object-cover object-center"
-                fill
-                src={data?.doctorImage || "/doctor-portrait.jpg"}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-blu-notte/50 to-transparent" />
-            </div>
             </div>
           </div>
         </div>

@@ -12,7 +12,10 @@ type ContactSectionProps = {
   data: {
     title: string
     subtitle?: string
-    contactInfo: ContactInfo[]
+    contactInfo?: ContactInfo[]
+    address?: string
+    phoneNumber?: string
+    email?: string
     locationDescription?: string
     mapEmbedUrl?: string
   }
@@ -33,6 +36,36 @@ const ContactIcon = ({ iconType }: { iconType: string }) => {
 }
 
 export function ContactSection({ data }: ContactSectionProps) {
+  // Costruisco l'array di informazioni di contatto dai dati Sanity, se disponibili
+  let contactInfoFromData = [];
+  
+  if (data?.phoneNumber) {
+    contactInfoFromData.push({
+      title: "Telefono",
+      value: data.phoneNumber,
+      iconType: "phone" as const,
+      description: "Lun-Ven 9:00 - 17:00",
+    });
+  }
+  
+  if (data?.email) {
+    contactInfoFromData.push({
+      title: "Email",
+      value: data.email,
+      iconType: "email" as const,
+      description: "Risponderemo entro 24 ore",
+    });
+  }
+  
+  if (data?.address) {
+    contactInfoFromData.push({
+      title: "Sede",
+      value: data.address.split(',')[0] || data.address, // Prima parte dell'indirizzo
+      iconType: "location" as const,
+      description: data.address.split(',').slice(1).join(',').trim() || "Indirizzo completo", // Resto dell'indirizzo
+    });
+  }
+  
   // Fallback per le informazioni di contatto se non ci sono dati da Sanity
   const fallbackContactInfo = [
     {
@@ -55,7 +88,8 @@ export function ContactSection({ data }: ContactSectionProps) {
     },
   ]
 
-  const contactInfo = data?.contactInfo || fallbackContactInfo
+  // Usa contactInfo da data, poi contactInfoFromData costruito dai campi singoli, infine fallback
+  const contactInfo = data?.contactInfo || (contactInfoFromData.length > 0 ? contactInfoFromData : fallbackContactInfo);
   const mapEmbedUrl = data?.mapEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.505237206145!2d13.644529875626667!3d37.30685827210697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1310847ca5540ddf%3A0x2f9bf0ac4bcf509a!2sViale%20Aldo%20Moro%2C%20165%2C%2092026%20Favara%20AG!5e0!3m2!1sit!2sit!4v1743751617260!5m2!1sit!2sit";
   
   return (

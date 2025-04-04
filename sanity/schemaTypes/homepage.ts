@@ -33,18 +33,6 @@ export default defineType({
           
         }),
         defineField({
-          name: 'locationLink',
-          title: 'Link Localizzazione',
-          type: 'string',
-          description: 'Link associato alla localizzazione',
-        }),
-        defineField({
-          name: 'phoneNumber',
-          title: 'Numero di Telefono',
-          type: 'string',
-          description: 'Numero di telefono per il primo pulsante',
-        }),
-        defineField({
           name: 'ctaButtonText',
           title: 'Testo Pulsante CTA',
           type: 'string',
@@ -55,10 +43,26 @@ export default defineType({
           name: 'backgroundImage',
           title: 'Immagine di Sfondo',
           type: 'image',
-          description: 'Immagine di sfondo per la sezione hero',
+          description: 'Immagine di sfondo per la sezione hero (utilizzata se non è presente un video)',
           options: {
             hotspot: true,
           },
+        }),
+        defineField({
+          name: 'backgroundVideo',
+          title: 'Video di Sfondo',
+          type: 'file',
+          description: 'Video di sfondo per la sezione hero (ha priorità rispetto all\'immagine)',
+          options: {
+            accept: 'video/*'
+          },
+        }),
+        defineField({
+          name: 'useVideo',
+          title: 'Usa Video',
+          type: 'boolean',
+          description: 'Seleziona se utilizzare il video invece dell\'immagine',
+          initialValue: false,
         }),
       ],
     }),
@@ -95,23 +99,6 @@ export default defineType({
                   type: 'text',
                   description: 'Descrizione dettagliata del servizio',
                 }),
-                defineField({
-                  name: 'iconType',
-                  title: 'Tipo di Icona',
-                  type: 'string',
-                  description: 'Identificatore per il tipo di icona da visualizzare',
-                  options: {
-                    list: [
-                      {title: 'Laser', value: 'laser'},
-                      {title: 'Cataratta', value: 'cataract'},
-                      {title: 'Cura Oculare', value: 'eyecare'},
-                      {title: 'Lesioni Palpebrali', value: 'eyelid'},
-                      {title: 'Glaucoma', value: 'glaucoma'},
-                      {title: 'Allergia Oculare', value: 'allergytest'},
-                    ],
-                  },
-                  
-                }),
               ],
             },
           ],
@@ -136,14 +123,6 @@ export default defineType({
           title: 'Descrizione',
           type: 'text',
           
-        }),
-        defineField({
-          name: 'doctorImage',
-          title: 'Immagine Dottore',
-          type: 'image',
-          options: {
-            hotspot: true,
-          },
         }),
         defineField({
           name: 'credentials',
@@ -309,11 +288,6 @@ export default defineType({
         defineField({
           name: 'email',
           title: 'Email',
-          type: 'string',
-        }),
-        defineField({
-          name: 'formSubmitButtonText',
-          title: 'Testo Pulsante Invio Modulo',
           type: 'string',
         }),
       ],

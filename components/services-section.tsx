@@ -1,78 +1,25 @@
 'use client'
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect, useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Eye } from "lucide-react"
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 
-type ServiceIconProps = {
-  iconType: string
-}
-
-const ServiceIcon = ({ iconType }: ServiceIconProps) => {
-  switch (iconType) {
-    case 'laser':
-      return (
-        <div className="h-10 w-10 flex items-center justify-center rounded-full bg-gradient-to-r from-verde-acqua/10 to-verde-acqua/20 p-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#A7E8BD" strokeWidth="2" className="h-6 w-6">
-            <path d="M12 5v14M5 12h14M8.5 8.5l7 7M15.5 8.5l-7 7" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </div>
-      )
-    case 'cataract':
-      return (
-        <div className="h-10 w-10 flex items-center justify-center rounded-full bg-gradient-to-r from-blu-polvere/10 to-blu-polvere/20 p-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#B0C4DE" strokeWidth="2" className="h-6 w-6">
-            <circle cx="12" cy="12" r="8" />
-            <circle cx="12" cy="12" r="3" />
-          </svg>
-        </div>
-      )
-    case 'eyecare':
-      return (
-        <div className="h-10 w-10 flex items-center justify-center rounded-full bg-gradient-to-r from-blu-polvere/10 to-verde-acqua/20 p-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#B0C4DE" strokeWidth="2" className="h-6 w-6">
-            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
-            <circle cx="12" cy="12" r="3" />
-          </svg>
-        </div>
-      )
-    case 'eyelid':
-      return (
-        <div className="h-10 w-10 flex items-center justify-center rounded-full bg-gradient-to-r from-blu-polvere/10 to-verde-acqua/20 p-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#B0C4DE" strokeWidth="2" className="h-6 w-6">
-            <path d="M2 12c.5-4.5 4.5-8 10-8s9.5 3.5 10 8" strokeLinecap="round" />
-            <path d="M12 16c1.5 0 3-1.5 3-3" strokeLinecap="round" />
-          </svg>
-        </div>
-      )
-    case 'glaucoma':
-      return (
-        <div className="h-10 w-10 flex items-center justify-center rounded-full bg-gradient-to-r from-blu-polvere/10 to-blu-polvere/20 p-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#B0C4DE" strokeWidth="2" className="h-6 w-6">
-            <circle cx="12" cy="12" r="8" />
-            <path d="M12 12v-4M12 12h4" strokeLinecap="round" />
-          </svg>
-        </div>
-      )
-    case 'allergytest':
-      return (
-        <div className="h-10 w-10 flex items-center justify-center rounded-full bg-gradient-to-r from-verde-acqua/10 to-blu-polvere/20 p-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#A7E8BD" strokeWidth="2" className="h-6 w-6">
-            <path d="M8 12h8M12 8v8M20 20L4 4M20 4l-4 4" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </div>
-      )
-    default:
-      return (
-        <div className="h-10 w-10 flex items-center justify-center rounded-full bg-gradient-to-r from-blu-polvere/10 to-blu-polvere/20 p-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#B0C4DE" strokeWidth="2" className="h-6 w-6">
-            <circle cx="12" cy="12" r="8" />
-            <path d="M12 8v8M8 12h8" strokeLinecap="round" />
-          </svg>
-        </div>
-      )
-  }
+// Componente per il logo unificato in rosa pastello
+const ServiceLogo = () => {
+  return (
+    <div className="h-16 w-16 flex items-center justify-center rounded-full bg-gradient-to-br from-pink-100 to-pink-200 p-0.5 shadow-inner">
+      <div className="h-full w-full rounded-full bg-white flex items-center justify-center shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="h-10 w-10">
+          <circle cx="12" cy="12" r="10" stroke="#f9a8d4" strokeWidth="1.5" />
+          <circle cx="12" cy="12" r="5" fill="#f9a8d4" fillOpacity="0.3" />
+          <path d="M12 7v10M7 12h10" stroke="#ec4899" strokeWidth="1.5" strokeLinecap="round" />
+          <circle cx="12" cy="12" r="2" fill="#ec4899" />
+          <path d="M15 9l-6 6M9 9l6 6" stroke="#be185d" strokeWidth="0.75" strokeLinecap="round" strokeOpacity="0.6" />
+        </svg>
+      </div>
+    </div>
+  )
 }
 
 // Definizione del tipo per i dettagli del servizio
@@ -117,7 +64,7 @@ type ServicesSectionProps = {
     services: {
       title: string
       description?: string
-      iconType: string
+      iconType?: string // Ora opzionale perché non lo utilizzeremo più
     }[]
   }
 }
@@ -126,124 +73,224 @@ export function ServicesSection({ data }: ServicesSectionProps) {
   // Fallback per i servizi se non ci sono dati da Sanity
   const fallbackServices = [
     { 
-      title: "Chirurgia Laser", 
-      iconType: "laser",
+      title: "Chirurgia Laser",
       description: serviceDescriptions["Chirurgia Laser"].description 
     },
     { 
-      title: "Chirurgia della Cataratta", 
-      iconType: "cataract",
+      title: "Chirurgia della Cataratta",
       description: serviceDescriptions["Chirurgia della Cataratta"].description 
     },
     { 
-      title: "Cura Medica degli Occhi", 
-      iconType: "eyecare",
+      title: "Cura Medica degli Occhi",
       description: serviceDescriptions["Cura Medica degli Occhi"].description 
     },
     { 
-      title: "Lesioni Palpebrali", 
-      iconType: "eyelid",
+      title: "Lesioni Palpebrali",
       description: serviceDescriptions["Lesioni Palpebrali"].description 
     },
     { 
-      title: "Glaucoma", 
-      iconType: "glaucoma",
+      title: "Glaucoma",
       description: serviceDescriptions["Glaucoma"].description 
     },
     { 
-      title: "Test Allergie Oculari", 
-      iconType: "allergytest",
+      title: "Test Allergie Oculari",
       description: serviceDescriptions["Test Allergie Oculari"].description 
     },
   ]
 
   const services = data?.services || fallbackServices
   
-  // Stato per il servizio attivo nella visualizzazione a griglia
-  const [activeService, setActiveService] = useState<string | null>(null)
+  // Riferimento al contenitore del carosello
+  const carouselRef = useRef<HTMLDivElement>(null)
+  
+  // Stato per tenere traccia dell'indice attivo
+  const [activeIndex, setActiveIndex] = useState(0)
+  
+  // Numero di card visualizzabili contemporaneamente in base alle dimensioni dello schermo
+  const [visibleCards, setVisibleCards] = useState(3)
+  
+  // Calcola il numero di pagine in base ai servizi e alle card visibili
+  const totalPages = Math.ceil(services.length / visibleCards)
+  
+  // Impostazione del numero di card visibili in base alla dimensione dello schermo
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setVisibleCards(1)
+      } else if (window.innerWidth < 1024) {
+        setVisibleCards(2)
+      } else {
+        setVisibleCards(3)
+      }
+    }
+    
+    // Imposta il valore iniziale
+    handleResize()
+    
+    // Ascolta i cambiamenti di dimensione dello schermo
+    window.addEventListener('resize', handleResize)
+    
+    // Pulisci l'event listener
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+  
+  // Funzione per navigare al set successivo di servizi
+  const goToNext = () => {
+    if (activeIndex < totalPages - 1) {
+      setActiveIndex(prev => prev + 1)
+    } else {
+      setActiveIndex(0) // Torna all'inizio
+    }
+  }
+  
+  // Funzione per navigare al set precedente di servizi
+  const goToPrevious = () => {
+    if (activeIndex > 0) {
+      setActiveIndex(prev => prev - 1)
+    } else {
+      setActiveIndex(totalPages - 1) // Vai alla fine
+    }
+  }
   
   // Funzione per generare lo slug del servizio
   const generateServiceSlug = (title: string) => {
     return encodeURIComponent(title.toLowerCase().replace(/\s+/g, '-'))
   }
   
-  // Funzione per generare un gradiente casuale per ogni servizio
-  const generateRandomGradient = (seed: string) => {
-    // Utilizziamo il titolo del servizio come seed per assicurare consistenza
-    const hash = seed.split('').reduce((acc, char) => {
-      return char.charCodeAt(0) + ((acc << 5) - acc)
-    }, 0)
-    
-    // Definiamo coppie di colori che sappiamo avere un buon contrasto
-    // Utilizziamo la palette di colori memorizzata con maggiore intensità
-    const gradientPairs = [
-      { from: 'from-[#1B365C]', to: 'to-[#7EA1C4]', opacity: 'opacity-90' },
-      { from: 'from-[#2C3E50]', to: 'to-[#B0C4DE]', opacity: 'opacity-90' },
-      { from: 'from-[#2F4356]', to: 'to-[#7EA1C4]', opacity: 'opacity-90' },
-      { from: 'from-[#1B365C]', to: 'to-[#A7E8BD]', opacity: 'opacity-90' },
-      { from: 'from-[#2C3E50]', to: 'to-[#A7E8BD]', opacity: 'opacity-90' }
-    ]
-    
-    // Selezioniamo una coppia basata sul seed
-    const pairIndex = Math.abs(hash) % gradientPairs.length
-    return gradientPairs[pairIndex]
-  }
+  // Effetto per controllare lo scorrimento quando cambia l'indice attivo
+  useEffect(() => {
+    if (carouselRef.current) {
+      const scrollAmount = (carouselRef.current.scrollWidth / totalPages) * activeIndex
+      carouselRef.current.scrollTo({
+        left: scrollAmount,
+        behavior: 'smooth'
+      })
+    }
+  }, [activeIndex, totalPages])
   
   return (
-    <section id="services" className="relative py-16 sm:py-20">
-      <div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10 sm:mb-14">
-          <h2 className="text-3xl md:text-4xl font-light text-blu-notte mb-4">
-            {data?.title || "I Nostri Servizi"}
-          </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-verde-acqua to-blu-polvere rounded-full mx-auto mb-6"></div>
-          <p className="text-grigio-scuro max-w-3xl mx-auto text-base sm:text-lg">
-            Offriamo servizi specializzati con approccio professionale e tecnologie all'avanguardia.
-          </p>
+    <section id="services" className="p-2 sm:p-3 lg:p-4">
+      <div className="relative w-full rounded-3xl overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-blue-100/20 py-24 sm:py-32">
+        {/* Elementi decorativi di sfondo */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-verde-acqua/5 blur-3xl"></div>
+          <div className="absolute top-1/2 -left-20 w-72 h-72 rounded-full bg-blu-polvere/5 blur-3xl"></div>
+          <div className="absolute -bottom-10 right-1/4 w-64 h-64 rounded-full bg-indigo-300/5 blur-3xl"></div>
         </div>
         
-        {/* Grid di servizi - layout migliorato e reattivo */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
-          {services.map((service) => (
-            <Link 
-              key={service.title}
-              href={`/servizi/${generateServiceSlug(service.title)}`}
-              className="focus:outline-none group"
+        <div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
+          <div className="text-center mb-16 sm:mb-20">
+            <h2 className="text-4xl md:text-5xl font-light text-blu-notte mb-6">
+              {data?.title || "I Nostri Servizi"}
+            </h2>
+            <div className="h-1 w-24 bg-gradient-to-r from-verde-acqua to-blu-polvere rounded-full mx-auto mb-8"></div>
+            <p className="text-grigio-scuro/80 max-w-3xl mx-auto text-lg sm:text-xl mb-12 leading-relaxed">
+              Offriamo servizi specializzati con approccio professionale e tecnologie all'avanguardia per garantire il massimo della qualità.
+            </p>
+          </div>
+          
+          {/* Carosello servizi */}
+          <div className="relative overflow-hidden pb-4">
+            <div 
+              ref={carouselRef}
+              className="flex transition-transform duration-500 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              <div className="relative h-full rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md group-hover:translate-y-[-5px]">
-                {/* Sfondo gradiente */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blu-polvere to-blu-notte transform transition-transform duration-500 group-hover:scale-105"></div>
-                
-                {/* Overlay scuro per leggibilità */}
-                <div className="absolute inset-0 bg-black/20 z-0"></div>
-                
-                <div className="relative p-6 sm:p-8 flex flex-col h-full">
-                  {/* Icona del servizio - dimensioni ottimizzate */}
-                  <div className="flex items-center mb-4 sm:mb-6">
-                    <ServiceIcon iconType={service.iconType} />
-                    {/* Titolo - spaziatura migliorata e dimensioni ottimizzate per testo più lungo */}
-                    <h3 className="text-lg sm:text-xl font-medium text-white ml-3">{service.title}</h3>
-                  </div>
-                  
-                  {/* Descrizione - con gestione ottimizzata del testo lungo */}
-                  <p className="text-sm sm:text-base text-white mb-4 sm:mb-6 flex-grow line-clamp-3 font-medium leading-relaxed z-10 relative">
-                    {service.description?.substring(0, 120)}...
-                  </p>
-                  
-                  {/* Pulsante azione - dimensioni ottimizzate per tocco */}
-                  <div className="mt-auto">
-                    <span className="group/btn inline-flex items-center pl-0 hover:bg-transparent text-white font-semibold group-hover:text-white/80 text-sm sm:text-base z-10 relative">
-                      <span className="mr-2 relative">
-                        <span className="absolute -bottom-0.5 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-                        Scopri di più
-                      </span>
-                      <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </div>
+              {services.map((service) => (
+                <div 
+                  key={service.title} 
+                  className="flex-none w-full sm:w-1/2 lg:w-1/3 p-3 md:p-4 snap-start"
+                >
+                  <Link 
+                    href={`/servizi/${generateServiceSlug(service.title)}`}
+                    className="focus:outline-none block h-full"
+                  >
+                    <div className="h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 bg-white border border-gray-100 group relative">
+                      {/* Sfondo con design più moderno */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-white to-pink-50 opacity-100 group-hover:opacity-0 transition-opacity duration-500"></div>
+                      <div className="absolute inset-0 bg-gradient-to-tl from-pink-100 via-white to-pink-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      {/* Elementi decorativi */}
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-pink-100 to-transparent rounded-bl-[100px] group-hover:scale-110 transition-transform duration-500"></div>
+                      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-pink-100 to-transparent rounded-tr-[80px] group-hover:scale-110 transition-transform duration-500"></div>
+                      
+                      <div className="relative p-8 sm:p-8 flex flex-col h-full z-10">
+                        {/* Header con icona e titolo */}
+                        <div className="flex flex-col items-center text-center mb-6">
+                          <div className="mb-6 transform transition-transform group-hover:scale-110 duration-500">
+                            <div className="p-4 bg-gradient-to-br from-pink-200 to-pink-300 rounded-2xl shadow-md group-hover:shadow-lg transition-all duration-500">
+                              <ServiceLogo />
+                            </div>
+                          </div>
+                          <h3 className="text-2xl md:text-3xl font-medium text-blu-notte mb-4 group-hover:text-pink-500 transition-colors duration-300">{service.title}</h3>
+                          <div className="h-0.5 w-12 bg-gradient-to-r from-pink-300 to-pink-400 rounded-full mb-4 transform origin-center scale-0 group-hover:scale-100 transition-transform duration-500"></div>
+                        </div>
+                        
+                        {/* Descrizione breve */}
+                        <p className="text-grigio-scuro/70 text-xs mb-8 line-clamp-2 text-center">
+                          {service.description ? service.description.split('.')[0] + '.' : 'Dettagli del servizio non disponibili.'}
+                        </p>
+                        
+                        {/* Pulsante azione */}
+                        <div className="mt-auto text-center">
+                          <span className="inline-flex items-center justify-center px-6 py-2 bg-gradient-to-r from-pink-300 to-pink-500 text-white rounded-full text-sm font-medium transform transition-all duration-300 shadow-md">
+                            Scopri di più
+                            <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Controlli di navigazione */}
+          <div className="flex flex-col items-center justify-center mt-10 space-y-6">
+            {/* Indicatori */}
+            <div className="flex items-center justify-center gap-2 px-6 py-3 bg-white/70 backdrop-blur-sm rounded-full shadow-md">
+              <button 
+                onClick={goToPrevious}
+                className="p-2 rounded-full text-pink-400 hover:text-pink-600 transition-colors"
+                aria-label="Servizi precedenti"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              
+              <div className="flex items-center space-x-2 mx-2">
+                {Array.from({ length: totalPages }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveIndex(index)}
+                    className={`flex flex-col items-center transition-all duration-300 ${
+                      activeIndex === index 
+                        ? 'scale-110' 
+                        : 'opacity-70 scale-100 hover:opacity-100'
+                    }`}
+                    aria-label={`Vai a pagina ${index + 1}`}
+                  >
+                    <span className={`h-2 w-2 rounded-full mb-1 ${
+                      activeIndex === index 
+                        ? 'bg-pink-500' 
+                        : 'bg-pink-200 hover:bg-pink-300'
+                    }`}></span>
+                    <span className="text-xs text-pink-500 font-medium">
+                      {index + 1}
+                    </span>
+                  </button>
+                ))}
               </div>
-            </Link>
-          ))}
+              
+              <button 
+                onClick={goToNext}
+                className="p-2 rounded-full text-pink-400 hover:text-pink-600 transition-colors"
+                aria-label="Servizi successivi"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

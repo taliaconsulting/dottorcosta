@@ -138,6 +138,13 @@ export default async function ServizioPage({ params }: { params: Params }) {
     )
   }
   
+  // Funzione per il video o immagine in base al servizio
+  const getServiceMedia = () => {
+    // In futuro si potrebbe aggiungere un campo nel modello Sanity per video specifici per servizio
+    // Per ora è solo decorativo
+    return getDecoImage()
+  }
+  
   return (
     <main className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
       {/* Floating home button */}
@@ -191,7 +198,7 @@ export default async function ServizioPage({ params }: { params: Params }) {
               {serviceToShow.description?.split('\n')[0]}
             </div>
           </div>
-          {getDecoImage()}
+          {getServiceMedia()}
         </div>
         
         {/* Contenuto */}

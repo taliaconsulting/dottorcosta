@@ -60,9 +60,8 @@ export function SiteHeader() {
                       Dottor Costa
                     </Link>
                     <SheetClose asChild>
-                      <Button variant="ghost" size="lg" className="bg-blu-polvere/10 rounded-full h-12 w-12 text-bianco-perla hover:text-blu-polvere hover:bg-blu-polvere/20 transition-all duration-300 relative group">
+                      <Button variant="ghost" size="lg" className="bg-blu-polvere/10 rounded-full h-12 w-12 text-bianco-perla hover:text-blu-polvere hover:bg-blu-polvere/20 relative">
                         <X className="h-6 w-6 absolute" />
-                        <span className="absolute inset-0 border-2 border-blu-polvere/40 rounded-full scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"></span>
                         <span className="sr-only">Chiudi menu</span>
                       </Button>
                     </SheetClose>

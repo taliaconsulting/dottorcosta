@@ -1,7 +1,7 @@
 import Link from "next/link"
-import { Menu } from "lucide-react"
+import { Menu, X, Home, Stethoscope, User, Award, BookOpen, Mail, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -10,14 +10,14 @@ import {
 } from "@/components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
 
-// Sezioni del sito per la navigazione
+// Sezioni del sito per la navigazione con icone
 const sectionNavigation = [
-  { name: "Home", href: "#hero" },
-  { name: "Servizi", href: "#services" },
-  { name: "Chi Siamo", href: "#about" },
-  { name: "Certificazioni", href: "#certifications" },
-  { name: "Blog", href: "#blog" },
-  { name: "Contatti", href: "#contact" },
+  { name: "Home", href: "#hero", icon: Home },
+  { name: "Servizi", href: "#services", icon: Stethoscope },
+  { name: "Chi Siamo", href: "#about", icon: User },
+  { name: "Certificazioni", href: "#certifications", icon: Award },
+  { name: "Blog", href: "#blog", icon: BookOpen },
+  { name: "Contatti", href: "#contact", icon: Mail },
 ]
 
 export function SiteHeader() {
@@ -46,24 +46,61 @@ export function SiteHeader() {
                   <span className="sr-only">Apri menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[350px] border-l border-slate-700/50 bg-slate-800/95 backdrop-blur-md">
-                <nav className="flex flex-col gap-6 mt-8">
-                  {sectionNavigation.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="text-lg text-white hover:text-blue-300 transition-colors px-2 py-1.5 border-l-2 border-transparent hover:border-blue-400"
+              <SheetContent 
+                side="top" 
+                className="w-full h-[100dvh] border-0 p-0 bg-gradient-to-b from-blu-notte via-blu-notte/95 to-blu-notte/90 backdrop-blur-md animate-in slide-in-from-top-full duration-300"
+              >
+                <div className="flex flex-col h-full">
+                  {/* Header del menu mobile */}
+                  <div className="flex items-center justify-between p-6 border-b border-blu-polvere/20">
+                    <Link 
+                      href="#hero" 
+                      className="text-2xl font-light text-bianco-perla hover:text-blu-polvere transition-all duration-300"
                     >
-                      {item.name}
+                      Dottor Costa
                     </Link>
-                  ))}
-                  <Link
-                    href="tel:+39123456789"
-                    className="mt-6 flex justify-center rounded-md bg-blu-polvere px-8 py-3 text-base text-blu-notte shadow hover:bg-blu-polvere/90 border-0 transition-colors"
-                  >
-                    Prenota Visita
-                  </Link>
-                </nav>
+                    <SheetClose asChild>
+                      <Button variant="ghost" size="lg" className="bg-blu-polvere/10 rounded-full h-12 w-12 text-bianco-perla hover:text-blu-polvere hover:bg-blu-polvere/20 transition-all duration-300 relative group">
+                        <X className="h-6 w-6 absolute" />
+                        <span className="absolute inset-0 border-2 border-blu-polvere/40 rounded-full scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"></span>
+                        <span className="sr-only">Chiudi menu</span>
+                      </Button>
+                    </SheetClose>
+                  </div>
+                  
+                  {/* Contenuto del menu mobile */}
+                  <nav className="flex flex-col p-6 space-y-6 flex-grow overflow-y-auto">
+                    <div className="grid sm:grid-cols-2 gap-x-6 gap-y-6">
+                      {sectionNavigation.map((item) => (
+                        <SheetClose asChild key={item.href}>
+                          <Link
+                            href={item.href}
+                            className="group flex items-center gap-4 text-xl text-bianco-perla hover:text-blu-polvere transition-all duration-300 p-4 rounded-xl hover:bg-bianco-perla/5"
+                          >
+                            <span className="flex items-center justify-center w-12 h-12 rounded-full bg-blu-polvere/20 text-blu-polvere group-hover:bg-blu-polvere/30 transition-all duration-300 group-hover:scale-110">
+                              <item.icon className="h-6 w-6" />
+                            </span>
+                            <span className="font-light">{item.name}</span>
+                          </Link>
+                        </SheetClose>
+                      ))}
+                    </div>
+                  </nav>
+                  
+                  {/* Footer del menu mobile */}
+                  <div className="p-6 mt-auto border-t border-blu-polvere/20">
+                    <Link
+                      href="tel:+39123456789"
+                      className="flex items-center justify-center gap-3 w-full rounded-xl bg-blu-polvere py-5 text-lg text-blu-notte font-medium shadow hover:bg-blu-polvere/90 transition-all duration-300 hover:scale-[1.02]"
+                    >
+                      <Phone className="h-5 w-5" />
+                      Prenota Visita
+                    </Link>
+                    <p className="text-center text-bianco-perla/60 text-sm mt-6">
+                      © {new Date().getFullYear()} Dottor Costa. Tutti i diritti riservati.
+                    </p>
+                  </div>
+                </div>
               </SheetContent>
             </Sheet>
           </div>

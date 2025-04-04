@@ -49,14 +49,14 @@ export function ContactSection({ data }: ContactSectionProps) {
     },
     {
       title: "Sede",
-      value: "Culver City, CA",
+      value: "Favara, AG",
       iconType: "location" as const,
-      description: "3831 Hughes Ave, Suite 607",
+      description: "Viale Aldo Moro n° 165",
     },
   ]
 
   const contactInfo = data?.contactInfo || fallbackContactInfo
-  const mapEmbedUrl = data?.mapEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.6750902684574!2d-118.3859!3d34.0275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b9c5c0f0f0f9%3A0x9b0f0f0f0f0f0f0f!2s3831%20Hughes%20Ave%2C%20Culver%20City%2C%20CA%2090232!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+  const mapEmbedUrl = data?.mapEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.505237206145!2d13.644529875626667!3d37.30685827210697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1310847ca5540ddf%3A0x2f9bf0ac4bcf509a!2sViale%20Aldo%20Moro%2C%20165%2C%2092026%20Favara%20AG!5e0!3m2!1sit!2sit!4v1743751617260!5m2!1sit!2sit";
   
   return (
     <section id="contact" className="p-2 sm:p-3 lg:p-4">
@@ -91,11 +91,6 @@ export function ContactSection({ data }: ContactSectionProps) {
               ))}
             </div>
 
-            <div className="pt-6">
-              <p className="text-bianco-perla/80">
-                {data?.locationDescription || "Il nostro studio è situato nel cuore di Culver City, facilmente accessibile per i pazienti di tutta la contea di Los Angeles."}
-              </p>
-            </div>
           </div>
 
           {/* Mappa */}

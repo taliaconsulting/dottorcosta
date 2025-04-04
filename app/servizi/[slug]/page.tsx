@@ -1,9 +1,10 @@
 // @ts-nocheck
 import { Metadata } from 'next'
 import { getHomepage } from '@/lib/sanity.client'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Home } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import Image from 'next/image'
 
 type Params = {
   slug: string
@@ -95,53 +96,24 @@ export default async function ServizioPage({ params }: { params: Params }) {
   // Se il servizio non esiste nei dati di Sanity né nei dati di fallback, mostra un messaggio di errore
   if (!service && !fallbackService) {
     return (
-      <main className="py-20 px-4 sm:px-6 lg:px-8">
+      <main className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 min-h-[80vh] flex items-center">
         <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-8 inline-block p-4 bg-red-50 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
           <h1 className="text-4xl font-light text-blu-notte mb-6">Servizio non trovato</h1>
           <p className="text-grigio-scuro mb-8">Il servizio che stai cercando non è disponibile.</p>
           <Link href="/">
-            <Button className="bg-blu-polvere hover:bg-blu-polvere/90">
-              <ArrowLeft className="mr-2 h-4 w-4" />
+            <Button className="bg-blu-polvere hover:bg-blu-polvere/90 rounded-full px-8 py-6 h-auto">
+              <Home className="mr-2 h-5 w-5" />
               Torna alla Home
             </Button>
           </Link>
         </div>
       </main>
     )
-  }
-  
-  // Funzione per ottenere l'icona del servizio in base al tipo
-  const getServiceIcon = (iconType: string) => {
-    switch (iconType) {
-      case 'laser':
-        return (
-          <div className="h-16 w-16 rounded-full bg-gradient-to-r from-verde-acqua/20 to-verde-acqua/30 p-1">
-            <div className="h-full w-full rounded-full bg-gradient-to-br from-verde-acqua to-verde-acqua/80" />
-          </div>
-        )
-      case 'cataract':
-        return (
-          <div className="h-16 w-16 rounded-full bg-gradient-to-r from-blu-polvere/20 to-blu-polvere/30 p-1">
-            <div className="h-full w-full rounded-full bg-gradient-to-br from-blu-polvere to-blu-polvere/80 border-4 border-blu-polvere/20" />
-          </div>
-        )
-      case 'eyecare':
-        return (
-          <div className="h-16 w-16 rounded-full bg-gradient-to-r from-blu-polvere/20 to-verde-acqua/30 p-1">
-            <div className="h-full w-full rounded-full bg-gradient-to-br from-blu-polvere to-verde-acqua relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="h-5 w-5 rounded-full bg-bianco-perla/20" />
-              </div>
-            </div>
-          </div>
-        )
-      default:
-        return (
-          <div className="h-16 w-16 rounded-full bg-gradient-to-r from-blue-200/20 to-blue-300/20 p-1">
-            <div className="h-full w-full rounded-full bg-gradient-to-br from-blue-200 to-blue-300" />
-          </div>
-        )
-    }
   }
   
   // Formatta la descrizione per visualizzarla in paragrafi
@@ -156,15 +128,41 @@ export default async function ServizioPage({ params }: { params: Params }) {
   // Usa il servizio dai dati di Sanity o dai dati di fallback
   const serviceToShow = service || fallbackService
   
+  // Funzione per ottenere un'immagine decorativa basata sul servizio
+  const getDecoImage = () => {
+    // Si potrebbe aggiungere un sistema più avanzato di selezione immagini
+    return (
+      <div className="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none overflow-hidden rounded-l-full">
+        <div className="absolute inset-0 bg-gradient-to-br from-verde-acqua to-blu-polvere transform rotate-12 scale-150"></div>
+      </div>
+    )
+  }
+  
   return (
-    <main className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <main className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+      {/* Floating home button */}
+      <div className="fixed bottom-6 left-0 right-0 z-50 flex justify-center">
+        <Link href="/">
+          <Button variant="default" className="bg-blu-polvere hover:bg-blu-polvere/90 text-white rounded-full px-8 py-5 shadow-lg transition-all hover:shadow-xl flex items-center text-lg">
+            <Home className="h-6 w-6 mr-3" />
+            <span>Torna alla Home</span>
+          </Button>
+        </Link>
+      </div>
+      
+      {/* Elementi decorativi di sfondo */}
+      <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-r from-verde-acqua/5 to-blu-polvere/5"></div>
+      <div className="absolute bottom-40 right-0 w-64 h-64 rounded-full bg-verde-acqua/5 blur-3xl"></div>
+      <div className="absolute top-40 left-0 w-80 h-80 rounded-full bg-blu-polvere/5 blur-3xl"></div>
+      
+      <div className="max-w-5xl mx-auto relative z-10">
         {/* Breadcrumb */}
         <div className="mb-8">
           <nav className="flex" aria-label="Breadcrumb">
-            <ol className="inline-flex items-center space-x-1 md:space-x-3">
+            <ol className="inline-flex items-center space-x-1 md:space-x-3 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
               <li className="inline-flex items-center">
                 <Link href="/" className="inline-flex items-center text-sm text-grigio-scuro hover:text-blu-polvere">
+                  <Home className="w-4 h-4 mr-1" />
                   Home
                 </Link>
               </li>
@@ -180,37 +178,29 @@ export default async function ServizioPage({ params }: { params: Params }) {
           </nav>
         </div>
         
-        {/* Intestazione */}
-        <div className="mb-12 flex flex-col md:flex-row items-center md:items-start gap-6">
-          <div className="p-4 rounded-2xl bg-gradient-to-br from-verde-acqua/10 to-blu-polvere/10">
-            {getServiceIcon(serviceToShow.iconType)}
+        {/* Hero section */}
+        <div className="relative mb-16 bg-gradient-to-br from-white to-transparent backdrop-blur-sm rounded-3xl overflow-hidden shadow-lg">
+          <div className="relative z-10 px-8 py-12 md:py-16 md:px-12 lg:px-16">
+            <h1 className="text-5xl sm:text-6xl font-light text-blu-notte mb-6 max-w-3xl">
+              <span className="relative inline-block">
+                {serviceToShow.title}
+                <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-verde-acqua to-blu-polvere transform"></span>
+              </span>
+            </h1>
+            <div className="max-w-2xl text-lg text-grigio-scuro/90 mb-8 leading-relaxed">
+              {serviceToShow.description?.split('\n')[0]}
+            </div>
           </div>
-          <div>
-            <h1 className="text-4xl sm:text-5xl font-light text-blu-notte mb-4 text-center md:text-left">{serviceToShow.title}</h1>
-            <div className="h-1 w-20 bg-gradient-to-r from-verde-acqua to-blu-polvere rounded-full mb-6 mx-auto md:mx-0"></div>
-          </div>
+          {getDecoImage()}
         </div>
         
         {/* Contenuto */}
-        <div className="bg-white rounded-xl p-8 shadow-sm mb-12">
-          <div className="prose prose-lg max-w-none text-grigio-scuro">
+        <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-verde-acqua to-blu-polvere"></div>
+          <div className="prose prose-lg max-w-none text-grigio-scuro relative z-10">
+            <h2 className="text-3xl font-light text-blu-notte mb-8">Dettagli del servizio</h2>
             {formatDescription(serviceToShow.description)}
           </div>
-        </div>
-        
-        {/* CTA */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/">
-            <Button variant="outline" className="border-blu-polvere text-blu-polvere hover:bg-blu-polvere/5">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Torna alla Home
-            </Button>
-          </Link>
-          <Link href="#contact">
-            <Button className="bg-gradient-to-r from-verde-acqua to-blu-polvere hover:from-verde-acqua/90 hover:to-blu-polvere/90 text-white">
-              {servicesData?.buttonText || "Prenota una Visita"}
-            </Button>
-          </Link>
         </div>
       </div>
     </main>

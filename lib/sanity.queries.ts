@@ -16,7 +16,8 @@ export const homepageQuery = groq`
     title,
     services[] {
       title,
-      iconType
+      iconType,
+      description
     }
   },
   aboutSection {

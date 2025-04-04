@@ -114,7 +114,6 @@ const serviceDescriptions: Record<string, ServiceDetail> = {
 type ServicesSectionProps = {
   data: {
     title: string
-    buttonText?: string
     services: {
       title: string
       description?: string
@@ -191,57 +190,42 @@ export function ServicesSection({ data }: ServicesSectionProps) {
   }
   
   return (
-    <section id="services" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Sfondo decorativo */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-5">
-          <div className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] rounded-full bg-gradient-to-br from-verde-acqua via-blu-polvere to-blu-notte blur-3xl" />
-        </div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto">
-        {/* Intestazione sezione */}
-        <div className="text-center mb-10 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-blu-notte inline-block relative">
+    <section id="services" className="relative py-16 sm:py-20">
+      <div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10 sm:mb-14">
+          <h2 className="text-3xl md:text-4xl font-light text-blu-notte mb-4">
             {data?.title || "I Nostri Servizi"}
-            <span className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-1 bg-gradient-to-r from-verde-acqua to-blu-polvere rounded-full"></span>
           </h2>
-          <p className="text-grigio-scuro mt-4 sm:mt-6 max-w-2xl mx-auto text-base sm:text-lg px-2">
-            Servizi specialistici per la cura e il benessere dei tuoi occhi. Seleziona un servizio per scoprire maggiori dettagli.
+          <div className="h-1 w-20 bg-gradient-to-r from-verde-acqua to-blu-polvere rounded-full mx-auto mb-6"></div>
+          <p className="text-grigio-scuro max-w-3xl mx-auto text-base sm:text-lg">
+            Offriamo servizi specializzati con approccio professionale e tecnologie all'avanguardia.
           </p>
         </div>
         
-        {/* Griglia servizi */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-6 sm:gap-y-8 md:gap-y-12 mt-8 sm:mt-12">
+        {/* Grid di servizi - layout migliorato e reattivo */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
           {services.map((service) => (
             <Link 
-              key={service.title} 
+              key={service.title}
               href={`/servizi/${generateServiceSlug(service.title)}`}
-              className="block relative group"
+              className="focus:outline-none group"
             >
-              <div 
-                className={`h-full rounded-xl p-1 transition-all duration-500 ${activeService === service.title ? 'shadow-lg' : ''}`}
-                onMouseEnter={() => setActiveService(service.title)}
-                onMouseLeave={() => setActiveService(null)}
-              >
-                <div className={useMemo(() => {
-                  // Generiamo un gradiente casuale basato sul titolo del servizio
-                  const { from, to, opacity } = generateRandomGradient(service.title)
-                  return `rounded-lg h-full p-4 sm:p-6 md:p-8 flex flex-col relative overflow-hidden bg-gradient-to-br ${from} ${to} ${opacity}`
-                }, [service.title])}>
-                  {/* Effetto griglia sovrapposto al gradiente */}
-                  <div className="absolute inset-0 bg-grid-pattern opacity-30 mix-blend-soft-light"></div>
-
-                  
-                  {/* Icona del servizio - layout più compatto su mobile */}
-                  <div className="mb-3 sm:mb-4 md:mb-6 flex flex-col sm:flex-row items-start sm:items-center">
-                    <div className="p-2 sm:p-3 rounded-xl transition-all duration-300 mb-2 sm:mb-0 bg-white shadow-sm z-10 relative">
-                      <ServiceIcon iconType={service.iconType} />
-                    </div>
-                    <h3 className="text-lg sm:text-xl text-white sm:ml-4 font-semibold z-10 relative">{service.title}</h3>
+              <div className="relative h-full rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md group-hover:translate-y-[-5px]">
+                {/* Sfondo gradiente */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blu-polvere to-blu-notte transform transition-transform duration-500 group-hover:scale-105"></div>
+                
+                {/* Overlay scuro per leggibilità */}
+                <div className="absolute inset-0 bg-black/20 z-0"></div>
+                
+                <div className="relative p-6 sm:p-8 flex flex-col h-full">
+                  {/* Icona del servizio - dimensioni ottimizzate */}
+                  <div className="flex items-center mb-4 sm:mb-6">
+                    <ServiceIcon iconType={service.iconType} />
+                    {/* Titolo - spaziatura migliorata e dimensioni ottimizzate per testo più lungo */}
+                    <h3 className="text-lg sm:text-xl font-medium text-white ml-3">{service.title}</h3>
                   </div>
                   
-                  {/* Descrizione - più compatta su mobile */}
+                  {/* Descrizione - con gestione ottimizzata del testo lungo */}
                   <p className="text-sm sm:text-base text-white mb-4 sm:mb-6 flex-grow line-clamp-3 font-medium leading-relaxed z-10 relative">
                     {service.description?.substring(0, 120)}...
                   </p>
@@ -260,18 +244,6 @@ export function ServicesSection({ data }: ServicesSectionProps) {
               </div>
             </Link>
           ))}
-        </div>
-        
-        {/* CTA - dimensioni ottimizzate per mobile */}
-        <div className="mt-10 sm:mt-12 md:mt-16 text-center">
-          <Link href="#contact">
-            <Button 
-              size="lg"
-              className="bg-blu-polvere text-blu-notte shadow hover:bg-blu-polvere/90 border-0 transition-colors rounded-md w-full sm:w-auto max-w-xs mx-auto"
-            >
-              {data?.buttonText || "Prenota una Visita"}
-            </Button>
-          </Link>
         </div>
       </div>
     </section>

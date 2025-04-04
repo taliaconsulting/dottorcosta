@@ -275,9 +275,6 @@ export function ServicesSection({ data }: ServicesSectionProps) {
                         ? 'bg-pink-500' 
                         : 'bg-pink-200 hover:bg-pink-300'
                     }`}></span>
-                    <span className="text-xs text-pink-500 font-medium">
-                      {index + 1}
-                    </span>
                   </button>
                 ))}
               </div>

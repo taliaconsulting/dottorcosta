@@ -91,6 +91,10 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               Torna al Blog
             </Link>
             
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white max-w-4xl mb-8 leading-tight tracking-tight">
+              {post.title}
+            </h1>
+
             <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-xl px-6 py-4 mb-8 flex flex-wrap items-center gap-6">
               <div className="flex items-center gap-2 text-white/90">
                 <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10">
@@ -104,21 +108,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                 </div>
                 <span>{post.readTime || "Tempo di lettura non disponibile"}</span>
               </div>
-              <div className="flex items-center gap-2 text-white/90">
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10">
-                  <Book className="h-4 w-4" />
-                </div>
-                <span>Articolo completo</span>
-              </div>
             </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white max-w-4xl mb-8 leading-tight tracking-tight">
-              {post.title}
-            </h1>
-            
-            <p className="text-xl text-white/90 max-w-3xl bg-white/5 border border-white/10 backdrop-blur-sm p-6 rounded-xl leading-relaxed">
-              {excerpt}
-            </p>
           </div>
         </div>
         
@@ -150,6 +140,12 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Esplora altri articoli
+              </Link>
+              <Link
+                href="tel:+39123456789"
+                className="mt-4 inline-flex items-center bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte px-6 py-3 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg"
+              >
+                Prenota un Appuntamento
               </Link>
             </div>
           </div>

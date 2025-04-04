@@ -16,24 +16,6 @@ const legalLinks = [
   { name: "Termini di Servizio", href: "#" },
 ]
 
-const socialLinks = [
-  {
-    name: "Facebook",
-    href: "https://facebook.com",
-    icon: Facebook,
-  },
-  {
-    name: "Instagram",
-    href: "https://instagram.com",
-    icon: Instagram,
-  },
-  {
-    name: "LinkedIn",
-    href: "https://linkedin.com",
-    icon: Linkedin,
-  },
-]
-
 export function SiteFooter() {
   return (
     <footer id="footer" className="p-2 sm:p-3 lg:p-4">
@@ -51,20 +33,6 @@ export function SiteFooter() {
               >
                 Dottor Costa
               </Link>
-              <div className="flex gap-4">
-                {socialLinks.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="h-10 w-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all duration-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <item.icon className="h-5 w-5 text-white/80" />
-                    <span className="sr-only">{item.name}</span>
-                  </a>
-                ))}
-              </div>
             </div>
 
             {/* Navigation Links */}

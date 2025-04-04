@@ -58,6 +58,17 @@ export default async function BlogPage() {
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
               {blogPage?.description || "Articoli e aggiornamenti"}
             </p>
+            <div className="mt-8">
+              <Link 
+                href="/" 
+                className="group inline-flex items-center text-white/80 hover:text-white py-2 transition-colors"
+              >
+                <span className="flex items-center justify-center w-8 h-8 mr-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-all duration-300">
+                  <ArrowLeft className="h-4 w-4" />
+                </span>
+                Torna alla Homepage
+              </Link>
+            </div>
           </div>
         </div>
       </section>

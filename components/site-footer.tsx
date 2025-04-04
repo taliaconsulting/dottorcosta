@@ -3,12 +3,12 @@ import { Facebook, Instagram, Linkedin } from "lucide-react"
 
 // Utilizziamo gli stessi link della navbar per coerenza
 const navLinks = [
-  { name: "Home", href: "#hero" },
-  { name: "Servizi", href: "#services" },
-  { name: "Chi Siamo", href: "#about" },
-  { name: "Certificazioni", href: "#certifications" },
-  { name: "Blog", href: "#blog" },
-  { name: "Contatti", href: "#contact" },
+  { name: "Home", href: "/" },
+  { name: "Servizi", href: "/#services" },
+  { name: "Chi Siamo", href: "/#about" },
+  { name: "Certificazioni", href: "/#certifications" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contatti", href: "/#contact" },
 ]
 
 const legalLinks = [

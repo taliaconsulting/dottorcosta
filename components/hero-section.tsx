@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 type HeroSectionProps = {
   data: {
@@ -57,13 +58,12 @@ export function HeroSection({ data }: HeroSectionProps) {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
-              <Button
-                size="lg"
-                className="h-12 px-8 bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte border-0 transition-colors"
-                onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+              <Link
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-12 px-8 bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte border-0 transition-colors"
               >
                 {data?.ctaButtonText || "SCHEDULE APPOINTMENT"}
-              </Button>
+              </Link>
             </div>
           </div>
         </div>

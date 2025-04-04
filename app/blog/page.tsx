@@ -2,131 +2,133 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Link from "next/link"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { getAllBlogPosts, getBlogPage } from "@/lib/sanity.client"
 
-// List of beautiful gradients that match the site's aesthetic
+// Lista di gradienti che corrispondono all'estetica del sito
 const gradients = [
-  "bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900",
-  "bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900",
-  "bg-gradient-to-br from-blue-900 via-slate-900 to-indigo-900",
-  "bg-gradient-to-br from-indigo-900 via-slate-900 to-blue-900",
-  "bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900",
+  "bg-gradient-to-br from-[#1B365C] via-[#2C3E50] to-[#1B365C]",
+  "bg-gradient-to-br from-[#2C3E50] via-[#1B365C] to-[#2C3E50]",
+  "bg-gradient-to-br from-[#1B365C] via-[#2F4356] to-[#1B365C]",
+  "bg-gradient-to-br from-[#2F4356] via-[#1B365C] to-[#2F4356]",
+  "bg-gradient-to-br from-[#1B365C] via-[#7EA1C4] to-[#1B365C]",
 ]
 
-// This would typically come from your CMS or API
-const blogPosts = [
-  {
-    slug: "latest-lasik-technology",
-    title: "The Latest Advancements in LASIK Technology",
-    description: "Explore how modern LASIK surgery has evolved and what new technologies mean for patients.",
-    date: "2024-03-15",
-    readTime: "5 min read",
-    category: "Technology",
-  },
-  {
-    slug: "understanding-cataracts",
-    title: "Understanding Cataracts: Symptoms, Causes, and Treatment",
-    description: "A comprehensive guide to understanding cataracts and the latest treatment options available.",
-    date: "2024-03-10",
-    readTime: "7 min read",
-    category: "Education",
-  },
-  // Add more blog posts here
-]
-
-export const metadata = {
-  title: "Blog | Dr. Besser Eye Care",
-  description: "Stay informed about the latest in eye care, surgical procedures, and vision health.",
+// Dati fallback per la pagina del blog
+const fallbackBlogPage = {
+  title: "Blog",
+  description: "Resta informato sulle ultime novità nel campo della medicina",
+  headerImage: "",
+  postsPerPage: 9,
+  categoriesTitle: "Categorie",
+  recentPostsTitle: "Articoli Recenti"
 }
 
-export default function BlogPage() {
-  // Get a random gradient for the hero section
-  const heroGradient = gradients[Math.floor(Math.random() * gradients.length)]
+export const metadata = {
+  title: "Blog | Dr. Costa",
+  description: "Resta informato sulle ultime novità nel campo della ginecologia, ostetricia e medicina estetica.",
+}
 
+export default async function BlogPage() {
+  let blogPage, blogPosts;
+  
+  try {
+    blogPage = await getBlogPage() || fallbackBlogPage;
+    blogPosts = await getAllBlogPosts() || [];
+  } catch (error) {
+    console.error("Errore nel caricamento dei dati del blog:", error);
+    blogPage = fallbackBlogPage;
+    blogPosts = [];
+  }
+  
   return (
     <>
       {/* Hero Section */}
-      <div className="container py-12">
-        <div className={cn(
-          "rounded-3xl overflow-hidden shadow-2xl mb-16",
-          heroGradient
-        )}>
-          <div className="relative px-8 py-12 lg:px-12 lg:py-16">
-            <div className="absolute inset-0 bg-grid-white/5" />
+      <section className="relative py-24 md:py-32 bg-gradient-to-br from-[#1B365C] via-[#2C3E50] to-[#1B365C] overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(30,64,175,0.15),transparent_60%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(125,211,252,0.1),transparent_60%)]"></div>
+        
+        <div className="container relative z-10 mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-6 tracking-tight">
+              {blogPage?.title || "Blog"}
+            </h1>
             
-            <div className="relative">
-              <Button
-                variant="ghost"
-                className="text-white mb-8 hover:bg-white/10"
-                asChild
-              >
-                <Link href="/">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Home
-                </Link>
-              </Button>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-6">
-                Insights & Updates
-              </h1>
-              <p className="text-xl text-white/80 max-w-3xl">
-                Stay informed about the latest developments in eye care, surgical procedures,
-                and vision health from Dr. Besser and our team of experts.
-              </p>
-            </div>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+              {blogPage?.description || "Articoli e aggiornamenti"}
+            </p>
           </div>
         </div>
+      </section>
 
-        {/* Blog Posts Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {blogPosts.map((post, index) => {
-            // Get a different gradient for each post card
-            const cardGradient = gradients[(index + 2) % gradients.length]
-            
-            return (
-              <Link 
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group"
-              >
-                <Card className={cn(
-                  "h-full overflow-hidden hover:shadow-lg transition-all duration-300",
-                  cardGradient,
-                  "border-0"
-                )}>
-                  <CardHeader className="relative">
-                    <div className="absolute inset-0 bg-grid-white/5" />
-                    <div className="relative">
-                      <div className="flex items-center gap-2 text-sm text-white/80 mb-2">
-                        <span>{post.category}</span>
-                        <span className="text-white/60">•</span>
-                        <span>{post.readTime}</span>
-                      </div>
-                      <CardTitle className="text-xl font-medium text-white group-hover:text-white/90 transition-colors">
-                        {post.title}
-                      </CardTitle>
-                      <CardDescription className="line-clamp-2 text-white/80">
-                        {post.description}
-                      </CardDescription>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="relative">
-                    <div className="absolute inset-0 bg-grid-white/5" />
-                    <time dateTime={post.date} className="relative text-sm text-white/70">
-                      {new Date(post.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}
-                    </time>
-                  </CardContent>
-                </Card>
-              </Link>
-            )
-          })}
+      {/* Blog Posts Grid */}
+      <section className="py-16 md:py-24 bg-slate-200">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {blogPosts && blogPosts.length > 0 ? (
+              blogPosts.map((post, index) => {
+                // Get a different gradient for each post card
+                const cardGradient = gradients[index % gradients.length]
+                
+                // Formattazione data sicura
+                const formattedDate = post.publishedAt 
+                  ? new Date(post.publishedAt).toLocaleDateString('it-IT', {
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric'
+                    })
+                  : "Data non disponibile";
+                
+                return (
+                  <Link 
+                    key={post._id || index}
+                    href={`/blog/${post.slug?.current || "404"}`}
+                    className="group"
+                  >
+                    <Card className={cn(
+                      "h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px]",
+                      cardGradient,
+                      "border-0 rounded-xl"
+                    )}>
+                      <CardHeader className="relative pb-3">
+                        <div className="relative">
+                          <div className="flex items-center gap-2 text-sm text-white/80 mb-2">
+                            <Tag className="h-3 w-3" />
+                            <span>{post.category || "Generale"}</span>
+                            <span className="text-white/60">•</span>
+                            <Clock className="h-3 w-3" />
+                            <span>{post.readTime || "Lettura breve"}</span>
+                          </div>
+                          <CardTitle className="text-xl font-medium text-white group-hover:text-white/90 transition-colors">
+                            {post.title || "Titolo non disponibile"}
+                          </CardTitle>
+                          <CardDescription className="line-clamp-2 text-white/80">
+                            {post.excerpt || "Nessun estratto disponibile per questo articolo."}
+                          </CardDescription>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="relative pt-2">
+                        <div className="relative flex items-center gap-2 text-sm text-white/70">
+                          <Calendar className="h-3 w-3" />
+                          <time dateTime={post.publishedAt || ""}>
+                            {formattedDate}
+                          </time>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                )
+              })
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-xl text-muted-foreground">Nessun articolo disponibile al momento.</p>
+                <p className="mt-2">Torna presto per leggere i nostri nuovi contenuti.</p>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      </section>
     </>
   )
 } 

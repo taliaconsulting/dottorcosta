@@ -102,5 +102,23 @@ export const blogPostBySlugQuery = groq`
   "mainImage": mainImage.asset->url,
   publishedAt,
   readTime,
-  body
+  body[] {
+    ...,
+    _type == "image" => {
+      ...,
+      "asset": {
+        "_ref": asset._ref,
+        "url": asset->url
+      }
+    },
+    markDefs[] {
+      ...,
+      _type == "link" => {
+        ...,
+      },
+      _type == "textEffect" => {
+        ...,
+      }
+    }
+  }
 }`

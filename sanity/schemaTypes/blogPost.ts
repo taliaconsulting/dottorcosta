@@ -79,13 +79,64 @@ export default defineType({
             { title: 'Titolo 3', value: 'h3' },
             { title: 'Titolo 4', value: 'h4' },
             { title: 'Citazione', value: 'blockquote' },
+            { title: 'Evidenziato', value: 'highlighted' },
+            { title: 'Nota a margine', value: 'callout' },
           ],
           marks: {
             decorators: [
               { title: 'Grassetto', value: 'strong' },
               { title: 'Corsivo', value: 'em' },
               { title: 'Sottolineato', value: 'underline' },
+              { title: 'Barrato', value: 'strike-through' },
+              { title: 'Codice', value: 'code' },
+              { title: 'Evidenziatore', value: 'highlight' },
             ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'url',
+                    title: 'URL'
+                  },
+                  {
+                    name: 'blank',
+                    type: 'boolean',
+                    title: 'Apri in una nuova scheda',
+                    initialValue: true
+                  }
+                ]
+              },
+              {
+                name: 'textEffect',
+                type: 'object',
+                title: 'Effetto Testo',
+                fields: [
+                  {
+                    name: 'effect',
+                    type: 'string',
+                    title: 'Tipo di Effetto',
+                    options: {
+                      list: [
+                        { title: 'Gradiente', value: 'gradient' },
+                        { title: 'Ombra', value: 'shadow' },
+                        { title: 'Rilievo', value: 'relief' },
+                        { title: 'Animato', value: 'animated' }
+                      ]
+                    }
+                  },
+                  {
+                    name: 'color',
+                    type: 'string',
+                    title: 'Colore',
+                    description: 'Opzionale, colore per l\'effetto',
+                  }
+                ]
+              }
+            ]
           },
         },
         {

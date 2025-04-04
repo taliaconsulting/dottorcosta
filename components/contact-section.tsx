@@ -128,7 +128,7 @@ export function ContactSection({ data }: ContactSectionProps) {
           </div>
 
           {/* Mappa */}
-          <div className="h-full min-h-[600px] lg:min-h-full relative">
+          <div className="h-full min-h-[800px] lg:min-h-full relative">
             <iframe
               src={mapEmbedUrl}
               className="absolute inset-0 w-full h-full"

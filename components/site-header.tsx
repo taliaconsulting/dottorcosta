@@ -12,12 +12,12 @@ import { cn } from "@/lib/utils"
 
 // Sezioni del sito per la navigazione con icone
 const sectionNavigation = [
-  { name: "Home", href: "#hero", icon: Home },
-  { name: "Servizi", href: "#services", icon: Stethoscope },
-  { name: "Chi Siamo", href: "#about", icon: User },
-  { name: "Certificazioni", href: "#certifications", icon: Award },
-  { name: "Blog", href: "#blog", icon: BookOpen },
-  { name: "Contatti", href: "#contact", icon: Mail },
+  { name: "Home", href: "/", icon: Home },
+  { name: "Servizi", href: "/#services", icon: Stethoscope },
+  { name: "Chi Siamo", href: "/#about", icon: User },
+  { name: "Certificazioni", href: "/#certifications", icon: Award },
+  { name: "Blog", href: "/blog", icon: BookOpen },
+  { name: "Contatti", href: "/#contact", icon: Mail },
 ]
 
 export function SiteHeader() {

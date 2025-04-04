@@ -179,17 +179,29 @@ export async function getFeaturedBlogPosts() {
 }
 
 export async function getBlogPostBySlug(slug: string) {
+  if (!slug) {
+    console.error("Slug non fornito nella chiamata a getBlogPostBySlug");
+    return null;
+  }
+  
   if (useFallbackData) {
     console.log(`Utilizzando dati di fallback per il post con slug: ${slug}`)
     const post = blogPostsFallbackData.find(p => p.slug.current === slug)
-    return post || blogPostsFallbackData[0]
+    return post || null;
   }
   
   try {
-    return await client.fetch(blogPostBySlugQuery, { slug })
+    const post = await client.fetch(blogPostBySlugQuery, { slug });
+    
+    if (!post) {
+      console.warn(`Post con slug ${slug} non trovato nel CMS`);
+      return null;
+    }
+    
+    return post;
   } catch (error) {
     console.error(`Errore nel recupero del post con slug ${slug} da Sanity:`, error)
-    const post = blogPostsFallbackData.find(p => p.slug.current === slug)
-    return post || blogPostsFallbackData[0]
+    // Ritorna null anziché un fallback arbitrario per permettere il redirect appropriato
+    return null;
   }
 }

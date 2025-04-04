@@ -3,6 +3,9 @@ import Link from "next/link"
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { PortableText } from "@/components/ui/portable-text"
+import { getBlogPostBySlug } from "@/lib/sanity.client"
+import { redirect } from "next/navigation"
 
 // Lista di gradienti che corrispondono all'estetica del sito
 const gradients = [
@@ -13,125 +16,109 @@ const gradients = [
   "bg-gradient-to-br from-[#1B365C] via-[#7EA1C4] to-[#1B365C]",
 ]
 
-// Questo normalmente verrebbe da un CMS o API
-const getBlogPost = async (slug: string) => {
-  // Dati di esempio - in un'app reale, questi dati verrebbero recuperati dal CMS/API
-  return {
-    slug,
-    title: "Gli ultimi progressi nella tecnologia LASIK",
-    description: "Scopri come la moderna chirurgia LASIK si è evoluta e cosa significano le nuove tecnologie per i pazienti.",
-    date: "2024-03-15",
-    readTime: "5 min di lettura",
-    category: "Tecnologia",
-    content: `
-      <p>
-        La chirurgia oculare LASIK ha fatto molta strada dalla sua approvazione FDA nel 1999. Oggi, la procedura
-        è più precisa, sicura e offre risultati migliori rispetto al passato. In questo articolo, esploreremo
-        gli ultimi progressi tecnologici che stanno rivoluzionando la chirurgia LASIK.
-      </p>
-      
-      <h2>L'evoluzione della tecnologia LASIK</h2>
-      
-      <p>
-        Le moderne procedure LASIK utilizzano la tecnologia wavefront avanzata per creare una mappa dettagliata delle
-        imperfezioni uniche dell'occhio. Questo consente una personalizzazione incredibilmente precisa del trattamento
-        in base alle esigenze specifiche del paziente.
-      </p>
-      
-      <h2>Vantaggi della LASIK moderna</h2>
-      
-      <ul>
-        <li>Maggiore accuratezza e precisione</li>
-        <li>Tempi di recupero più rapidi</li>
-        <li>Migliori risultati per la visione notturna</li>
-        <li>Ridotto rischio di complicazioni</li>
-      </ul>
-      
-      <p>
-        Con questi progressi, più pazienti che mai sono candidati alla chirurgia LASIK. Tuttavia,
-        è importante sottoporsi a una consulenza approfondita per determinare se la LASIK è adatta a te.
-      </p>
-    `
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const post = await getBlogPostBySlug(params.slug)
+  if (!post) {
+    return {
+      title: "Post non trovato | Blog Dr. Costa",
+      description: "Il post richiesto non è stato trovato",
+    }
   }
-}
-
-export async function generateMetadata(props: any): Promise<Metadata> {
-  const post = await getBlogPost(props.params.slug)
+  
   return {
     title: `${post.title} | Blog Dr. Costa`,
-    description: post.description,
+    description: post.excerpt || "Leggi questo articolo sul blog del Dr. Costa",
   }
 }
 
-export default async function BlogPost(props: any) {
-  const post = await getBlogPost(props.params.slug)
+export default async function BlogPost({ params }: { params: { slug: string } }) {
+  const post = await getBlogPostBySlug(params.slug)
+  
+  // Redirect alla pagina del blog se il post non esiste
+  if (!post) {
+    redirect("/blog")
+  }
   
   // Get a random gradient
   const randomGradient = gradients[Math.floor(Math.random() * gradients.length)]
 
+  // Assicurare che le date siano formattate correttamente anche se mancanti
+  const formattedDate = post.publishedAt 
+    ? new Date(post.publishedAt).toLocaleDateString('it-IT', {
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric'
+      })
+    : "Data non disponibile"
+
   return (
-    <article className="min-h-screen">
-      <div className="container py-12">
-        {/* Hero Card */}
-        <div className={cn(
-          "rounded-3xl overflow-hidden shadow-2xl mb-16",
-          randomGradient
-        )}>
-          <div className="relative px-8 py-12 lg:px-12 lg:py-16">
-            <div className="absolute inset-0 bg-grid-white/5" />
+    <article>
+      {/* Hero Section */}
+      <section className="relative py-20 md:py-28 bg-gradient-to-br from-[#1B365C] via-[#2C3E50] to-[#1B365C] overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(30,64,175,0.15),transparent_60%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(125,211,252,0.1),transparent_60%)]"></div>
+        
+        <div className="container relative z-10 mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto">
+            <Link 
+              href="/blog" 
+              className="inline-flex items-center text-white/80 hover:text-white mb-6 transition-colors"
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Torna al Blog
+            </Link>
             
-            <div className="relative">
-              <Button
-                variant="ghost"
-                className="text-white mb-8 hover:bg-white/10"
-                asChild
-              >
-                <Link href="/blog">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Torna al Blog
-                </Link>
-              </Button>
-
-              <div className="flex items-center gap-6 mb-8 text-white/80">
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  <time dateTime={post.date}>
-                    {new Date(post.date).toLocaleDateString('it-IT', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </time>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
-                  <span>{post.readTime}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Tag className="h-4 w-4" />
-                  <span>{post.category}</span>
-                </div>
+            <div className="flex flex-wrap items-center gap-4 mb-6 text-white/80">
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4" />
+                <time dateTime={post.publishedAt || ""}>
+                  {formattedDate}
+                </time>
               </div>
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                <span>{post.readTime || "Tempo di lettura non disponibile"}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Tag className="h-4 w-4" />
+                <span>{post.category || "Categoria non specificata"}</span>
+              </div>
+            </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white max-w-4xl mb-6">
-                {post.title}
-              </h1>
-              
-              <p className="text-xl text-white/80 max-w-3xl">
-                {post.description}
-              </p>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white max-w-4xl mb-6">
+              {post.title}
+            </h1>
+            
+            <p className="text-xl text-white/90 max-w-3xl">
+              {post.excerpt || ""}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Content Section */}
+      <section className="py-16 md:py-20 bg-slate-200">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-md p-6 sm:p-8 lg:p-10">
+              <PortableText 
+                value={post.body || []}
+                className="prose-p:text-justify prose-headings:text-left prose-img:mx-auto prose-headings:font-light prose-h2:text-2xl lg:prose-h2:text-3xl prose-p:leading-relaxed font-['Montserrat']"
+              />
+            </div>
+            
+            <div className="mt-12 text-center">
+              <Link
+                href="/blog"
+                className="inline-flex items-center text-[#1B365C] hover:text-[#2C3E50] font-medium transition-colors"
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Torna agli articoli
+              </Link>
             </div>
           </div>
         </div>
-
-        {/* Content */}
-        <div className="max-w-2xl mx-auto">
-          <div 
-            className="prose prose-slate lg:prose-lg prose-p:text-justify prose-headings:text-left prose-img:mx-auto prose-headings:font-light prose-h2:text-2xl lg:prose-h2:text-3xl prose-p:leading-relaxed font-['Montserrat']"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
-        </div>
-      </div>
+      </section>
     </article>
   )
 } 

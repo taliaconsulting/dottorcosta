@@ -12,12 +12,12 @@ import { cn } from "@/lib/utils"
 
 // Sezioni del sito per la navigazione con icone
 const sectionNavigation = [
-  { name: "Home", href: "/", icon: Home },
-  { name: "Servizi", href: "/#services", icon: Stethoscope },
-  { name: "Chi Siamo", href: "/#about", icon: User },
-  { name: "Certificazioni", href: "/#certifications", icon: Award },
-  { name: "Blog", href: "/blog", icon: BookOpen },
-  { name: "Contatti", href: "/#contact", icon: Mail },
+  { name: "Home", href: "#hero", icon: Home },
+  { name: "Servizi", href: "#services", icon: Stethoscope },
+  { name: "Chi Siamo", href: "#about", icon: User },
+  { name: "Certificazioni", href: "#certifications", icon: Award },
+  { name: "Blog", href: "#blog", icon: BookOpen },
+  { name: "Contatti", href: "#contact", icon: Mail },
 ]
 
 export function SiteHeader() {
@@ -48,7 +48,7 @@ export function SiteHeader() {
               </SheetTrigger>
               <SheetContent 
                 side="top" 
-                className="w-full h-[100dvh] border-0 p-0 bg-gradient-to-b from-blu-notte via-blu-notte/95 to-blu-notte/90 backdrop-blur-md animate-in slide-in-from-top-full duration-300"
+                className="w-full h-[100dvh] border-0 p-0 bg-gradient-to-b from-blu-notte via-blu-notte/95 to-blu-notte/90 backdrop-blur-md duration-300"
               >
                 <div className="flex flex-col h-full">
                   {/* Header del menu mobile */}
@@ -89,7 +89,7 @@ export function SiteHeader() {
                   {/* Footer del menu mobile */}
                   <div className="p-6 mt-auto border-t border-blu-polvere/20">
                     <Link
-                      href="#contact"
+                      href="tel:+39123456789"
                       className="flex items-center justify-center gap-3 w-full rounded-xl bg-blu-polvere py-5 text-lg text-blu-notte font-medium shadow hover:bg-blu-polvere/90 transition-all duration-300 hover:scale-[1.02]"
                     >
                       <Phone className="h-5 w-5" />
@@ -125,7 +125,7 @@ export function SiteHeader() {
             </NavigationMenu>
             
             <Link
-              href="#contact"
+              href="tel:+39123456789"
               className="ml-4 rounded-md bg-blu-polvere px-8 py-2 text-base text-blu-notte shadow hover:bg-blu-polvere/90 border-0 transition-colors"
             >
               Prenota Visita

@@ -30,52 +30,29 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
   const fallbackPosts = [
     {
       _id: "1",
-      title: "Understanding LASIK: A Complete Guide",
-      slug: { current: "understanding-lasik" },
-      excerpt: "Learn about the latest advancements in LASIK surgery and what to expect during the procedure.",
-      mainImage: "/blog/lasik-guide.jpg",
-      category: "LASIK",
-      publishedAt: "2024-03-15T00:00:00Z",
-      readTime: "5 min read",
+      title: "Capire la gravidanza: Una guida completa",
+      slug: { current: "capire-gravidanza" },
+      category: "Ostetricia",
+      readTime: "5 min di lettura",
     },
     {
       _id: "2",
-      title: "Breakthrough in Cataract Surgery Technology",
-      slug: { current: "cataract-surgery-technology" },
-      excerpt: "Discover how new lens technology is revolutionizing cataract surgery outcomes.",
-      mainImage: "/blog/cataract-tech.jpg",
-      category: "Cataract",
-      publishedAt: "2024-03-10T00:00:00Z",
-      readTime: "4 min read",
+      title: "Novità nel trattamento dell'endometriosi",
+      slug: { current: "trattamento-endometriosi" },
+      category: "Endometriosi",
+      readTime: "4 min di lettura",
     },
     {
       _id: "3",
-      title: "Common Eye Problems After 40",
-      slug: { current: "eye-problems-after-40" },
-      excerpt: "Understanding age-related vision changes and how to maintain optimal eye health.",
-      mainImage: "/blog/eye-health.jpg",
-      category: "Eye Health",
-      publishedAt: "2024-03-05T00:00:00Z",
-      readTime: "6 min read",
+      title: "Problemi comuni durante la menopausa",
+      slug: { current: "problemi-menopausa" },
+      category: "Menopausa",
+      readTime: "6 min di lettura",
     },
   ]
 
   const blogPosts = posts?.length ? posts : fallbackPosts
   
-  // Funzione per formattare la data
-  const formatDate = (dateString: string) => {
-    try {
-      const date = new Date(dateString)
-      return new Intl.DateTimeFormat('it-IT', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      }).format(date)
-    } catch (e) {
-      return dateString
-    }
-  }
-
   return (
     <section id="blog" className="p-2 sm:p-3 lg:p-4">
       <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-blu-notte to-blu-notte/80">
@@ -105,23 +82,9 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
                 className="bg-bianco-perla/5 hover:bg-bianco-perla/10 border-bianco-perla/10 transition-all duration-300 hover:scale-[1.02] group"
               >
                 <CardContent className="p-0">
-                  <div className="relative h-48 w-full overflow-hidden rounded-t-xl">
-                    <Image
-                      src={post.mainImage}
-                      alt={post.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blu-notte/50 to-transparent" />
-                    <div className="absolute bottom-4 left-4">
-                      <span className="px-3 py-1 bg-blu-polvere/90 text-blu-notte text-sm rounded-full">
-                        {post.category}
-                      </span>
-                    </div>
-                  </div>
                   <div className="p-6 space-y-4">
                     <div className="flex items-center text-sm text-bianco-perla/60 space-x-4">
-                      <span>{formatDate(post.publishedAt)}</span>
+                      <span>{post.category || "Generale"}</span>
                       <span>•</span>
                       <span>{post.readTime}</span>
                     </div>
@@ -129,7 +92,7 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
                       {post.title}
                     </h3>
                     <p className="text-bianco-perla/70 line-clamp-2">
-                      {post.excerpt}
+                      Leggi l'articolo completo...
                     </p>
                     <div className="pt-2">
                       <Link href={`/blog/${post.slug.current}`}>

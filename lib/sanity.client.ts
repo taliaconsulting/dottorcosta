@@ -85,10 +85,7 @@ const blogPostsFallbackData = [
     _id: 'post-1',
     title: 'Prevenzione ginecologica: cosa è importante sapere',
     slug: { current: 'prevenzione-ginecologica' },
-    excerpt: 'Una guida completa alla prevenzione ginecologica e come prendersi cura della propria salute.',
-    category: 'Prevenzione',
-    mainImage: 'https://placeholder.pics/svg/800x500/DEDEDE/555555/immagine%20articolo%201',
-    publishedAt: '2024-01-15',
+    category: 'Ginecologia',
     readTime: '5 min',
     body: [{ _type: 'block', children: [{ _type: 'span', text: 'Contenuto completo dell\'articolo sulla prevenzione ginecologica.' }] }]
   },
@@ -96,23 +93,17 @@ const blogPostsFallbackData = [
     _id: 'post-2',
     title: 'Gravidanza: il primo trimestre',
     slug: { current: 'gravidanza-primo-trimestre' },
-    excerpt: 'Tutto quello che devi sapere sul primo trimestre di gravidanza: cambiamenti e consigli.',
-    category: 'Gravidanza',
-    mainImage: 'https://placeholder.pics/svg/800x500/DEDEDE/555555/immagine%20articolo%202',
-    publishedAt: '2024-02-10',
+    category: 'Ostetricia',
     readTime: '8 min',
     body: [{ _type: 'block', children: [{ _type: 'span', text: 'Contenuto completo dell\'articolo sul primo trimestre di gravidanza.' }] }]
   },
   {
     _id: 'post-3',
-    title: 'Medicina estetica: trattamenti sicuri',
-    slug: { current: 'medicina-estetica-trattamenti' },
-    excerpt: 'Una panoramica sui trattamenti di medicina estetica più sicuri e i loro benefici.',
-    category: 'Medicina Estetica',
-    mainImage: 'https://placeholder.pics/svg/800x500/DEDEDE/555555/immagine%20articolo%203',
-    publishedAt: '2024-03-05',
+    title: 'Affrontare la menopausa: una guida completa',
+    slug: { current: 'guida-menopausa' },
+    category: 'Menopausa',
     readTime: '6 min',
-    body: [{ _type: 'block', children: [{ _type: 'span', text: 'Contenuto completo dell\'articolo sui trattamenti di medicina estetica.' }] }]
+    body: [{ _type: 'block', children: [{ _type: 'span', text: 'Contenuto completo dell\'articolo sulla menopausa.' }] }]
   }
 ]
 

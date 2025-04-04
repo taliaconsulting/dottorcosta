@@ -22,40 +22,19 @@ export default defineType({
       
     }),
     defineField({
-      name: 'excerpt',
-      title: 'Estratto',
-      type: 'text',
-      description: 'Breve descrizione del post che apparirà nelle anteprime',
-      
-    }),
-    defineField({
       name: 'category',
       title: 'Categoria',
       type: 'string',
       options: {
         list: [
-          { title: 'LASIK', value: 'LASIK' },
-          { title: 'Cataratta', value: 'Cataract' },
-          { title: 'Salute Oculare', value: 'Eye Health' },
-          { title: 'Chirurgia Refrattiva', value: 'Refractive Surgery' },
-          { title: 'Altro', value: 'Other' },
+          { title: 'Ostetricia', value: 'Ostetricia' },
+          { title: 'Ginecologia', value: 'Ginecologia' },
+          { title: 'Menopausa', value: 'Menopausa' },
+          { title: 'Endometriosi', value: 'Endometriosi' },
+          { title: 'Sterilità', value: 'Sterilità' },
+          { title: 'Altro', value: 'Altro' },
         ],
       },
-      
-    }),
-    defineField({
-      name: 'mainImage',
-      title: 'Immagine Principale',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      
-    }),
-    defineField({
-      name: 'publishedAt',
-      title: 'Data di Pubblicazione',
-      type: 'datetime',
       
     }),
     defineField({
@@ -177,15 +156,11 @@ export default defineType({
     select: {
       title: 'title',
       author: 'author.name',
-      media: 'mainImage',
-      date: 'publishedAt',
     },
     prepare(selection) {
-      const { title, media, date } = selection
+      const { title } = selection
       return {
         title,
-        media,
-        subtitle: date ? new Date(date).toLocaleDateString('it-IT') : '',
       }
     },
   },

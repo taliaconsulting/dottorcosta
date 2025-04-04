@@ -67,14 +67,11 @@ export const blogPageQuery = groq`
 
 // Query per ottenere tutti i post del blog
 export const allBlogPostsQuery = groq`
-*[_type == "blogPost"] | order(publishedAt desc) {
+*[_type == "blogPost"] | order(_createdAt desc) {
   _id,
   title,
   slug,
-  excerpt,
   category,
-  "mainImage": mainImage.asset->url,
-  publishedAt,
   readTime
 }`
 
@@ -97,10 +94,7 @@ export const blogPostBySlugQuery = groq`
   _id,
   title,
   slug,
-  excerpt,
   category,
-  "mainImage": mainImage.asset->url,
-  publishedAt,
   readTime,
   body[] {
     ...,

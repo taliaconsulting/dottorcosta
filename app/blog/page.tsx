@@ -71,14 +71,8 @@ export default async function BlogPage() {
                 // Get a different gradient for each post card
                 const cardGradient = gradients[index % gradients.length]
                 
-                // Formattazione data sicura
-                const formattedDate = post.publishedAt 
-                  ? new Date(post.publishedAt).toLocaleDateString('it-IT', {
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric'
-                    })
-                  : "Data non disponibile";
+                // Generiamo l'estratto automaticamente (nelle altre parti sarà gestito lato backend)
+                const excerpt = "Leggi l'articolo completo...";
                 
                 return (
                   <Link 
@@ -104,16 +98,15 @@ export default async function BlogPage() {
                             {post.title || "Titolo non disponibile"}
                           </CardTitle>
                           <CardDescription className="line-clamp-2 text-white/80">
-                            {post.excerpt || "Nessun estratto disponibile per questo articolo."}
+                            {excerpt}
                           </CardDescription>
                         </div>
                       </CardHeader>
                       <CardContent className="relative pt-2">
                         <div className="relative flex items-center gap-2 text-sm text-white/70">
-                          <Calendar className="h-3 w-3" />
-                          <time dateTime={post.publishedAt || ""}>
-                            {formattedDate}
-                          </time>
+                          <Button variant="link" className="p-0 h-8 text-white/80 hover:text-white">
+                            Leggi l'articolo →
+                          </Button>
                         </div>
                       </CardContent>
                     </Card>

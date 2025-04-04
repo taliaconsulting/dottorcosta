@@ -8,6 +8,8 @@ const montserrat = Montserrat({
   variable: "--font-sans",
 });
 
+//metadati
+
 export const metadata: Metadata = {
   title: "Dottor Domenico Costa | Ginecologo e Ostetrico a Favara",
   description: "Visite ginecologiche e ostetriche con il Dott. Domenico Costa a Favara. Esperto nel trattamento di endometriosi, menopausa e infertilità. Contattaci per un appuntamento.",

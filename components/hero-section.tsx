@@ -60,6 +60,7 @@ export function HeroSection({ data }: HeroSectionProps) {
               <Button
                 size="lg"
                 className="h-12 px-8 bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte border-0 transition-colors"
+                onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
               >
                 {data?.ctaButtonText || "SCHEDULE APPOINTMENT"}
               </Button>

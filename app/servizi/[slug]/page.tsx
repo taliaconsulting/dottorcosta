@@ -96,17 +96,17 @@ export default async function ServizioPage({ params }: { params: Params }) {
   // Se il servizio non esiste nei dati di Sanity né nei dati di fallback, mostra un messaggio di errore
   if (!service && !fallbackService) {
     return (
-      <main className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 min-h-[80vh] flex items-center">
+      <main className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[#F9E3EB]/10 min-h-[80vh] flex items-center">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8 inline-block p-4 bg-red-50 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-[#D19BAF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
           </div>
           <h1 className="text-4xl font-light text-blu-notte mb-6">Servizio non trovato</h1>
           <p className="text-grigio-scuro mb-8">Il servizio che stai cercando non è disponibile.</p>
           <Link href="/">
-            <Button className="bg-blu-polvere hover:bg-blu-polvere/90 rounded-full px-8 py-6 h-auto">
+            <Button className="bg-[#E8B8C7] hover:bg-[#D19BAF] rounded-full px-8 py-6 h-auto">
               <Home className="mr-2 h-5 w-5" />
               Torna alla Home
             </Button>
@@ -133,7 +133,7 @@ export default async function ServizioPage({ params }: { params: Params }) {
     // Si potrebbe aggiungere un sistema più avanzato di selezione immagini
     return (
       <div className="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none overflow-hidden rounded-l-full">
-        <div className="absolute inset-0 bg-gradient-to-br from-verde-acqua to-blu-polvere transform rotate-12 scale-150"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#F2D7E0] to-[#D19BAF] transform rotate-12 scale-150"></div>
       </div>
     )
   }
@@ -146,11 +146,11 @@ export default async function ServizioPage({ params }: { params: Params }) {
   }
   
   return (
-    <main className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+    <main className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[#F9E3EB]/10 overflow-hidden">
       {/* Floating home button */}
       <div className="fixed bottom-6 left-0 right-0 z-50 flex justify-center">
         <Link href="/">
-          <Button variant="default" className="bg-blu-polvere hover:bg-blu-polvere/90 text-white rounded-full px-8 py-5 shadow-lg transition-all hover:shadow-xl flex items-center text-lg">
+          <Button variant="default" className="bg-[#E8B8C7] hover:bg-[#D19BAF] text-white rounded-full px-8 py-5 shadow-lg transition-all hover:shadow-xl flex items-center text-lg">
             <Home className="h-6 w-6 mr-3" />
             <span>Torna alla Home</span>
           </Button>
@@ -158,9 +158,9 @@ export default async function ServizioPage({ params }: { params: Params }) {
       </div>
       
       {/* Elementi decorativi di sfondo */}
-      <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-r from-verde-acqua/5 to-blu-polvere/5"></div>
-      <div className="absolute bottom-40 right-0 w-64 h-64 rounded-full bg-verde-acqua/5 blur-3xl"></div>
-      <div className="absolute top-40 left-0 w-80 h-80 rounded-full bg-blu-polvere/5 blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-r from-[#F2D7E0]/20 to-[#E8B8C7]/20"></div>
+      <div className="absolute bottom-40 right-0 w-64 h-64 rounded-full bg-[#F2D7E0]/30 blur-3xl"></div>
+      <div className="absolute top-40 left-0 w-80 h-80 rounded-full bg-[#E8B8C7]/20 blur-3xl"></div>
       
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Breadcrumb */}
@@ -168,7 +168,7 @@ export default async function ServizioPage({ params }: { params: Params }) {
           <nav className="flex" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-3 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
               <li className="inline-flex items-center">
-                <Link href="/" className="inline-flex items-center text-sm text-grigio-scuro hover:text-blu-polvere">
+                <Link href="/" className="inline-flex items-center text-sm text-grigio-scuro hover:text-[#D19BAF]">
                   <Home className="w-4 h-4 mr-1" />
                   Home
                 </Link>
@@ -178,7 +178,7 @@ export default async function ServizioPage({ params }: { params: Params }) {
                   <svg className="w-3 h-3 text-grigio-chiaro mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
                   </svg>
-                  <span className="ml-1 text-sm font-medium text-blu-polvere md:ml-2">{serviceToShow.title}</span>
+                  <span className="ml-1 text-sm font-medium text-[#D19BAF] md:ml-2">{serviceToShow.title}</span>
                 </div>
               </li>
             </ol>
@@ -186,12 +186,12 @@ export default async function ServizioPage({ params }: { params: Params }) {
         </div>
         
         {/* Hero section */}
-        <div className="relative mb-16 bg-gradient-to-br from-white to-transparent backdrop-blur-sm rounded-3xl overflow-hidden shadow-lg">
+        <div className="relative mb-16 bg-gradient-to-br from-white to-[#F9E3EB]/5 backdrop-blur-sm rounded-3xl overflow-hidden shadow-lg">
           <div className="relative z-10 px-8 py-12 md:py-16 md:px-12 lg:px-16">
             <h1 className="text-5xl sm:text-6xl font-light text-blu-notte mb-6 max-w-3xl">
               <span className="relative inline-block">
                 {serviceToShow.title}
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-verde-acqua to-blu-polvere transform"></span>
+                <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#F2D7E0] to-[#D19BAF] transform"></span>
               </span>
             </h1>
             <div className="max-w-2xl text-lg text-grigio-scuro/90 mb-8 leading-relaxed">
@@ -203,7 +203,7 @@ export default async function ServizioPage({ params }: { params: Params }) {
         
         {/* Contenuto */}
         <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-verde-acqua to-blu-polvere"></div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#F2D7E0] to-[#D19BAF]"></div>
           <div className="prose prose-lg max-w-none text-grigio-scuro relative z-10">
             <h2 className="text-3xl font-light text-blu-notte mb-8">Dettagli del servizio</h2>
             {formatDescription(serviceToShow.description)}

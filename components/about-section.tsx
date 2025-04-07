@@ -108,6 +108,17 @@ export function AboutSection({ data }: AboutSectionProps) {
             </div>
           </div>
         </div>
+        {/* Icone decorative */}
+        <div className="absolute -top-6 -left-6">
+          <div className="h-10 w-10 rounded-full bg-gradient-to-r from-rosa-polvere/20 to-rosa-polvere/30 p-1">
+            <div className="h-full w-full rounded-full bg-gradient-to-br from-rosa-polvere to-rosa-polvere/80" />
+          </div>
+        </div>
+        <div className="absolute -bottom-6 -right-6">
+          <div className="h-10 w-10 rounded-full bg-gradient-to-r from-blu-polvere/20 to-rosa-polvere/30 p-1">
+            <div className="h-full w-full rounded-full bg-gradient-to-br from-blu-polvere to-rosa-polvere" />
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -5,17 +5,17 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 
-// Componente per il logo unificato in rosa pastello
+// Componente per il logo unificato
 const ServiceLogo = () => {
   return (
-    <div className="h-16 w-16 flex items-center justify-center rounded-full bg-gradient-to-br from-pink-100 to-pink-200 p-0.5 shadow-inner">
+    <div className="h-16 w-16 flex items-center justify-center rounded-full bg-gradient-to-br from-[#F2D7E0] to-[#E8B8C7] p-0.5 shadow-inner">
       <div className="h-full w-full rounded-full bg-white flex items-center justify-center shadow-sm">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="h-10 w-10">
-          <circle cx="12" cy="12" r="10" stroke="#f9a8d4" strokeWidth="1.5" />
-          <circle cx="12" cy="12" r="5" fill="#f9a8d4" fillOpacity="0.3" />
-          <path d="M12 7v10M7 12h10" stroke="#ec4899" strokeWidth="1.5" strokeLinecap="round" />
-          <circle cx="12" cy="12" r="2" fill="#ec4899" />
-          <path d="M15 9l-6 6M9 9l6 6" stroke="#be185d" strokeWidth="0.75" strokeLinecap="round" strokeOpacity="0.6" />
+          <circle cx="12" cy="12" r="10" stroke="#E8B8C7" strokeWidth="1.5" />
+          <circle cx="12" cy="12" r="5" fill="#E8B8C7" fillOpacity="0.3" />
+          <path d="M12 7v10M7 12h10" stroke="#D19BAF" strokeWidth="1.5" strokeLinecap="round" />
+          <circle cx="12" cy="12" r="2" fill="#D19BAF" />
+          <path d="M15 9l-6 6M9 9l6 6" stroke="#B97A8E" strokeWidth="0.75" strokeLinecap="round" strokeOpacity="0.6" />
         </svg>
       </div>
     </div>
@@ -173,7 +173,7 @@ export function ServicesSection({ data }: ServicesSectionProps) {
       <div className="relative w-full rounded-3xl overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-blue-100/20 py-24 sm:py-32">
         {/* Elementi decorativi di sfondo */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-verde-acqua/5 blur-3xl"></div>
+          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-rosa-polvere/5 blur-3xl"></div>
           <div className="absolute top-1/2 -left-20 w-72 h-72 rounded-full bg-blu-polvere/5 blur-3xl"></div>
           <div className="absolute -bottom-10 right-1/4 w-64 h-64 rounded-full bg-indigo-300/5 blur-3xl"></div>
         </div>
@@ -183,7 +183,7 @@ export function ServicesSection({ data }: ServicesSectionProps) {
             <h2 className="text-4xl md:text-5xl font-light text-blu-notte mb-6">
               {data?.title || "I Nostri Servizi"}
             </h2>
-            <div className="h-1 w-24 bg-gradient-to-r from-verde-acqua to-blu-polvere rounded-full mx-auto mb-8"></div>
+            <div className="h-1 w-24 bg-gradient-to-r from-rosa-polvere to-blu-polvere rounded-full mx-auto mb-8"></div>
             <p className="text-grigio-scuro/80 max-w-3xl mx-auto text-lg sm:text-xl mb-12 leading-relaxed">
               Offriamo servizi specializzati con approccio professionale e tecnologie all'avanguardia per garantire il massimo della qualità.
             </p>
@@ -207,23 +207,23 @@ export function ServicesSection({ data }: ServicesSectionProps) {
                   >
                     <div className="h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 bg-white border border-gray-100 group relative">
                       {/* Sfondo con design più moderno */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-white to-pink-50 opacity-100 group-hover:opacity-0 transition-opacity duration-500"></div>
-                      <div className="absolute inset-0 bg-gradient-to-tl from-pink-100 via-white to-pink-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#F9E3EB] via-white to-[#F9E3EB] opacity-100 group-hover:opacity-0 transition-opacity duration-500"></div>
+                      <div className="absolute inset-0 bg-gradient-to-tl from-[#F2D7E0] via-white to-[#F9E3EB] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
                       {/* Elementi decorativi */}
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-pink-100 to-transparent rounded-bl-[100px] group-hover:scale-110 transition-transform duration-500"></div>
-                      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-pink-100 to-transparent rounded-tr-[80px] group-hover:scale-110 transition-transform duration-500"></div>
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#F2D7E0] to-transparent rounded-bl-[100px] group-hover:scale-110 transition-transform duration-500"></div>
+                      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#F2D7E0] to-transparent rounded-tr-[80px] group-hover:scale-110 transition-transform duration-500"></div>
                       
                       <div className="relative p-8 sm:p-8 flex flex-col h-full z-10">
                         {/* Header con icona e titolo */}
                         <div className="flex flex-col items-center text-center mb-6">
                           <div className="mb-6 transform transition-transform group-hover:scale-110 duration-500">
-                            <div className="p-4 bg-gradient-to-br from-pink-200 to-pink-300 rounded-2xl shadow-md group-hover:shadow-lg transition-all duration-500">
+                            <div className="p-4 bg-gradient-to-br from-[#E8B8C7] to-[#D19BAF] rounded-2xl shadow-md group-hover:shadow-lg transition-all duration-500">
                               <ServiceLogo />
                             </div>
                           </div>
-                          <h3 className="text-2xl md:text-3xl font-medium text-blu-notte mb-4 group-hover:text-pink-500 transition-colors duration-300">{service.title}</h3>
-                          <div className="h-0.5 w-12 bg-gradient-to-r from-pink-300 to-pink-400 rounded-full mb-4 transform origin-center scale-0 group-hover:scale-100 transition-transform duration-500"></div>
+                          <h3 className="text-2xl md:text-3xl font-medium text-blu-notte mb-4 group-hover:text-[#D19BAF] transition-colors duration-300">{service.title}</h3>
+                          <div className="h-0.5 w-12 bg-gradient-to-r from-[#E8B8C7] to-[#D19BAF] rounded-full mb-4 transform origin-center scale-0 group-hover:scale-100 transition-transform duration-500"></div>
                         </div>
                         
                         {/* Descrizione breve */}
@@ -233,7 +233,7 @@ export function ServicesSection({ data }: ServicesSectionProps) {
                         
                         {/* Pulsante azione */}
                         <div className="mt-auto text-center">
-                          <span className="inline-flex items-center justify-center px-6 py-2 bg-gradient-to-r from-pink-300 to-pink-500 text-white rounded-full text-sm font-medium transform transition-all duration-300 shadow-md">
+                          <span className="inline-flex items-center justify-center px-6 py-2 bg-gradient-to-r from-[#E8B8C7] to-[#D19BAF] text-white rounded-full text-sm font-medium transform transition-all duration-300 shadow-md">
                             Scopri di più
                             <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
                           </span>
@@ -252,7 +252,7 @@ export function ServicesSection({ data }: ServicesSectionProps) {
             <div className="flex items-center justify-center gap-2 px-6 py-3 bg-white/70 backdrop-blur-sm rounded-full shadow-md">
               <button 
                 onClick={goToPrevious}
-                className="p-2 rounded-full text-pink-400 hover:text-pink-600 transition-colors"
+                className="p-2 rounded-full text-[#D19BAF] hover:text-[#B97A8E] transition-colors"
                 aria-label="Servizi precedenti"
               >
                 <ChevronLeft className="h-5 w-5" />
@@ -272,8 +272,8 @@ export function ServicesSection({ data }: ServicesSectionProps) {
                   >
                     <span className={`h-2 w-2 rounded-full mb-1 ${
                       activeIndex === index 
-                        ? 'bg-pink-500' 
-                        : 'bg-pink-200 hover:bg-pink-300'
+                        ? 'bg-[#D19BAF]' 
+                        : 'bg-[#F2D7E0] hover:bg-[#E8B8C7]'
                     }`}></span>
                   </button>
                 ))}
@@ -281,7 +281,7 @@ export function ServicesSection({ data }: ServicesSectionProps) {
               
               <button 
                 onClick={goToNext}
-                className="p-2 rounded-full text-pink-400 hover:text-pink-600 transition-colors"
+                className="p-2 rounded-full text-[#D19BAF] hover:text-[#B97A8E] transition-colors"
                 aria-label="Servizi successivi"
               >
                 <ChevronRight className="h-5 w-5" />

@@ -6,31 +6,33 @@
   :root {
     /* Nuova palette colori */
     --blu-polvere: 214 71% 78%;
+    --rosa-polvere: 340 41% 82%;
     --verde-acqua: 142 65% 75%;
-    --bianco-perla: 210 20% 98%;
-    --grigio-chiaro: 0 0% 90%;
-    --blu-notte: 210 40% 25%;
+    --bianco-perla: 214 20% 98%;
+    --grigio-chiaro: 214 20% 93%;
+    --grigio-scuro: 214 20% 30%;
+    --blu-notte: 214 71% 18%;
 
     --background: var(--bianco-perla);
     --foreground: var(--blu-notte);
-    --card: 0 0% 100%;
+    --card: var(--bianco-perla);
     --card-foreground: var(--blu-notte);
-    --popover: 0 0% 100%;
+    --popover: var(--bianco-perla);
     --popover-foreground: var(--blu-notte);
     --primary: var(--blu-polvere);
     --primary-foreground: var(--blu-notte);
-    --secondary: var(--verde-acqua);
+    --secondary: var(--rosa-polvere);
     --secondary-foreground: var(--blu-notte);
     --muted: var(--grigio-chiaro);
-    --muted-foreground: var(--blu-notte);
-    --accent: var(--verde-acqua);
+    --muted-foreground: var(--grigio-scuro);
+    --accent: var(--rosa-polvere);
     --accent-foreground: var(--blu-notte);
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: var(--bianco-perla);
     --border: var(--grigio-chiaro);
     --input: var(--grigio-chiaro);
     --ring: var(--blu-polvere);
-    --radius: 1rem;
+    --radius: 0.5rem;
   }
 
   .dark {

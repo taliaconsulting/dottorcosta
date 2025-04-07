@@ -14,11 +14,12 @@ export default {
     },
   	extend: {
       colors: {
-        'blu-polvere': 'hsl(var(--blu-polvere))',
-        'verde-acqua': 'hsl(var(--verde-acqua))',
-        'bianco-perla': 'hsl(var(--bianco-perla))',
-        'grigio-chiaro': 'hsl(var(--grigio-chiaro))',
         'blu-notte': 'hsl(var(--blu-notte))',
+        'grigio-scuro': 'hsl(var(--grigio-scuro))',
+        'grigio-chiaro': 'hsl(var(--grigio-chiaro))',
+        'bianco-perla': 'hsl(var(--bianco-perla))',
+        'blu-polvere': 'hsl(var(--blu-polvere))',
+        'rosa-polvere': 'hsl(var(--rosa-polvere))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
   			card: {

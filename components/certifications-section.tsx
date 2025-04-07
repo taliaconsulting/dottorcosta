@@ -100,13 +100,6 @@ export function CertificationsSection({ data }: CertificationsSectionProps) {
           </div>
         </div>
 
-        {(data?.footerText || true) && (
-          <div className="mt-16 text-center">
-            <p className="text-sm text-blu-notte/60">
-              {data?.footerText || "Il nostro studio mantiene i più alti standard di eccellenza medica e assistenza al paziente"}
-            </p>
-          </div>
-        )}
       </div>
     </section>
   )

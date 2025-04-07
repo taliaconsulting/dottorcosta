@@ -91,9 +91,7 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
                     <h3 className="text-xl font-medium text-bianco-perla group-hover:text-bianco-perla/90 transition-colors">
                       {post.title}
                     </h3>
-                    <p className="text-bianco-perla/70 line-clamp-2">
-                      Leggi l'articolo completo...
-                    </p>
+
                     <div className="pt-2">
                       <Link href={`/blog/${post.slug.current}`}>
                         <Button 

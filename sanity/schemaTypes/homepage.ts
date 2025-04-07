@@ -218,11 +218,6 @@ export default defineType({
             },
           ],
         }),
-        defineField({
-          name: 'footerText',
-          title: 'Testo a Piè di Pagina',
-          type: 'string',
-        }),
       ],
     }),
     

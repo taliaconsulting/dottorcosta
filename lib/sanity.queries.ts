@@ -37,7 +37,6 @@ export const homepageQuery = groq`
       name,
       "logo": logo.asset->url
     },
-    footerText
   },
   blogPreviewSection {
     title,

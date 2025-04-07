@@ -97,14 +97,7 @@ export function AboutSection({ data }: AboutSectionProps) {
                   </Card>
                 ))}
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-bianco-perla/5 hover:bg-bianco-perla/10 text-bianco-perla border-bianco-perla/10 w-full sm:w-auto"
-                >
-                  {data?.learnMoreButtonText || "Scopri di più"}
-                </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   size="lg"
                   className="bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte w-full sm:w-auto"

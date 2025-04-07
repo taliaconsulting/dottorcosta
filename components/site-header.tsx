@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Menu, X, Home, Stethoscope, User, Award, BookOpen, Mail, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -69,10 +70,21 @@ export function SiteHeader() {
           <div className="flex items-center">
             <Link
               href="#hero"
-              className="text-2xl font-light text-white hover:text-white/90 transition-all duration-300 hover:scale-105"
+              className="flex items-center gap-3 hover:opacity-90 transition-all duration-300 hover:scale-105 group"
               onClick={handleLogoClick}
             >
-              Dottor Costa
+              <div className="relative w-16 h-16">
+                <Image
+                  src="/logo.png"
+                  alt="Dottor Costa Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <span className="text-2xl font-light text-white group-hover:text-white/90">
+                Dottor Costa
+              </span>
             </Link>
           </div>
           
@@ -143,10 +155,21 @@ export function SiteHeader() {
         <div className="flex items-center justify-between p-6 border-b border-blu-polvere/20 flex-shrink-0">
           <Link
             href="#hero"
-            className="text-2xl font-light text-bianco-perla hover:text-blu-polvere transition-all duration-300"
-            onClick={(e) => handleLinkClick(e, '#hero')} // Usa la stessa logica dei link
+            className="flex items-center gap-3 hover:opacity-90 transition-all duration-300 group"
+            onClick={(e) => handleLinkClick(e, '#hero')}
           >
-            Dottor Costa
+            <div className="relative w-16 h-16">
+              <Image
+                src="/logo.png"
+                alt="Dottor Costa Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <span className="text-2xl font-light text-bianco-perla group-hover:text-blu-polvere">
+              Dottor Costa
+            </span>
           </Link>
           <Button
             variant="ghost"

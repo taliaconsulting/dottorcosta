@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Facebook, Instagram, Linkedin } from "lucide-react"
 
 // Utilizziamo gli stessi link della navbar per coerenza
@@ -29,9 +30,18 @@ export function SiteFooter() {
             <div className="space-y-6">
               <Link 
                 href="#hero" 
-                className="text-2xl font-light text-white hover:text-white/90 transition-all duration-300"
+                className="flex items-center gap-4 hover:opacity-90 transition-all duration-300"
               >
-                Dottor Costa
+                <Image
+                  src="/logo.png"
+                  alt="Logo Dottor Costa"
+                  width={180}
+                  height={60}
+                  className="w-auto h-12"
+                />
+                <span className="text-2xl font-light text-white">
+                  Dottor Costa
+                </span>
               </Link>
             </div>
 
@@ -74,7 +84,7 @@ export function SiteFooter() {
             <div className="mt-12 pt-6 border-t border-white/10">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <p className="text-white/60 text-sm">
-                © {new Date().getFullYear()} Dottor Costa. Tutti i diritti riservati.
+                © {new Date().getFullYear()} Studio Medico Costa. Tutti i diritti riservati.
               </p>
               <div className="flex gap-6">
                 {legalLinks.map((item) => (

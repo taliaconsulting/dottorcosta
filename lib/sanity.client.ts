@@ -40,7 +40,6 @@ const homepageFallbackData = {
       { title: 'Esperienza', description: '15+ anni', iconType: 'calendar' },
       { title: 'Pubblicazioni', description: '20+ articoli scientifici', iconType: 'document' }
     ],
-    learnMoreButtonText: 'Scopri di più',
     consultationButtonText: 'Prenota una consulenza'
   },
   certificationsSection: {

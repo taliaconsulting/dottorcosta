@@ -12,6 +12,8 @@ export default async function Home() {
   const homepage = await getHomepage()
   const featuredPosts = await getFeaturedBlogPosts()
   
+
+  
   return (
     <div className="relative bg-slate-200 flex min-h-screen flex-col">
       <SiteHeader />

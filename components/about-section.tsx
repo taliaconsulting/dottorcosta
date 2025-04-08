@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import Link from "next/link"
 
 type CredentialIconProps = {
   iconType: string
@@ -98,12 +99,12 @@ export function AboutSection({ data }: AboutSectionProps) {
                 ))}
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  className="bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte w-full sm:w-auto"
+                <Link
+                  href="#contact"
+                  className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-11 px-8 bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte w-full sm:w-auto"
                 >
                   {data?.consultationButtonText || "Prenota Visita"}
-                </Button>
+                </Link>
               </div>
             </div>
           </div>

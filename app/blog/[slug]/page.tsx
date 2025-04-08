@@ -37,8 +37,8 @@ function extractExcerpt(body: any[]): string {
   return "Leggi l'articolo completo";
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = await getBlogPostBySlug(params.slug)
+export async function generateMetadata({ params: { slug } }: { params: { slug: string } }): Promise<Metadata> {
+  const post = await getBlogPostBySlug(slug)
   if (!post) {
     return {
       title: "Post non trovato | Blog Dr. Costa",
@@ -131,22 +131,31 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               />
             </div>
             
-            <div className="mt-16 text-center p-6 bg-white rounded-2xl shadow-md border border-slate-200">
-              <h3 className="text-xl mb-4 text-[#1B365C] font-light">Ti è piaciuto questo articolo?</h3>
-              <p className="text-slate-600 mb-6">Scopri altri contenuti nel nostro blog</p>
-              <Link
-                href="/blog"
-                className="inline-flex items-center bg-[#1B365C] hover:bg-[#2C3E50] text-white px-6 py-3 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg"
-              >
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Esplora altri articoli
-              </Link>
-              <Link
-                href="tel:+39123456789"
-                className="mt-4 inline-flex items-center bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte px-6 py-3 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg"
-              >
-                Prenota un Appuntamento
-              </Link>
+            <div className="mt-16">
+              {/* Sezione feedback */}
+              <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-8 text-center">
+                <div className="max-w-xl mx-auto space-y-6">
+                  <div className="space-y-2">
+                    <h3 className="text-2xl font-light text-[#1B365C]">Ti è piaciuto questo articolo?</h3>
+                    <p className="text-slate-600">Scopri altri contenuti interessanti nel nostro blog</p>
+                  </div>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <Link
+                      href="/blog"
+                      className="inline-flex items-center justify-center bg-[#1B365C] hover:bg-[#2C3E50] text-white px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg w-full sm:w-auto"
+                    >
+                      <ArrowLeft className="mr-2 h-4 w-4" />
+                      Esplora altri articoli
+                    </Link>
+                    <Link
+                      href="#contact"
+                      className="inline-flex items-center justify-center bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg w-full sm:w-auto"
+                    >
+                      Prenota un Appuntamento
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

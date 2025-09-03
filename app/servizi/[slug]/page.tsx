@@ -7,12 +7,13 @@ type Params = {
   slug: string;
 };
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const homepage = await getHomepage();
   const servicesData = homepage?.servicesSection;
 
   // Trova il servizio corrispondente allo slug
-  const slug = decodeURIComponent(params.slug);
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug);
   const service = servicesData?.services?.find(
     (s: { title: string }) => s.title.toLowerCase().replace(/\s+/g, "-") === slug,
   );
@@ -93,12 +94,13 @@ const serviceFallbackData: Record<string, Service> = {
   },
 };
 
-export default async function ServizioPage({ params }: { params: Params }) {
+export default async function ServizioPage({ params }: { params: Promise<Params> }) {
   const homepage = await getHomepage();
   const servicesData = homepage?.servicesSection;
 
   // Trova il servizio corrispondente allo slug
-  const slug = decodeURIComponent(params.slug);
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug);
   const service = servicesData?.services?.find(
     (s: { title: string }) => s.title.toLowerCase().replace(/\s+/g, "-") === slug,
   );

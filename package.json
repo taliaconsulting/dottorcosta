@@ -1,6 +1,6 @@
 {
-  "name": "dottore",
-  "version": "0.1.0",
+  "name": "dottor-costa",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "biome lint .",
     "format": "biome format --write .",
-    "check": "biome check ."
+    "check": "biome check .",
+    "gen:types": "sanity-codegen --schema-path sanity/schemaTypes --output-path sanity/sanity.types.d.ts"
   },
   "dependencies": {
     "@portabletext/react": "^3.2.4",
@@ -36,12 +37,15 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.2",
+    "@portabletext/types": "^2.0.15",
+    "@sanity/types": "^4.6.1",
     "@shadcn/ui": "^0.0.4",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^20.19.11",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
     "postcss": "^8.5.6",
+    "sanity-codegen": "^0.9.8",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.9.2"
   }

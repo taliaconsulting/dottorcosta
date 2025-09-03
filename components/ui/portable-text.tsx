@@ -4,15 +4,22 @@ import { PortableText as SanityPortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
 import type React from "react";
+import type { PortableTextBlock } from "@portabletext/types";
 import { cn } from "@/lib/utils";
 
 const HighlightedText = ({ children }: { children: React.ReactNode }) => {
-  return <span className="bg-blue-100 text-blue-800 px-1 py-0.5 rounded">{children}</span>;
+  return (
+    <span className="bg-blue-100 text-blue-800 px-1 py-0.5 rounded">
+      {children}
+    </span>
+  );
 };
 
 const Callout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="bg-gray-100 border-l-4 border-blue-500 p-4 my-4 rounded-r">{children}</div>
+    <div className="bg-gray-100 border-l-4 border-blue-500 p-4 my-4 rounded-r">
+      {children}
+    </div>
   );
 };
 
@@ -29,7 +36,11 @@ const TextEffect = ({ effect, color, children }: TextEffectProps) => {
         <span
           className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600"
           style={
-            color ? { backgroundImage: `linear-gradient(to right, ${color}, #4338ca)` } : undefined
+            color
+              ? {
+                  backgroundImage: `linear-gradient(to right, ${color}, #4338ca)`,
+                }
+              : undefined
           }
         >
           {children}
@@ -39,7 +50,11 @@ const TextEffect = ({ effect, color, children }: TextEffectProps) => {
       return (
         <span
           className="text-gray-800 drop-shadow-lg"
-          style={color ? { color, textShadow: "2px 2px 4px rgba(0,0,0,0.3)" } : undefined}
+          style={
+            color
+              ? { color, textShadow: "2px 2px 4px rgba(0,0,0,0.3)" }
+              : undefined
+          }
         >
           {children}
         </span>
@@ -50,7 +65,8 @@ const TextEffect = ({ effect, color, children }: TextEffectProps) => {
           className="font-bold"
           style={{
             color: color || "#2563eb",
-            textShadow: "1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff",
+            textShadow:
+              "1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff",
           }}
         >
           {children}
@@ -74,7 +90,10 @@ type CustomLinkProps = {
   children: React.ReactNode;
 };
 
-const CustomLink = ({ value, children }: CustomLinkProps) => {
+// Use a loose-typed mark component to satisfy Portable Text component types
+const CustomLink = (props: any) => {
+  const value = props?.value || {};
+  const children = props?.children;
   const href = value?.href || "#";
   const target = value?.blank ? "_blank" : undefined;
 
@@ -108,7 +127,9 @@ const CustomImage = ({ value }: CustomImageProps) => {
         className="mx-auto rounded-lg shadow-md"
       />
       {value.caption && (
-        <div className="text-center text-gray-500 mt-2 text-sm">{value.caption}</div>
+        <div className="text-center text-gray-500 mt-2 text-sm">
+          {value.caption}
+        </div>
       )}
     </div>
   );
@@ -119,52 +140,52 @@ const components = {
     image: CustomImage,
   },
   block: {
-    normal: ({ children }: { children: React.ReactNode }) => <p className="my-4">{children}</p>,
-    h1: ({ children }: { children: React.ReactNode }) => (
-      <h1 className="text-3xl font-light mt-8 mb-4">{children}</h1>
+    normal: (props: any) => <p className="my-4">{props?.children}</p>,
+    h1: (props: any) => (
+      <h1 className="text-3xl font-light mt-8 mb-4">{props?.children}</h1>
     ),
-    h2: ({ children }: { children: React.ReactNode }) => (
-      <h2 className="text-2xl font-light mt-6 mb-3">{children}</h2>
+    h2: (props: any) => (
+      <h2 className="text-2xl font-light mt-6 mb-3">{props?.children}</h2>
     ),
-    h3: ({ children }: { children: React.ReactNode }) => (
-      <h3 className="text-xl font-normal mt-5 mb-2">{children}</h3>
+    h3: (props: any) => (
+      <h3 className="text-xl font-normal mt-5 mb-2">{props?.children}</h3>
     ),
-    h4: ({ children }: { children: React.ReactNode }) => (
-      <h4 className="text-lg font-normal mt-4 mb-2">{children}</h4>
+    h4: (props: any) => (
+      <h4 className="text-lg font-normal mt-4 mb-2">{props?.children}</h4>
     ),
-    blockquote: ({ children }: { children: React.ReactNode }) => (
-      <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">{children}</blockquote>
+    blockquote: (props: any) => (
+      <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">
+        {props?.children}
+      </blockquote>
     ),
-    highlighted: ({ children }: { children: React.ReactNode }) => (
-      <HighlightedText>{children}</HighlightedText>
+    highlighted: (props: any) => (
+      <HighlightedText>{props?.children}</HighlightedText>
     ),
-    callout: ({ children }: { children: React.ReactNode }) => <Callout>{children}</Callout>,
+    callout: (props: any) => <Callout>{props?.children}</Callout>,
   },
   marks: {
     link: CustomLink,
-    "strike-through": ({ children }: { children: React.ReactNode }) => <del>{children}</del>,
+    "strike-through": ({ children }: { children: React.ReactNode }) => (
+      <del>{children}</del>
+    ),
     highlight: ({ children }: { children: React.ReactNode }) => (
       <span className="bg-yellow-200 px-1">{children}</span>
     ),
     code: ({ children }: { children: React.ReactNode }) => (
-      <code className="bg-gray-100 font-mono text-sm p-1 rounded">{children}</code>
-    ),
-    textEffect: ({
-      value,
-      children,
-    }: {
-      value: { effect: TextEffectProps["effect"]; color?: string };
-      children: React.ReactNode;
-    }) => (
-      <TextEffect effect={value.effect} color={value.color}>
+      <code className="bg-gray-100 font-mono text-sm p-1 rounded">
         {children}
+      </code>
+    ),
+    textEffect: (props: any) => (
+      <TextEffect effect={props?.value?.effect} color={props?.value?.color}>
+        {props?.children}
       </TextEffect>
     ),
   },
 };
 
 type PortableTextProps = {
-  value: unknown;
+  value: PortableTextBlock | PortableTextBlock[];
   className?: string;
 };
 

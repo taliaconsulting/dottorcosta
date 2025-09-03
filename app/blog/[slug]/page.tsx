@@ -33,10 +33,11 @@ function extractExcerpt(body: Block[]): string {
 }
 
 export async function generateMetadata({
-  params: { slug },
+  params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
   if (!post) {
     return {
@@ -53,8 +54,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const post = await getBlogPostBySlug(params.slug);
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getBlogPostBySlug(slug);
 
   // Redirect alla pagina del blog se il post non esiste
   if (!post) {

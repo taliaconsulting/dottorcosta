@@ -45,9 +45,9 @@ export default async function BlogPage() {
   return (
     <>
       {/* Header Section (Homepage style) */}
-      <section className="p-2 sm:p-3 lg:p-4">
-        <div className="relative w-full rounded-2xl overflow-hidden bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur ring-1 ring-slate-200">
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
+      <section className="p-2 sm:p-3 lg:p-4 h-[80vh]">
+        <div className="relative w-full rounded-2xl overflow-hidden bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur ring-1 ring-slate-200 h-full">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 h-full flex flex-col justify-center text-center">
             <h1 className="text-4xl md:text-5xl font-light tracking-tight leading-tight text-blu-notte mb-6">
               {blogPage?.title || "Blog"}
             </h1>
@@ -76,18 +76,20 @@ export default async function BlogPage() {
                   <Card
                     key={post._id || index}
                     className={cn(
-                      "bg-white/80 supports-[backdrop-filter]:bg-white/60 backdrop-blur border-slate-200 transition-all duration-300 group flex flex-col min-h-[280px]",
+                      "bg-white/80 supports-[backdrop-filter]:bg-white/60 backdrop-blur border-slate-200 transition-all duration-300 group flex flex-col min-h-[280px]"
                     )}
                   >
                     <CardContent className="p-0 flex-1">
                       <div className="p-6 flex flex-col justify-between h-full gap-4">
                         <div className="space-y-4 flex-1">
                           <div className="flex items-center text-lg text-grigio-scuro/80 space-x-4">
-                            <span className="font-medium">{post.category || "Generale"}</span>
+                            <span className="font-medium">
+                              {post.category || "Generale"}
+                            </span>
                             <span>•</span>
                             <span>{post.readTime || "Lettura breve"}</span>
                           </div>
-                          <h3 className="text-xl md:text-2xl font-medium text-blu-notte group-hover:text-blu-notte/80 transition-colors leading-tight">
+                          <h3 className="text-lg md:text-xl font-medium text-blu-notte group-hover:text-blu-notte/80 transition-colors leading-tight">
                             {post.title || "Titolo non disponibile"}
                           </h3>
                         </div>
@@ -108,7 +110,9 @@ export default async function BlogPage() {
                   <p className="text-lg sm:text-xl text-grigio-scuro/80">
                     Nessun articolo disponibile al momento.
                   </p>
-                  <p className="mt-2 text-grigio-scuro/70">Torna presto per leggere i nostri nuovi contenuti.</p>
+                  <p className="mt-2 text-grigio-scuro/70">
+                    Torna presto per leggere i nostri nuovi contenuti.
+                  </p>
                 </div>
               )}
             </div>

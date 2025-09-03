@@ -54,7 +54,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
 
@@ -69,9 +73,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   return (
     <article>
       {/* Header Section (Homepage style) */}
-      <section className="p-2 sm:p-3 lg:p-4">
-        <div className="relative w-full rounded-2xl overflow-hidden bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur ring-1 ring-slate-200">
-          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <section className="p-2 sm:p-3 lg:p-4 h-[80vh]">
+        <div className="relative w-full rounded-2xl overflow-hidden bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur ring-1 ring-slate-200 h-full">
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 h-full flex flex-col justify-center">
             <Link
               href="/blog"
               className="inline-flex items-center text-blu-notte/80 hover:text-blu-notte mb-6 transition-colors"

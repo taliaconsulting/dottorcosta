@@ -90,12 +90,13 @@ export function CertificationsSection({ data }: CertificationsSectionProps) {
                 key={`${cert.name}-${index}`}
                 className="inline-flex justify-center items-center mx-8"
               >
-                <div className="relative h-24 w-32 sm:h-28 sm:w-40 opacity-80 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
+                <div className="relative h-24 w-32 sm:h-28 sm:w-40 rounded-2xl overflow-hidden opacity-80 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0 p-5">
+                  {/* logo sits inside a rounded container; Image uses object-contain */}
                   <Image
                     src={cert.logo}
                     alt={cert.name}
                     fill
-                    className="object-contain"
+                    className="object-cover"
                   />
                 </div>
               </div>

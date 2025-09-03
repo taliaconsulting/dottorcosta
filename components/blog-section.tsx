@@ -89,7 +89,7 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
                         <span>•</span>
                         <span>{post.readTime}</span>
                       </div>
-                      <h3 className="text-xl md:text-2xl font-medium text-blu-notte group-hover:text-blu-notte/80 transition-colors leading-tight">
+                      <h3 className="text-lg md:text-xl font-medium text-blu-notte group-hover:text-blu-notte/80 transition-colors leading-tight">
                         {post.title}
                       </h3>
                     </div>

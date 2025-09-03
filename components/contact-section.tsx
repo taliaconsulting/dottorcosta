@@ -120,7 +120,7 @@ export function ContactSection({ data }: ContactSectionProps) {
               {contactInfo.map((item) => (
                 <Card
                   key={item.title}
-                  className="bg-white/80 supports-[backdrop-filter]:bg-white/60 backdrop-blur border-slate-200 transition-all duration-300"
+                  className="bg-white/80 supports-[backdrop-filter]:bg-white/60 backdrop-blur border-none shadow-none transition-all duration-300"
                 >
                   <CardContent className="flex items-center p-6">
                     <div className="h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center mr-6">

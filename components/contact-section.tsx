@@ -62,7 +62,9 @@ export function ContactSection({ data }: ContactSectionProps) {
       title: "Sede",
       value: data.address.split(",")[0] || data.address, // Prima parte dell'indirizzo
       iconType: "location" as const,
-      description: data.address.split(",").slice(1).join(",").trim() || "Indirizzo completo", // Resto dell'indirizzo
+      description:
+        data.address.split(",").slice(1).join(",").trim() ||
+        "Indirizzo completo", // Resto dell'indirizzo
     });
   }
 
@@ -91,23 +93,26 @@ export function ContactSection({ data }: ContactSectionProps) {
   // Usa contactInfo da data, poi contactInfoFromData costruito dai campi singoli, infine fallback
   const contactInfo =
     data?.contactInfo ||
-    (contactInfoFromData.length > 0 ? contactInfoFromData : fallbackContactInfo);
+    (contactInfoFromData.length > 0
+      ? contactInfoFromData
+      : fallbackContactInfo);
   const mapEmbedUrl =
     data?.mapEmbedUrl ||
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.505237206145!2d13.644529875626667!3d37.30685827210697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1310847ca5540ddf%3A0x2f9bf0ac4bcf509a!2sViale%20Aldo%20Moro%2C%20165%2C%2092026%20Favara%20AG!5e0!3m2!1sit!2sit!4v1743751617260!5m2!1sit!2sit";
 
   return (
     <section id="contact" className="p-2 sm:p-3 lg:p-4">
-      <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-blu-notte to-blu-notte/80">
+      <div className="relative w-full rounded-2xl overflow-hidden bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur ring-1 ring-slate-200">
         <div className="grid lg:grid-cols-2">
           {/* Informazioni di Contatto */}
           <div className="p-6 lg:p-10 space-y-6">
             <div>
-              <h2 className="text-5xl sm:text-6xl font-light text-bianco-perla">
+              <h2 className="text-4xl md:text-5xl font-light tracking-tight leading-tight text-blu-notte mb-6">
                 {data?.title || "Contattaci"}
               </h2>
-              <p className="mt-4 text-lg text-bianco-perla/80">
-                {data?.subtitle || "Siamo qui per rispondere a qualsiasi domanda tu possa avere."}
+              <p className="text-lg text-grigio-scuro/80">
+                {data?.subtitle ||
+                  "Siamo qui per rispondere a qualsiasi domanda tu possa avere."}
               </p>
             </div>
 
@@ -115,16 +120,22 @@ export function ContactSection({ data }: ContactSectionProps) {
               {contactInfo.map((item) => (
                 <Card
                   key={item.title}
-                  className="bg-bianco/5 hover:bg-bianco/10 border-bianco/10 transition-all duration-300"
+                  className="bg-white/80 supports-[backdrop-filter]:bg-white/60 backdrop-blur border-slate-200 transition-all duration-300"
                 >
                   <CardContent className="flex items-center p-6">
-                    <div className="h-12 w-12 rounded-full bg-bianco-perla/5 flex items-center justify-center mr-6">
+                    <div className="h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center mr-6">
                       <ContactIcon iconType={item.iconType} />
                     </div>
                     <div>
-                      <h3 className="text-bianco-perla font-medium mb-1">{item.title}</h3>
-                      <p className="text-bianco-perla/90 font-medium">{item.value}</p>
-                      <p className="text-bianco-perla/60 text-sm">{item.description}</p>
+                      <h3 className="text-blu-notte font-medium mb-1">
+                        {item.title}
+                      </h3>
+                      <p className="text-grigio-scuro/90 font-medium">
+                        {item.value}
+                      </p>
+                      <p className="text-grigio-scuro/70 text-sm">
+                        {item.description}
+                      </p>
                     </div>
                   </CardContent>
                 </Card>

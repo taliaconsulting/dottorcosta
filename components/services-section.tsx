@@ -3,40 +3,6 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-// Componente per il logo unificato
-const ServiceLogo = () => {
-  return (
-    <div className="h-16 w-16 flex items-center justify-center rounded-full bg-gradient-to-br from-[#F2D7E0] to-[#E8B8C7] p-0.5 shadow-inner">
-      <div className="h-full w-full rounded-full bg-white flex items-center justify-center shadow-sm">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          className="h-10 w-10"
-        >
-          <title>Service icon</title>
-          <circle cx="12" cy="12" r="10" stroke="#E8B8C7" strokeWidth="1.5" />
-          <circle cx="12" cy="12" r="5" fill="#E8B8C7" fillOpacity="0.3" />
-          <path
-            d="M12 7v10M7 12h10"
-            stroke="#D19BAF"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <circle cx="12" cy="12" r="2" fill="#D19BAF" />
-          <path
-            d="M15 9l-6 6M9 9l6 6"
-            stroke="#B97A8E"
-            strokeWidth="0.75"
-            strokeLinecap="round"
-            strokeOpacity="0.6"
-          />
-        </svg>
-      </div>
-    </div>
-  );
-};
-
 // Definizione del tipo per i dettagli del servizio
 type ServiceDetail = {
   description: string;
@@ -195,14 +161,13 @@ export function ServicesSection({ data }: ServicesSectionProps) {
 
   return (
     <section id="services" className="p-2 sm:p-3 lg:p-4">
-      <div className="relative w-full rounded-2xl overflow-hidden py-24 sm:py-32">
+      <div className="relative w-full rounded-2xl overflow-hidden py-24 sm:py-32 bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur ring-1 ring-slate-200">
         <div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
-          <div className="text-center mb-16 sm:mb-20">
-            <h2 className="text-4xl md:text-5xl font-light text-blu-notte mb-6">
+          <div className="flex flex-col items-center justify-center text-center mb-16 sm:mb-20">
+            <h2 className="text-4xl md:text-5xl font-light tracking-tight leading-tight text-blu-notte mb-6 text-center">
               {data?.title || "I Nostri Servizi"}
             </h2>
-            <div className="h-1 w-24 bg-rosa-polvere rounded-full mx-auto mb-8"></div>
-            <p className="text-grigio-scuro/80 max-w-3xl mx-auto text-lg sm:text-xl mb-12 leading-relaxed">
+            <p className="text-grigio-scuro/80 max-w-3xl text-lg sm:text-xl mb-12 leading-relaxed text-center">
               Offriamo servizi specializzati con approccio professionale e
               tecnologie all'avanguardia per garantire il massimo della qualità.
             </p>
@@ -224,35 +189,27 @@ export function ServicesSection({ data }: ServicesSectionProps) {
                     href={`/servizi/${generateServiceSlug(service.title)}`}
                     className="focus:outline-none block h-full"
                   >
-                    <div className="h-full rounded-2xl overflow-hidden transition-all duration-500 bg-white border border-gray-100 group relative">
-                      <div className="relative p-8 sm:p-8 flex flex-col h-full z-10">
-                        {/* Header con icona e titolo */}
-                        <div className="flex flex-col items-center text-center mb-6">
-                          <div className="mb-6 transform transition-transform group-hover:scale-110 duration-500">
-                            <div className="p-4 bg-[#E8B8C7] rounded-2xl shadow-md group-hover:shadow-lg transition-all duration-500">
-                              <ServiceLogo />
-                            </div>
-                          </div>
-                          <h3 className="text-2xl md:text-3xl font-medium text-blu-notte mb-4 group-hover:text-[#D19BAF] transition-colors duration-300">
+                    <div className="h-full min-h-[260px] md:min-h-[320px] lg:min-h-[360px] rounded-2xl overflow-hidden transition-all duration-300 bg-white border border-[#E8B8C7]/20 group relative hover:border-[#E8B8C7]/40">
+                      <div className="relative p-6 flex flex-col h-full z-10">
+                        {/* Header con titolo */}
+                        <div className="flex flex-col items-start text-left mb-4">
+                          <h3 className="text-xl md:text-2xl font-medium text-gray-900 mb-3 group-hover:text-[#E8B8C7] transition-colors duration-300">
                             {service.title}
                           </h3>
-                          <div className="h-0.5 w-12 bg-[#E8B8C7] rounded-full mb-4 transform origin-center scale-0 group-hover:scale-100 transition-transform duration-500"></div>
-                        </div>
-
+                        </div>{" "}
                         {/* Descrizione breve */}
-                        <p className="text-grigio-scuro/70 text-xs mb-8 line-clamp-2 text-center">
+                        <p className="text-gray-600 text-sm mb-6 line-clamp-1 text-left flex-1 leading-relaxed">
                           {service.description
-                            ? `${service.description.split(".")[0]}.`
+                            ? service.description.split(".")[0] + "..."
                             : "Dettagli del servizio non disponibili."}
                         </p>
-
                         {/* Pulsante azione */}
-                        <div className="mt-auto text-center">
-                          <span className="inline-flex items-center justify-center px-6 py-2 text-[#D19BAF] text-sm font-medium transform transition-all duration-300 hover:text-[#B97A8E]">
+                        <div className="mt-auto text-left">
+                          <span className="inline-flex items-center justify-center px-4 py-2 text-gray-700 text-sm font-medium rounded-lg hover:text-[#E8B8C7] transition-colors duration-300">
                             Scopri di più
                             <ArrowRight
-                              size={16}
-                              className="ml-2 transition-transform group-hover:translate-x-1"
+                              size={14}
+                              className="ml-2 transition-transform group-hover:translate-x-1 duration-300"
                             />
                           </span>
                         </div>

@@ -1,6 +1,5 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 type BlogPost = {
@@ -54,26 +53,23 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
 
   return (
     <section id="blog" className="p-2 sm:p-3 lg:p-4">
-      <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-blu-notte to-blu-notte/80">
+      <div className="relative w-full rounded-2xl overflow-hidden bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur ring-1 ring-slate-200">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
             <div>
-              <h2 className="text-5xl sm:text-6xl font-light text-bianco-perla">
+              <h2 className="text-4xl md:text-5xl font-light tracking-tight leading-tight text-blu-notte mb-6">
                 {data?.title || "Il Nostro Blog"}
               </h2>
-              <p className="mt-4 text-lg text-bianco-perla/80">
+              <p className="text-xl text-grigio-scuro/80">
                 {data?.subtitle ||
                   "Prospettive di esperti sulla cura degli occhi e la correzione della vista"}
               </p>
             </div>
             <Link href="/blog">
-              <Button
-                variant="outline"
-                className="mt-6 md:mt-0 bg-bianco-perla/5 hover:bg-bianco-perla/10 text-bianco-perla border-bianco-perla/10"
-              >
+              <span className="mt-6 md:mt-0 inline-flex items-center justify-center px-6 py-2 text-blu-notte text-sm font-medium rounded-2xl hover:text-blu-notte/80 transition-colors">
                 {data?.viewAllButtonText || "Vedi Tutti i Post"}
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              </span>
             </Link>
           </div>
 
@@ -81,28 +77,29 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
             {blogPosts.map((post) => (
               <Card
                 key={post._id}
-                className="bg-bianco-perla/5 hover:bg-bianco-perla/10 border-bianco-perla/10 transition-all duration-300 hover:scale-[1.02] group"
+                className="bg-white/80 supports-[backdrop-filter]:bg-white/60 backdrop-blur border-slate-200 transition-all duration-300 group flex flex-col min-h-[280px]"
               >
-                <CardContent className="p-0">
-                  <div className="p-6 space-y-4">
-                    <div className="flex items-center text-sm text-bianco-perla/60 space-x-4">
-                      <span>{post.category || "Generale"}</span>
-                      <span>•</span>
-                      <span>{post.readTime}</span>
+                <CardContent className="p-0 flex-1">
+                  <div className="p-6 flex flex-col justify-between h-full gap-4">
+                    <div className="space-y-4 flex-1">
+                      <div className="flex items-center text-lg text-grigio-scuro/80 space-x-4">
+                        <span className="font-medium">
+                          {post.category || "Generale"}
+                        </span>
+                        <span>•</span>
+                        <span>{post.readTime}</span>
+                      </div>
+                      <h3 className="text-xl font-medium text-blu-notte group-hover:text-blu-notte/80 transition-colors leading-tight">
+                        {post.title}
+                      </h3>
                     </div>
-                    <h3 className="text-xl font-medium text-bianco-perla group-hover:text-bianco-perla/90 transition-colors">
-                      {post.title}
-                    </h3>
 
                     <div className="pt-2">
                       <Link href={`/blog/${post.slug.current}`}>
-                        <Button
-                          variant="link"
-                          className="px-0 text-blu-polvere hover:text-blu-polvere/80"
-                        >
+                        <span className="inline-flex items-center justify-start px-5 py-2 text-black text-sm font-medium rounded-2xl hover:text-black/70 transition-colors">
                           Leggi di Più
                           <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
+                        </span>
                       </Link>
                     </div>
                   </div>

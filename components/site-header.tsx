@@ -1,15 +1,5 @@
 "use client";
-import {
-  Award,
-  BookOpen,
-  Home,
-  Mail,
-  Menu,
-  Phone,
-  Stethoscope,
-  User,
-  X,
-} from "lucide-react";
+import { Award, BookOpen, Home, Mail, Menu, Phone, Stethoscope, User, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -37,10 +27,7 @@ export function SiteHeader() {
   const [overHero, setOverHero] = useState(true);
 
   // Funzione per gestire lo scroll manuale e chiudere il menu custom
-  const handleLinkClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.substring(1);
     const targetElement = document.getElementById(targetId);
@@ -104,7 +91,7 @@ export function SiteHeader() {
           "mx-auto mt-3 sm:mt-4 lg:mt-6 w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] lg:w-[calc(100%-3rem)] max-w-7xl px-4 sm:px-6 py-3 transition-all duration-300",
           overHero
             ? "bg-transparent"
-            : "bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur shadow-sm ring-1 ring-slate-200 rounded-2xl"
+            : "bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur shadow-sm ring-1 ring-slate-200 rounded-2xl",
         )}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -128,7 +115,7 @@ export function SiteHeader() {
                   "text-2xl font-light transition-colors",
                   overHero
                     ? "text-white group-hover:text-white/90"
-                    : "text-slate-900 group-hover:text-slate-700"
+                    : "text-slate-900 group-hover:text-slate-700",
                 )}
               >
                 Dottor Costa
@@ -142,9 +129,7 @@ export function SiteHeader() {
               variant="ghost"
               className={cn(
                 "p-2 rounded-full",
-                overHero
-                  ? "text-white hover:bg-white/10"
-                  : "text-slate-800 hover:bg-slate-100"
+                overHero ? "text-white hover:bg-white/10" : "text-slate-800 hover:bg-slate-100",
               )}
               aria-label="Apri menu"
               onClick={() => setIsMobileMenuOpen(true)} // Apre il menu custom
@@ -167,14 +152,14 @@ export function SiteHeader() {
                           "transition-all duration-300 px-4 py-2 rounded-md inline-flex relative group",
                           overHero
                             ? "text-white hover:text-blue-200 hover:bg-white/5"
-                            : "text-slate-800 hover:text-slate-900 hover:bg-slate-100"
+                            : "text-slate-800 hover:text-slate-900 hover:bg-slate-100",
                         )}
                       >
                         {item.name}
                         <span
                           className={cn(
                             "absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 group-hover:w-1/2 transition-all duration-300",
-                            overHero ? "bg-blue-400" : "bg-slate-400"
+                            overHero ? "bg-blue-400" : "bg-slate-400",
                           )}
                         />
                       </Link>
@@ -199,9 +184,7 @@ export function SiteHeader() {
       <div
         className={cn(
           "fixed inset-0 bg-black/30 z-40 transition-opacity duration-300 ease-in-out lg:hidden",
-          isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
         )}
         onClick={() => setIsMobileMenuOpen(false)} // Chiude cliccando sull'overlay
         aria-hidden="true"
@@ -213,9 +196,7 @@ export function SiteHeader() {
           "fixed top-0 left-0 w-full h-full max-h-[100dvh] flex flex-col", // Usa full height
           "bg-gradient-to-b from-blu-notte via-blu-notte/95 to-blu-notte/90 backdrop-blur-md",
           "z-50 transition-transform duration-300 ease-in-out lg:hidden",
-          isMobileMenuOpen
-            ? "transform translate-y-0"
-            : "transform -translate-y-full"
+          isMobileMenuOpen ? "transform translate-y-0" : "transform -translate-y-full",
         )}
       >
         {/* Header del menu mobile custom */}
@@ -280,8 +261,7 @@ export function SiteHeader() {
             Prenota Visita
           </Link>
           <p className="text-center text-bianco-perla/60 text-sm mt-6">
-            © {new Date().getFullYear()} Dottor Costa. Tutti i diritti
-            riservati.
+            © {new Date().getFullYear()} Dottor Costa. Tutti i diritti riservati.
           </p>
         </div>
       </div>

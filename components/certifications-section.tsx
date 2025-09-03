@@ -58,13 +58,13 @@ export function CertificationsSection({ data }: CertificationsSectionProps) {
 
   return (
     <section id="certifications" className="p-2 sm:p-3 lg:p-4 overflow-hidden">
-      <div className="max-w-7xl mx-auto py-10 sm:py-12 px-4 sm:px-6">
+      <div className="max-w-full mx-auto py-10 sm:py-12 px-4 sm:px-6 rounded-2xl overflow-hidden bg-gradient-to-br from-blu-notte to-blu-notte/90">
         <div className="text-center space-y-4 mb-10">
-          <h2 className="text-5xl sm:text-6xl font-light text-blu-notte">
+          <h2 className="text-4xl md:text-5xl font-light tracking-tight leading-tight text-bianco-perla mb-6">
             {data?.title || "Certificazioni e Affiliazioni"}
           </h2>
           {(data?.subtitle || true) && (
-            <p className="text-lg text-blu-notte/70 max-w-2xl mx-auto">
+            <p className="text-lg text-bianco-perla/80 max-w-2xl mx-auto">
               {data?.subtitle ||
                 "Riconosciuto dalle principali istituzioni mediche e organizzazioni professionali in oftalmologia"}
             </p>
@@ -75,7 +75,9 @@ export function CertificationsSection({ data }: CertificationsSectionProps) {
         <div className="mt-16 relative overflow-hidden w-full">
           {/* Contenitore animato per lo scorrimento continuo */}
           <div
-            className={`flex whitespace-nowrap ${isLoaded ? "animate-marquee" : ""}`}
+            className={`flex whitespace-nowrap ${
+              isLoaded ? "animate-marquee" : ""
+            }`}
             style={{
               animationDuration: "30s",
               animationTimingFunction: "linear",
@@ -89,7 +91,12 @@ export function CertificationsSection({ data }: CertificationsSectionProps) {
                 className="inline-flex justify-center items-center mx-8"
               >
                 <div className="relative h-24 w-32 sm:h-28 sm:w-40 opacity-80 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
-                  <Image src={cert.logo} alt={cert.name} fill className="object-contain" />
+                  <Image
+                    src={cert.logo}
+                    alt={cert.name}
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               </div>
             ))}

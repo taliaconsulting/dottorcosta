@@ -21,7 +21,8 @@ export default defineType({
           name: "specialties",
           title: "Specialità",
           type: "string",
-          description: "Elenco delle specialità (es. LASIK | REFRACTIVE | CATARACTS)",
+          description:
+            "Elenco delle specialità (es. LASIK | REFRACTIVE | CATARACTS)",
         }),
         defineField({
           name: "locationText",
@@ -49,7 +50,8 @@ export default defineType({
           name: "backgroundVideo",
           title: "Video di Sfondo",
           type: "file",
-          description: "Video di sfondo per la sezione hero (ha priorità rispetto all'immagine)",
+          description:
+            "Video di sfondo per la sezione hero (ha priorità rispetto all'immagine)",
           options: {
             accept: "video/*",
           },
@@ -116,40 +118,6 @@ export default defineType({
           name: "description",
           title: "Descrizione",
           type: "text",
-        }),
-        defineField({
-          name: "credentials",
-          title: "Credenziali",
-          type: "array",
-          of: [
-            {
-              type: "object",
-              fields: [
-                defineField({
-                  name: "title",
-                  title: "Titolo",
-                  type: "string",
-                }),
-                defineField({
-                  name: "description",
-                  title: "Descrizione",
-                  type: "string",
-                }),
-                defineField({
-                  name: "iconType",
-                  title: "Tipo di Icona",
-                  type: "string",
-                  options: {
-                    list: [
-                      { title: "Blu", value: "blue" },
-                      { title: "Verde", value: "green" },
-                      { title: "Ambra", value: "amber" },
-                    ],
-                  },
-                }),
-              ],
-            },
-          ],
         }),
         defineField({
           name: "learnMoreButtonText",

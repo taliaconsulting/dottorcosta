@@ -8,6 +8,8 @@ import {
   blogPostBySlugQuery,
   featuredBlogPostsQuery,
   homepageQuery,
+  servicesQuery,
+  contactInfoQuery,
 } from "./sanity.queries";
 
 // Controllo se deve essere usato il fallback
@@ -17,7 +19,7 @@ const useFallbackData = process.env.USE_SANITY_FALLBACK === "true";
 const homepageFallbackData = {
   hero: {
     headline: "Dr. Costa - Specialista in Ginecologia",
-    specialties: ["Ginecologia", "Ostetricia", "Medicina Estetica"],
+    specialties: "Ginecologia | Ostetricia | Medicina Estetica",
     locationText: "Via Roma 123, Milano",
     locationLink: "https://goo.gl/maps/example",
     phoneNumber: "+39 123 456 7890",
@@ -26,10 +28,27 @@ const homepageFallbackData = {
   },
   servicesSection: {
     title: "I Nostri Servizi",
+    subtitle:
+      "Offriamo servizi specializzati con approccio professionale e tecnologie all'avanguardia per garantire il massimo della qualità.",
     services: [
-      { title: "Ginecologia", iconType: "female" },
-      { title: "Ostetricia", iconType: "baby" },
-      { title: "Medicina Estetica", iconType: "beauty" },
+      {
+        title: "Ginecologia",
+        description:
+          "Visite ginecologiche complete, diagnosi e trattamento delle patologie ginecologiche, consulenza sulla contraccezione e sulla salute della donna.",
+        iconType: "female",
+      },
+      {
+        title: "Ostetricia",
+        description:
+          "Assistenza durante la gravidanza, monitoraggio dello sviluppo fetale, consulenza prenatale e postnatale, con percorsi personalizzati per ogni mamma.",
+        iconType: "baby",
+      },
+      {
+        title: "Medicina Estetica",
+        description:
+          "Trattamenti minimamente invasivi per migliorare il benessere e l'aspetto della pelle, con protocolli mirati e personalizzati.",
+        iconType: "beauty",
+      },
     ],
   },
   aboutSection: {
@@ -75,6 +94,8 @@ const homepageFallbackData = {
     phoneNumber: "+39 123 456 7890",
     email: "info@drcosta.it",
     formSubmitButtonText: "Invia messaggio",
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.505237206145!2d13.644529875626667!3d37.30685827210697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1310847ca5540ddf%3A0x2f9bf0ac4bcf509a!2sViale%20Aldo%20Moro%2C%20165%2C%2092026%20Favara%20AG!5e0!3m2!1sit!2sit!4v1743751617260!5m2!1sit!2sit",
   },
 };
 
@@ -189,17 +210,17 @@ export async function getAllBlogPosts() {
   }
 }
 
-export async function getFeaturedBlogPosts() {
+export async function getFeaturedBlogPosts(count = 3) {
   if (useFallbackData) {
     console.log("Utilizzando dati di fallback per i post in evidenza");
-    return blogPostsFallbackData.slice(0, 3);
+    return blogPostsFallbackData.slice(0, count);
   }
 
   try {
-    return await client.fetch(featuredBlogPostsQuery);
+    return await client.fetch(featuredBlogPostsQuery, { to: Math.max(0, count - 1) });
   } catch (error) {
     console.error("Errore nel recupero dei post in evidenza da Sanity:", error);
-    return blogPostsFallbackData.slice(0, 3);
+    return blogPostsFallbackData.slice(0, count);
   }
 }
 
@@ -228,5 +249,46 @@ export async function getBlogPostBySlug(slug: string) {
     console.error(`Errore nel recupero del post con slug ${slug} da Sanity:`, error);
     // Ritorna null anziché un fallback arbitrario per permettere il redirect appropriato
     return null;
+  }
+}
+
+// Servizi (collezione)
+export async function getServices() {
+  if (useFallbackData) {
+    // Lascio ai componenti gestire i fallback se l'array è vuoto
+    return [] as Array<{ title: string; description?: string; iconType?: string }>;
+  }
+
+  try {
+    return await client.fetch(servicesQuery);
+  } catch (error) {
+    console.error("Errore nel recupero dei servizi da Sanity:", error);
+    return [];
+  }
+}
+
+// Informazioni di contatto (singolo documento)
+export async function getContactInfo() {
+  if (useFallbackData) {
+    const c = homepageFallbackData.contactSection;
+    return {
+      address: c.address,
+      phoneNumber: c.phoneNumber,
+      email: c.email,
+      mapEmbedUrl: c.mapEmbedUrl,
+    };
+  }
+
+  try {
+    return await client.fetch(contactInfoQuery);
+  } catch (error) {
+    console.error("Errore nel recupero di contact info da Sanity:", error);
+    const c = homepageFallbackData.contactSection;
+    return {
+      address: c.address,
+      phoneNumber: c.phoneNumber,
+      email: c.email,
+      mapEmbedUrl: c.mapEmbedUrl,
+    };
   }
 }

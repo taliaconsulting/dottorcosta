@@ -2,7 +2,9 @@ import type { SchemaTypeDefinition } from "sanity";
 import blogPage from "./blog";
 import blogPost from "./blogPost";
 import homepage from "./homepage";
+import service from "./service";
+import contactInfo from "./contactInfo";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [homepage, blogPage, blogPost],
+  types: [homepage, blogPage, blogPost, service, contactInfo],
 };

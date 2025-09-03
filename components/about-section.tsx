@@ -26,12 +26,12 @@ export function AboutSection({ data }: AboutSectionProps) {
             <div className="max-w-4xl mx-auto text-center">
               {/* Description */}
               <div className="space-y-6 mb-12">
-                <div className="prose prose-lg max-w-none">
-                  <p className="text-lg sm:text-xl text-grigio-scuro/80 leading-relaxed font-light">
-                    {data?.description ||
-                      "Dr. Eduardo Besser is a board-certified ophthalmologist specializing in cornea, cataract, and refractive surgery. With over two decades of experience, he has helped thousands of patients achieve their best possible vision."}
-                  </p>
-                </div>
+              <div className="prose prose-lg max-w-none">
+                <p className="text-lg sm:text-xl text-grigio-scuro/80 leading-relaxed font-light">
+                  {data?.description ||
+                      "Specialista con oltre 15 anni di esperienza in ginecologia e ostetricia. Offro assistenza personalizzata, diagnosi accurate e percorsi di cura costruiti sulle esigenze di ogni paziente."}
+                </p>
+              </div>
               </div>
 
               {/* Call to Action */}

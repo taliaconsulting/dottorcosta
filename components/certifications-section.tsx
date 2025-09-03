@@ -66,7 +66,7 @@ export function CertificationsSection({ data }: CertificationsSectionProps) {
           {(data?.subtitle || true) && (
             <p className="text-lg sm:text-xl leading-relaxed text-bianco-perla/80 max-w-2xl mx-auto">
               {data?.subtitle ||
-                "Riconosciuto dalle principali istituzioni mediche e organizzazioni professionali in oftalmologia"}
+                "Riconosciuto dalle principali istituzioni mediche e organizzazioni professionali in ginecologia e ostetricia"}
             </p>
           )}
         </div>

@@ -63,15 +63,14 @@ export function HeroSection({ data }: HeroSectionProps) {
         <div className="container relative z-10 py-20 mt-16">
           <div className="flex flex-col items-center text-center text-white space-y-8">
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight text-balance max-w-4xl bg-clip-text text-transparent bg-gradient-to-r from-bianco-perla via-bianco-perla/90 to-bianco-perla animate-gradient">
-              {data?.headline || "Experience every detail of life"}
+              {data?.headline || "Cura ginecologica su misura per te"}
             </h1>
             <p className="text-lg sm:text-xl font-light tracking-wide text-bianco-perla/80 uppercase">
-              {data?.specialties || "LASIK | REFRACTIVE | CATARACTS"}
+              {data?.specialties || "Ginecologia | Ostetricia | Medicina Estetica"}
             </p>
             <div className="mt-8">
               <p className="text-lg sm:text-xl text-bianco-perla/90">
-                {data?.locationText ||
-                  "Medical and Surgical Ophthalmology located in"}
+                {data?.locationText || "Studio medico a"}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
@@ -79,7 +78,7 @@ export function HeroSection({ data }: HeroSectionProps) {
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-12 px-8 bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte border-0 transition-colors"
               >
-                {data?.ctaButtonText || "SCHEDULE APPOINTMENT"}
+                {data?.ctaButtonText || "Prenota un appuntamento"}
               </Link>
             </div>
           </div>

@@ -72,21 +72,21 @@ export function ContactSection({ data }: ContactSectionProps) {
   const fallbackContactInfo = [
     {
       title: "Telefono",
-      value: "310-838-0202",
+      value: "+39 123 456 7890",
       iconType: "phone" as const,
       description: "Lun-Ven 9:00 - 17:00",
     },
     {
       title: "Email",
-      value: "info@bessereye.com",
+      value: "info@drcosta.it",
       iconType: "email" as const,
       description: "Risponderemo entro 24 ore",
     },
     {
       title: "Sede",
-      value: "Favara, AG",
+      value: "Milano",
       iconType: "location" as const,
-      description: "Viale Aldo Moro n° 165",
+      description: "Via Roma 123",
     },
   ];
 

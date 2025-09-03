@@ -14,6 +14,7 @@ export const homepageQuery = groq`
   },
   servicesSection {
     title,
+    subtitle,
     services[] {
       title,
       description
@@ -49,7 +50,8 @@ export const homepageQuery = groq`
     subtitle,
     address,
     phoneNumber,
-    email
+    email,
+    mapEmbedUrl
   }
 }`;
 
@@ -76,7 +78,7 @@ export const allBlogPostsQuery = groq`
 
 // Query per ottenere i post in evidenza per la homepage
 export const featuredBlogPostsQuery = groq`
-*[_type == "blogPost"] | order(publishedAt desc)[0..2] {
+*[_type == "blogPost"] | order(publishedAt desc)[0..$to] {
   _id,
   title,
   slug,
@@ -114,4 +116,21 @@ export const blogPostBySlugQuery = groq`
       }
     }
   }
+}`;
+
+// Collezione Servizi
+export const servicesQuery = groq`
+*[_type == "service"] | order(order asc, _createdAt asc) {
+  title,
+  description,
+  iconType
+}`;
+
+// Informazioni di contatto (singolo documento)
+export const contactInfoQuery = groq`
+*[_type == "contactInfo"][0] {
+  address,
+  phoneNumber,
+  email,
+  mapEmbedUrl
 }`;

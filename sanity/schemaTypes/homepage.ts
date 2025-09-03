@@ -78,6 +78,13 @@ export default defineType({
           type: "string",
         }),
         defineField({
+          name: "subtitle",
+          title: "Sottotitolo",
+          type: "text",
+          description:
+            "Testo introduttivo sotto il titolo (opzionale). Se vuoto, verrà mostrato un testo di fallback.",
+        }),
+        defineField({
           name: "services",
           title: "Servizi",
           type: "array",
@@ -118,6 +125,38 @@ export default defineType({
           name: "description",
           title: "Descrizione",
           type: "text",
+        }),
+        defineField({
+          name: "credentials",
+          title: "Credenziali/Highlight",
+          type: "array",
+          description:
+            "Punti salienti come specializzazioni, anni di esperienza, pubblicazioni, ecc. (opzionale)",
+          of: [
+            {
+              type: "object",
+              fields: [
+                defineField({ name: "title", title: "Titolo", type: "string" }),
+                defineField({
+                  name: "description",
+                  title: "Descrizione",
+                  type: "string",
+                }),
+                defineField({
+                  name: "iconType",
+                  title: "Icona (opzionale)",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "Laurea", value: "graduation" },
+                      { title: "Calendario", value: "calendar" },
+                      { title: "Documento", value: "document" },
+                    ],
+                  },
+                }),
+              ],
+            },
+          ],
         }),
         defineField({
           name: "learnMoreButtonText",
@@ -237,6 +276,13 @@ export default defineType({
           name: "email",
           title: "Email",
           type: "string",
+        }),
+        defineField({
+          name: "mapEmbedUrl",
+          title: "URL Mappa incorporata",
+          type: "url",
+          description:
+            "URL di incorporamento Google Maps (opzionale). Se vuoto, verrà usato un URL di fallback.",
         }),
       ],
     }),

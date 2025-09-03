@@ -17,7 +17,13 @@ const legalLinks = [
   { name: "Termini di Servizio", href: "/terms" },
 ];
 
-export function SiteFooter() {
+type FooterContact = {
+  address?: string;
+  phoneNumber?: string;
+  email?: string;
+};
+
+export function SiteFooter({ contact }: { contact?: FooterContact } = {}) {
   return (
     <footer id="footer" className="p-2 sm:p-3 lg:p-4">
       <div className="relative mx-auto w-full max-w-full rounded-2xl overflow-hidden bg-gradient-to-br from-blu-notte to-[#2C3E50]">
@@ -111,15 +117,15 @@ export function SiteFooter() {
             {/* Contact */}
             <div className="space-y-4">
               <h3 className="text-sm font-semibold tracking-wide text-white/80 mb-2">Contatti</h3>
-              <p className="text-white/80">Viale Aldo Moro 165, 92026 Favara (AG)</p>
+              <p className="text-white/80">{contact?.address || "Viale Aldo Moro 165, 92026 Favara (AG)"}</p>
               <p>
-                <Link href="tel:+39123456789" className="text-white hover:underline">
-                  +39 123 456 789
+                <Link href={`tel:${(contact?.phoneNumber || "+39 123 456 789").replace(/\s+/g, "")}`} className="text-white hover:underline">
+                  {contact?.phoneNumber || "+39 123 456 789"}
                 </Link>
               </p>
               <p>
-                <Link href="mailto:info@dottorcosta.it" className="text-white hover:underline">
-                  info@dottorcosta.it
+                <Link href={`mailto:${contact?.email || "info@dottorcosta.it"}`} className="text-white hover:underline">
+                  {contact?.email || "info@dottorcosta.it"}
                 </Link>
               </p>
             </div>

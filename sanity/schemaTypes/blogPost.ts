@@ -35,6 +35,29 @@ export default defineType({
       },
     }),
     defineField({
+      name: "publishedAt",
+      title: "Data di pubblicazione",
+      type: "datetime",
+      description: "Utilizzato per ordinare e mostrare la data nei post",
+    }),
+    defineField({
+      name: "mainImage",
+      title: "Immagine principale",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        { name: "alt", type: "string", title: "Testo alternativo", options: { isHighlighted: true } },
+        { name: "caption", type: "string", title: "Didascalia", options: { isHighlighted: true } },
+      ],
+    }),
+    defineField({
+      name: "excerpt",
+      title: "Sommario",
+      type: "text",
+      rows: 3,
+      description: "Breve riassunto del contenuto",
+    }),
+    defineField({
       name: "readTime",
       title: "Tempo di Lettura",
       type: "string",

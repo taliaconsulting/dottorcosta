@@ -51,6 +51,7 @@ const serviceDescriptions: Record<string, ServiceDetail> = {
 type ServicesSectionProps = {
   data: {
     title: string;
+    subtitle?: string;
     services: {
       title: string;
       description?: string;
@@ -168,8 +169,8 @@ export function ServicesSection({ data }: ServicesSectionProps) {
               {data?.title || "I Nostri Servizi"}
             </h2>
             <p className="text-grigio-scuro/80 max-w-3xl text-lg sm:text-xl mb-12 leading-relaxed text-center">
-              Offriamo servizi specializzati con approccio professionale e
-              tecnologie all'avanguardia per garantire il massimo della qualità.
+              {data?.subtitle ||
+                "Offriamo servizi specializzati con approccio professionale e tecnologie all'avanguardia per garantire il massimo della qualità."}
             </p>
           </div>
 

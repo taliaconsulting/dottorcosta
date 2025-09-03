@@ -58,11 +58,11 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
             <div>
               <h2 className="text-4xl md:text-5xl font-light tracking-tight leading-tight text-blu-notte mb-6">
-                {data?.title || "Il Nostro Blog"}
+                {data?.title || "Approfondimenti"}
               </h2>
               <p className="text-lg sm:text-xl leading-relaxed text-grigio-scuro/80">
                 {data?.subtitle ||
-                  "Prospettive di esperti sulla cura degli occhi e la correzione della vista"}
+                  "Approfondimenti e consigli su ginecologia, ostetricia e salute della donna"}
               </p>
             </div>
             <Link href="/blog">

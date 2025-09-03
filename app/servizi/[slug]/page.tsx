@@ -7,7 +7,11 @@ type Params = {
   slug: string;
 };
 
-export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>;
+}): Promise<Metadata> {
   const homepage = await getHomepage();
   const servicesData = homepage?.servicesSection;
 
@@ -15,12 +19,16 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { slug: rawSlug } = await params;
   const slug = decodeURIComponent(rawSlug);
   const service = servicesData?.services?.find(
-    (s: { title: string }) => s.title.toLowerCase().replace(/\s+/g, "-") === slug,
+    (s: { title: string }) =>
+      s.title.toLowerCase().replace(/\s+/g, "-") === slug
   );
 
   return {
-    title: service ? `${service.title} - Dott. Costa` : "Servizio - Dott. Costa",
-    description: service?.description || "Dettagli del servizio offerto dal Dott. Costa",
+    title: service
+      ? `${service.title} - Dott. Costa`
+      : "Servizio - Dott. Costa",
+    description:
+      service?.description || "Dettagli del servizio offerto dal Dott. Costa",
   };
 }
 
@@ -94,7 +102,11 @@ const serviceFallbackData: Record<string, Service> = {
   },
 };
 
-export default async function ServizioPage({ params }: { params: Promise<Params> }) {
+export default async function ServizioPage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
   const homepage = await getHomepage();
   const servicesData = homepage?.servicesSection;
 
@@ -102,7 +114,8 @@ export default async function ServizioPage({ params }: { params: Promise<Params>
   const { slug: rawSlug } = await params;
   const slug = decodeURIComponent(rawSlug);
   const service = servicesData?.services?.find(
-    (s: { title: string }) => s.title.toLowerCase().replace(/\s+/g, "-") === slug,
+    (s: { title: string }) =>
+      s.title.toLowerCase().replace(/\s+/g, "-") === slug
   );
 
   // Se il servizio non è trovato nei dati di Sanity, cerca nei dati di fallback
@@ -135,7 +148,8 @@ export default async function ServizioPage({ params }: { params: Promise<Params>
 
   // Formatta la descrizione per visualizzarla in paragrafi
   const formatDescription = (description?: string) => {
-    if (!description) return <p className="mb-4">Informazioni dettagliate non disponibili.</p>;
+    if (!description)
+      return <p className="mb-4">Informazioni dettagliate non disponibili.</p>;
 
     return description.split("\n").map((paragraph, index) => (
       <p key={index} className="mb-4">
@@ -150,9 +164,9 @@ export default async function ServizioPage({ params }: { params: Promise<Params>
   return (
     <article>
       {/* Header Section (Homepage style) */}
-      <section className="p-2 sm:p-3 lg:p-4">
-        <div className="relative w-full rounded-2xl overflow-hidden bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur ring-1 ring-slate-200">
-          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <section className="p-2 sm:p-3 lg:p-4 h-[80vh]">
+        <div className="relative w-full rounded-2xl overflow-hidden bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur ring-1 ring-slate-200 h-full">
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 h-full flex flex-col justify-center">
             <h1 className="text-4xl md:text-5xl font-light tracking-tight leading-tight text-blu-notte mb-4">
               {serviceToShow.title}
             </h1>
@@ -168,7 +182,9 @@ export default async function ServizioPage({ params }: { params: Promise<Params>
         <div className="relative w-full rounded-2xl overflow-hidden bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur ring-1 ring-slate-200">
           <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
             <div className="prose prose-lg max-w-none text-grigio-scuro">
-              <h2 className="text-3xl font-light text-blu-notte mb-8">Dettagli del servizio</h2>
+              <h2 className="text-3xl font-light text-blu-notte mb-8">
+                Dettagli del servizio
+              </h2>
               {formatDescription(serviceToShow.description)}
             </div>
           </div>

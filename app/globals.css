@@ -72,10 +72,21 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Montserrat', sans-serif;
-    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1, "ss02" 1, "ss03" 1, "ss04" 1;
+    font-family: "Montserrat", sans-serif;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1,
+      "ss01" 1,
+      "ss02" 1,
+      "ss03" 1,
+      "ss04" 1;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-normal tracking-tight text-foreground/90;
   }
   .container {
@@ -108,7 +119,7 @@
   .text-balance {
     text-wrap: balance;
   }
-  
+
   /* Animazione per lo scorrimento orizzontale dei loghi */
   @keyframes marquee {
     0% {
@@ -118,22 +129,24 @@
       transform: translateX(-50%);
     }
   }
-  
+
   .animate-marquee {
     animation: marquee 30s linear infinite;
   }
-  
+
   /* Pattern griglia per sfondi */
   .bg-grid-pattern {
     background-size: 30px 30px;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   }
-  
+
   .bg-grid-pattern-dark {
     background-size: 30px 30px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-image:
+      linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   }
 }
 
@@ -176,7 +189,7 @@
 
 .bg-grid-white\/5 {
   background-size: 60px 60px;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
@@ -187,10 +200,10 @@
 }
 
 .text-effect-relief {
-  text-shadow: 
-    1px 1px 0 #fff, 
-    -1px -1px 0 #fff, 
-    1px -1px 0 #fff, 
+  text-shadow:
+    1px 1px 0 #fff,
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
     -1px 1px 0 #fff;
 }
 
@@ -199,7 +212,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {

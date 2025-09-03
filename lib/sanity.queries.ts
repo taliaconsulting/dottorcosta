@@ -1,4 +1,4 @@
-import { groq } from 'next-sanity'
+import { groq } from "next-sanity";
 
 // Query per i dati della homepage
 export const homepageQuery = groq`
@@ -51,7 +51,7 @@ export const homepageQuery = groq`
     phoneNumber,
     email
   }
-}`
+}`;
 
 // Query per la pagina del blog
 export const blogPageQuery = groq`
@@ -62,7 +62,7 @@ export const blogPageQuery = groq`
   postsPerPage,
   categoriesTitle,
   recentPostsTitle
-}`
+}`;
 
 // Query per ottenere tutti i post del blog
 export const allBlogPostsQuery = groq`
@@ -72,7 +72,7 @@ export const allBlogPostsQuery = groq`
   slug,
   category,
   readTime
-}`
+}`;
 
 // Query per ottenere i post in evidenza per la homepage
 export const featuredBlogPostsQuery = groq`
@@ -85,7 +85,7 @@ export const featuredBlogPostsQuery = groq`
   "mainImage": mainImage.asset->url,
   publishedAt,
   readTime
-}`
+}`;
 
 // Query per un singolo post del blog tramite slug
 export const blogPostBySlugQuery = groq`
@@ -114,4 +114,4 @@ export const blogPostBySlugQuery = groq`
       }
     }
   }
-}`
+}`;

@@ -1,44 +1,44 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Phone, Mail, MapPin } from "lucide-react"
+import { Mail, MapPin, Phone } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 type ContactInfo = {
-  title: string
-  value: string
-  iconType: "phone" | "email" | "location"
-  description: string
-}
+  title: string;
+  value: string;
+  iconType: "phone" | "email" | "location";
+  description: string;
+};
 
 type ContactSectionProps = {
   data: {
-    title: string
-    subtitle?: string
-    contactInfo?: ContactInfo[]
-    address?: string
-    phoneNumber?: string
-    email?: string
-    locationDescription?: string
-    mapEmbedUrl?: string
-  }
-}
+    title: string;
+    subtitle?: string;
+    contactInfo?: ContactInfo[];
+    address?: string;
+    phoneNumber?: string;
+    email?: string;
+    locationDescription?: string;
+    mapEmbedUrl?: string;
+  };
+};
 
 // Componente per renderizzare le icone di contatto in base al tipo
 const ContactIcon = ({ iconType }: { iconType: string }) => {
   switch (iconType) {
     case "phone":
-      return <Phone className="h-6 w-6 text-blu-polvere" />
+      return <Phone className="h-6 w-6 text-blu-polvere" />;
     case "email":
-      return <Mail className="h-6 w-6 text-blu-polvere" />
+      return <Mail className="h-6 w-6 text-blu-polvere" />;
     case "location":
-      return <MapPin className="h-6 w-6 text-blu-polvere" />
+      return <MapPin className="h-6 w-6 text-blu-polvere" />;
     default:
-      return <Mail className="h-6 w-6 text-blu-polvere" />
+      return <Mail className="h-6 w-6 text-blu-polvere" />;
   }
-}
+};
 
 export function ContactSection({ data }: ContactSectionProps) {
   // Costruisco l'array di informazioni di contatto dai dati Sanity, se disponibili
-  let contactInfoFromData = [];
-  
+  const contactInfoFromData = [];
+
   if (data?.phoneNumber) {
     contactInfoFromData.push({
       title: "Telefono",
@@ -47,7 +47,7 @@ export function ContactSection({ data }: ContactSectionProps) {
       description: "Lun-Ven 9:00 - 17:00",
     });
   }
-  
+
   if (data?.email) {
     contactInfoFromData.push({
       title: "Email",
@@ -56,16 +56,16 @@ export function ContactSection({ data }: ContactSectionProps) {
       description: "Risponderemo entro 24 ore",
     });
   }
-  
+
   if (data?.address) {
     contactInfoFromData.push({
       title: "Sede",
-      value: data.address.split(',')[0] || data.address, // Prima parte dell'indirizzo
+      value: data.address.split(",")[0] || data.address, // Prima parte dell'indirizzo
       iconType: "location" as const,
-      description: data.address.split(',').slice(1).join(',').trim() || "Indirizzo completo", // Resto dell'indirizzo
+      description: data.address.split(",").slice(1).join(",").trim() || "Indirizzo completo", // Resto dell'indirizzo
     });
   }
-  
+
   // Fallback per le informazioni di contatto se non ci sono dati da Sanity
   const fallbackContactInfo = [
     {
@@ -86,12 +86,16 @@ export function ContactSection({ data }: ContactSectionProps) {
       iconType: "location" as const,
       description: "Viale Aldo Moro n° 165",
     },
-  ]
+  ];
 
   // Usa contactInfo da data, poi contactInfoFromData costruito dai campi singoli, infine fallback
-  const contactInfo = data?.contactInfo || (contactInfoFromData.length > 0 ? contactInfoFromData : fallbackContactInfo);
-  const mapEmbedUrl = data?.mapEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.505237206145!2d13.644529875626667!3d37.30685827210697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1310847ca5540ddf%3A0x2f9bf0ac4bcf509a!2sViale%20Aldo%20Moro%2C%20165%2C%2092026%20Favara%20AG!5e0!3m2!1sit!2sit!4v1743751617260!5m2!1sit!2sit";
-  
+  const contactInfo =
+    data?.contactInfo ||
+    (contactInfoFromData.length > 0 ? contactInfoFromData : fallbackContactInfo);
+  const mapEmbedUrl =
+    data?.mapEmbedUrl ||
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.505237206145!2d13.644529875626667!3d37.30685827210697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1310847ca5540ddf%3A0x2f9bf0ac4bcf509a!2sViale%20Aldo%20Moro%2C%20165%2C%2092026%20Favara%20AG!5e0!3m2!1sit!2sit!4v1743751617260!5m2!1sit!2sit";
+
   return (
     <section id="contact" className="p-2 sm:p-3 lg:p-4">
       <div className="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-blu-notte to-blu-notte/80">
@@ -99,7 +103,9 @@ export function ContactSection({ data }: ContactSectionProps) {
           {/* Informazioni di Contatto */}
           <div className="p-6 lg:p-10 space-y-6">
             <div>
-              <h2 className="text-5xl sm:text-6xl font-light text-bianco-perla">{data?.title || "Contattaci"}</h2>
+              <h2 className="text-5xl sm:text-6xl font-light text-bianco-perla">
+                {data?.title || "Contattaci"}
+              </h2>
               <p className="mt-4 text-lg text-bianco-perla/80">
                 {data?.subtitle || "Siamo qui per rispondere a qualsiasi domanda tu possa avere."}
               </p>
@@ -124,13 +130,13 @@ export function ContactSection({ data }: ContactSectionProps) {
                 </Card>
               ))}
             </div>
-
           </div>
 
           {/* Mappa */}
           <div className="h-full min-h-[800px] lg:min-h-full relative">
             <iframe
               src={mapEmbedUrl}
+              title="Mappa della sede del Dott. Costa"
               className="absolute inset-0 w-full h-full"
               style={{ border: 0 }}
               allowFullScreen
@@ -141,5 +147,5 @@ export function ContactSection({ data }: ContactSectionProps) {
         </div>
       </div>
     </section>
-  )
-} 
+  );
+}

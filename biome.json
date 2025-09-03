@@ -1,0 +1,37 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.2.2/schema.json",
+  "files": {
+    "includes": [
+      "app/**/*",
+      "components/**/*",
+      "lib/**/*",
+      "sanity/**/*",
+      "next.config.ts",
+      "postcss.config.mjs",
+      "tailwind.config.ts",
+      "tsconfig.json"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentWidth": 2,
+    "indentStyle": "space",
+    "lineWidth": 100
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "suspicious": {
+        "noUnknownAtRules": "off",
+        "noArrayIndexKey": "off"
+      },
+      "complexity": {
+        "noImportantStyles": "off"
+      },
+      "correctness": {
+        "useUniqueElementIds": "off"
+      }
+    }
+  }
+}

@@ -1,23 +1,39 @@
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 
 type HeroSectionProps = {
   data: {
-    headline: string
-    specialties: string
-    locationText: string
-    ctaButtonText: string
-    backgroundImage?: string
-    backgroundVideo?: string
-    useVideo?: boolean
-  }
-}
+    headline: string;
+    specialties: string;
+    locationText: string;
+    ctaButtonText: string;
+    backgroundImage?: string;
+    backgroundVideo?: string;
+    useVideo?: boolean;
+  };
+};
 
 export function HeroSection({ data }: HeroSectionProps) {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section id="hero" className="p-2 sm:p-3 lg:p-4 h-screen">
-      <div className="relative w-full h-full min-h-[calc(100vh-2rem)] rounded-2xl overflow-hidden flex items-center justify-center bg-none">
+    <section id="hero" className="h-screen">
+      <div
+        className={`relative w-full h-full min-h-screen overflow-hidden flex items-center justify-center bg-none transition-transform duration-500 ${
+          scrolled ? "rounded-2xl transform scale-90" : ""
+        }`}
+      >
         {/* Background Image or Video */}
         <div className="absolute inset-0 z-0">
           {data?.useVideo && data?.backgroundVideo ? (
@@ -54,13 +70,14 @@ export function HeroSection({ data }: HeroSectionProps) {
             </p>
             <div className="mt-8">
               <p className="text-lg sm:text-xl text-bianco-perla/90">
-                {data?.locationText || "Medical and Surgical Ophthalmology located in"}
+                {data?.locationText ||
+                  "Medical and Surgical Ophthalmology located in"}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               <Link
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-12 px-8 bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte border-0 transition-colors"
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-12 px-8 bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte border-0 transition-colors"
               >
                 {data?.ctaButtonText || "SCHEDULE APPOINTMENT"}
               </Link>
@@ -69,5 +86,5 @@ export function HeroSection({ data }: HeroSectionProps) {
         </div>
       </div>
     </section>
-  )
-} 
+  );
+}

@@ -1,27 +1,27 @@
-'use client'
-import Image from "next/image"
-import { useEffect, useState } from "react"
+"use client";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 type CertificationsSectionProps = {
   data: {
-    title: string
-    subtitle?: string
+    title: string;
+    subtitle?: string;
     certifications: {
-      name: string
-      logo: string
-    }[]
-    footerText?: string
-  }
-}
+      name: string;
+      logo: string;
+    }[];
+    footerText?: string;
+  };
+};
 
 export function CertificationsSection({ data }: CertificationsSectionProps) {
   // Stato per gestire l'animazione dopo il montaggio del componente
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // Effetto per attivare l'animazione dopo il montaggio
   useEffect(() => {
-    setIsLoaded(true)
-  }, [])
+    setIsLoaded(true);
+  }, []);
 
   // Fallback per le certificazioni se non ci sono dati da Sanity
   const fallbackCertifications = [
@@ -49,13 +49,13 @@ export function CertificationsSection({ data }: CertificationsSectionProps) {
       name: "American Academy of Ophthalmology",
       logo: "/logos/aao-logo.png",
     },
-  ]
+  ];
 
   // Duplica le certificazioni per creare un effetto di scorrimento infinito
-  const certifications = data?.certifications || fallbackCertifications
+  const certifications = data?.certifications || fallbackCertifications;
   // Creiamo due set di loghi per l'animazione continua
-  const duplicatedCertifications = [...certifications, ...certifications]
-  
+  const duplicatedCertifications = [...certifications, ...certifications];
+
   return (
     <section id="certifications" className="p-2 sm:p-3 lg:p-4 overflow-hidden">
       <div className="max-w-7xl mx-auto py-10 sm:py-12 px-4 sm:px-6">
@@ -65,7 +65,8 @@ export function CertificationsSection({ data }: CertificationsSectionProps) {
           </h2>
           {(data?.subtitle || true) && (
             <p className="text-lg text-blu-notte/70 max-w-2xl mx-auto">
-              {data?.subtitle || "Riconosciuto dalle principali istituzioni mediche e organizzazioni professionali in oftalmologia"}
+              {data?.subtitle ||
+                "Riconosciuto dalle principali istituzioni mediche e organizzazioni professionali in oftalmologia"}
             </p>
           )}
         </div>
@@ -73,12 +74,12 @@ export function CertificationsSection({ data }: CertificationsSectionProps) {
         {/* Contenitore principale con overflow nascosto */}
         <div className="mt-16 relative overflow-hidden w-full">
           {/* Contenitore animato per lo scorrimento continuo */}
-          <div 
-            className={`flex whitespace-nowrap ${isLoaded ? 'animate-marquee' : ''}`}
+          <div
+            className={`flex whitespace-nowrap ${isLoaded ? "animate-marquee" : ""}`}
             style={{
-              animationDuration: '30s',
-              animationTimingFunction: 'linear',
-              animationIterationCount: 'infinite',
+              animationDuration: "30s",
+              animationTimingFunction: "linear",
+              animationIterationCount: "infinite",
             }}
           >
             {/* Primo set di loghi */}
@@ -88,19 +89,13 @@ export function CertificationsSection({ data }: CertificationsSectionProps) {
                 className="inline-flex justify-center items-center mx-8"
               >
                 <div className="relative h-24 w-32 sm:h-28 sm:w-40 opacity-80 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
-                  <Image
-                    src={cert.logo}
-                    alt={cert.name}
-                    fill
-                    className="object-contain"
-                  />
+                  <Image src={cert.logo} alt={cert.name} fill className="object-contain" />
                 </div>
               </div>
             ))}
           </div>
         </div>
-
       </div>
     </section>
-  )
-} 
+  );
+}

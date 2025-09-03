@@ -1,7 +1,7 @@
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
-export default function BlogLayout({ children }: { children: React.ReactNode }) {
+export default function PrivacyLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative bg-slate-200 flex min-h-screen flex-col">
       <SiteHeader />
@@ -10,3 +10,4 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
     </div>
   );
 }
+

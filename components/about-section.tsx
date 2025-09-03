@@ -27,7 +27,7 @@ export function AboutSection({ data }: AboutSectionProps) {
               {/* Description */}
               <div className="space-y-6 mb-12">
                 <div className="prose prose-lg max-w-none">
-                  <p className="text-xl text-grigio-scuro leading-relaxed font-light">
+                  <p className="text-lg sm:text-xl text-grigio-scuro/80 leading-relaxed font-light">
                     {data?.description ||
                       "Dr. Eduardo Besser is a board-certified ophthalmologist specializing in cornea, cataract, and refractive surgery. With over two decades of experience, he has helped thousands of patients achieve their best possible vision."}
                   </p>

@@ -110,7 +110,7 @@ export function ContactSection({ data }: ContactSectionProps) {
               <h2 className="text-4xl md:text-5xl font-light tracking-tight leading-tight text-blu-notte mb-6">
                 {data?.title || "Contattaci"}
               </h2>
-              <p className="text-lg text-grigio-scuro/80">
+              <p className="text-lg sm:text-xl leading-relaxed text-grigio-scuro/80">
                 {data?.subtitle ||
                   "Siamo qui per rispondere a qualsiasi domanda tu possa avere."}
               </p>

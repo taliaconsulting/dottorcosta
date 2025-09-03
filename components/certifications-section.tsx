@@ -64,7 +64,7 @@ export function CertificationsSection({ data }: CertificationsSectionProps) {
             {data?.title || "Certificazioni e Affiliazioni"}
           </h2>
           {(data?.subtitle || true) && (
-            <p className="text-lg text-bianco-perla/80 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl leading-relaxed text-bianco-perla/80 max-w-2xl mx-auto">
               {data?.subtitle ||
                 "Riconosciuto dalle principali istituzioni mediche e organizzazioni professionali in oftalmologia"}
             </p>

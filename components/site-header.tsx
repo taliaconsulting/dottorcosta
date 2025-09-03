@@ -3,6 +3,7 @@ import { Award, BookOpen, Home, Mail, Menu, Phone, Stethoscope, User, X } from "
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -25,30 +26,44 @@ const sectionNavigation = [
 export function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [overHero, setOverHero] = useState(true);
+  const router = useRouter();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   // Funzione per gestire lo scroll manuale e chiudere il menu custom
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const targetId = href.substring(1);
-    const targetElement = document.getElementById(targetId);
+    // Se non siamo in homepage, navighiamo a /#section
+    const isHome = pathname === "/";
+    const hash = href.startsWith("#") ? href : `#${href}`;
 
+    if (!isHome) {
+      e.preventDefault();
+      setIsMobileMenuOpen(false);
+      router.push(`/${hash}`);
+      return;
+    }
+
+    // Siamo in homepage: esegui scroll alla sezione
+    e.preventDefault();
+    const targetId = hash.substring(1);
+    const targetElement = document.getElementById(targetId);
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: "auto", block: "start" });
     }
-    // Chiudi il menu custom immediatamente
     setIsMobileMenuOpen(false);
   };
 
   // Gestione click sul logo principale (leggermente adattata)
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const href = "#hero";
-    if (isMobileMenuOpen) {
-      handleLinkClick(e, href); // Chiude anche il menu
-    } else {
+    const isHome = pathname === "/";
+    if (!isHome) {
       e.preventDefault();
-      const targetElement = document.getElementById(href.substring(1));
-      targetElement?.scrollIntoView({ behavior: "auto", block: "start" });
+      setIsMobileMenuOpen(false);
+      router.push(`/${href}`);
+      return;
     }
+    handleLinkClick(e, href);
   };
 
   // Effetto per bloccare lo scroll del body quando il menu è aperto
@@ -66,10 +81,14 @@ export function SiteHeader() {
 
   // Track whether we are over the hero section to toggle nav background/colors
   useEffect(() => {
+    if (!isHome) {
+      setOverHero(false);
+      return;
+    }
     const updateOverHero = () => {
       const hero = document.getElementById("hero");
       if (!hero) {
-        setOverHero(window.scrollY < 40);
+        setOverHero(false);
         return;
       }
       const heroBottom = hero.offsetTop + hero.offsetHeight;
@@ -82,19 +101,22 @@ export function SiteHeader() {
       window.removeEventListener("scroll", updateOverHero);
       window.removeEventListener("resize", updateOverHero);
     };
-  }, []);
+  }, [isHome]);
 
   return (
-    <header className={cn("fixed top-0 left-0 right-0 z-50")}>
-      <nav
-        className={cn(
-          "mx-auto mt-3 sm:mt-4 lg:mt-6 w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] lg:w-[calc(100%-3rem)] max-w-7xl px-4 sm:px-6 py-3 transition-all duration-300",
-          overHero
-            ? "bg-transparent"
-            : "bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur shadow-sm ring-1 ring-slate-200 rounded-2xl",
-        )}
-      >
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <header className={cn(isHome ? "fixed top-0 left-0 right-0 z-50" : "sticky top-0 left-0 right-0 z-50")}> 
+      <div className={cn(!isHome && "p-2 sm:p-3 lg:p-4")}> 
+        <nav
+          className={cn(
+            isHome
+              ? "mx-auto mt-3 sm:mt-4 lg:mt-6 w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] lg:w-[calc(100%-3rem)] max-w-7xl px-4 sm:px-6 py-3 transition-all duration-300"
+              : "relative w-full px-4 sm:px-6 py-3 transition-all duration-300 overflow-hidden",
+            overHero
+              ? "bg-transparent"
+              : "bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur shadow-sm ring-1 ring-slate-200 rounded-2xl",
+          )}
+        >
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center">
             <Link
               href="#hero"
@@ -154,6 +176,7 @@ export function SiteHeader() {
                             ? "text-white hover:text-blue-200 hover:bg-white/5"
                             : "text-slate-800 hover:text-slate-900 hover:bg-slate-100",
                         )}
+                        onClick={(e) => handleLinkClick(e, item.href)}
                       >
                         {item.name}
                         <span
@@ -177,7 +200,8 @@ export function SiteHeader() {
             </Link>
           </div>
         </div>
-      </nav>
+        </nav>
+      </div>
 
       {/* Overlay e Contenuto del Menu Mobile Custom */}
       {/* Overlay semi-trasparente */}

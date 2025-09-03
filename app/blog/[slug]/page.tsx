@@ -1,4 +1,4 @@
-import { ArrowLeft, Clock, Tag } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -65,100 +65,62 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   // const excerpt = extractExcerpt(post.body || []);
 
   return (
-    <article className="min-h-screen bg-slate-100">
-      {/* Hero Section */}
-      <section className="relative py-24 md:py-32 bg-gradient-to-br from-[#1B365C] via-[#2C3E50] to-[#1B365C] overflow-hidden">
-        {/* Effetti di sfondo */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(30,64,175,0.2),transparent_70%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(125,211,252,0.15),transparent_70%)]"></div>
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-soft-light"></div>
-        <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-black/20 to-transparent"></div>
-        <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-black/20 to-transparent"></div>
-
-        <div className="container relative z-10 mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
+    <article>
+      {/* Header Section (Homepage style) */}
+      <section className="p-2 sm:p-3 lg:p-4">
+        <div className="relative w-full rounded-2xl overflow-hidden bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur ring-1 ring-slate-200">
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
             <Link
               href="/blog"
-              className="group inline-flex items-center text-white/80 hover:text-white mb-8 py-2 transition-colors"
+              className="inline-flex items-center text-blu-notte/80 hover:text-blu-notte mb-6 transition-colors"
             >
-              <span className="flex items-center justify-center w-8 h-8 mr-3 rounded-full bg-white/10 group-hover:bg-white/20 transition-all duration-300">
+              <span className="flex items-center justify-center w-8 h-8 mr-3 rounded-full bg-slate-100">
                 <ArrowLeft className="h-4 w-4" />
               </span>
               Torna al Blog
             </Link>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white max-w-4xl mb-8 leading-tight tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-light tracking-tight leading-tight text-blu-notte mb-4">
               {post.title}
             </h1>
-
-            <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-xl px-6 py-4 mb-8 flex flex-wrap items-center gap-6">
-              <div className="flex items-center gap-2 text-white/90">
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10">
-                  <Tag className="h-4 w-4" />
-                </div>
-                <span className="font-medium">{post.category || "Categoria non specificata"}</span>
-              </div>
-              <div className="flex items-center gap-2 text-white/90">
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10">
-                  <Clock className="h-4 w-4" />
-                </div>
-                <span>{post.readTime || "Tempo di lettura non disponibile"}</span>
-              </div>
-            </div>
+            <p className="text-grigio-scuro/80 text-lg sm:text-xl leading-relaxed">
+              {post.excerpt || ""}
+            </p>
           </div>
-        </div>
-
-        {/* Onda decorativa in basso */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1440 100"
-            className="w-full h-auto text-slate-100 fill-current"
-          >
-            <title>Decorative wave</title>
-            <path d="M0,50 C250,120 350,0 500,40 C650,80 700,50 900,20 C1100,-10 1300,40 1440,90 L1440,100 L0,100 Z"></path>
-          </svg>
         </div>
       </section>
 
       {/* Content Section */}
-      <section className="py-12 md:py-16 -mt-2 bg-slate-100">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 border border-slate-200">
-              <PortableText
-                value={post.body || []}
-                className="prose prose-lg max-w-none prose-p:text-justify prose-headings:text-left prose-img:mx-auto prose-headings:font-light prose-h2:text-2xl lg:prose-h2:text-3xl prose-p:leading-relaxed prose-p:text-slate-700 prose-headings:text-[#1B365C] prose-a:text-[#1B365C] prose-a:font-medium prose-a:no-underline hover:prose-a:underline prose-blockquote:border-l-[#1B365C] prose-blockquote:bg-slate-50 prose-blockquote:py-1 prose-blockquote:italic prose-strong:text-[#1B365C] prose-strong:font-semibold font-['Montserrat']"
-              />
-            </div>
+      <section className="p-2 sm:p-3 lg:p-4">
+        <div className="relative w-full rounded-2xl overflow-hidden bg-white/95 supports-[backdrop-filter]:bg-white/80 backdrop-blur ring-1 ring-slate-200">
+          <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+            <PortableText
+              value={post.body || []}
+              className="prose prose-lg max-w-none prose-p:text-justify prose-headings:text-left prose-img:mx-auto prose-headings:font-light prose-h2:text-2xl lg:prose-h2:text-3xl prose-p:leading-relaxed prose-p:text-slate-700 prose-headings:text-blu-notte prose-a:text-blu-notte prose-a:font-medium prose-a:no-underline hover:prose-a:underline prose-blockquote:border-l-blu-notte prose-blockquote:bg-slate-50 prose-blockquote:py-1 prose-blockquote:italic prose-strong:text-blu-notte prose-strong:font-semibold font-['Montserrat']"
+            />
 
-            <div className="mt-16">
-              {/* Sezione feedback */}
-              <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-8 text-center">
-                <div className="max-w-xl mx-auto space-y-6">
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-light text-[#1B365C]">
-                      Ti è piaciuto questo articolo?
-                    </h3>
-                    <p className="text-slate-600">
-                      Scopri altri contenuti interessanti nel nostro blog
-                    </p>
-                  </div>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Link
-                      href="/blog"
-                      className="inline-flex items-center justify-center bg-[#1B365C] hover:bg-[#2C3E50] text-white px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg w-full sm:w-auto"
-                    >
-                      <ArrowLeft className="mr-2 h-4 w-4" />
-                      Esplora altri articoli
-                    </Link>
-                    <Link
-                      href="#contact"
-                      className="inline-flex items-center justify-center bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg w-full sm:w-auto"
-                    >
-                      Prenota un Appuntamento
-                    </Link>
-                  </div>
+            {/* Feedback Section */}
+            <div className="mt-16 text-center">
+              <div className="max-w-xl mx-auto space-y-4">
+                <h3 className="text-2xl font-light text-blu-notte">
+                  Ti è piaciuto questo articolo?
+                </h3>
+                <p className="text-grigio-scuro/80">
+                  Scopri altri contenuti interessanti nel nostro blog
+                </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2">
+                  <Link
+                    href="/blog"
+                    className="inline-flex items-center justify-center bg-blu-notte hover:bg-blu-notte/90 text-white px-6 py-3 rounded-full transition-all duration-300 shadow-sm w-full sm:w-auto"
+                  >
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Esplora altri articoli
+                  </Link>
+                  <Link
+                    href="#contact"
+                    className="inline-flex items-center justify-center bg-blu-polvere hover:bg-blu-polvere/90 text-blu-notte px-6 py-3 rounded-full transition-all duration-300 shadow-sm w-full sm:w-auto"
+                  >
+                    Prenota un Appuntamento
+                  </Link>
                 </div>
               </div>
             </div>

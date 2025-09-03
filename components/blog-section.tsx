@@ -60,7 +60,7 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
               <h2 className="text-4xl md:text-5xl font-light tracking-tight leading-tight text-blu-notte mb-6">
                 {data?.title || "Il Nostro Blog"}
               </h2>
-              <p className="text-xl text-grigio-scuro/80">
+              <p className="text-lg sm:text-xl leading-relaxed text-grigio-scuro/80">
                 {data?.subtitle ||
                   "Prospettive di esperti sulla cura degli occhi e la correzione della vista"}
               </p>
@@ -89,7 +89,7 @@ export function BlogSection({ data, posts }: BlogSectionProps) {
                         <span>•</span>
                         <span>{post.readTime}</span>
                       </div>
-                      <h3 className="text-xl font-medium text-blu-notte group-hover:text-blu-notte/80 transition-colors leading-tight">
+                      <h3 className="text-xl md:text-2xl font-medium text-blu-notte group-hover:text-blu-notte/80 transition-colors leading-tight">
                         {post.title}
                       </h3>
                     </div>
